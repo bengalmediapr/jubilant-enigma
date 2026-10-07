@@ -1,0 +1,119 @@
+{
+  "label": {"es": "Médico / Clínica", "en": "Doctor / Clinic"},
+  "schema_type": "MedicalClinic",
+  "hero_icon": "stethoscope",
+  "theme": {
+    "primary": "#1d4ed8", "primary_ink": "#ffffff", "accent": "#7dd3fc", "accent_ink": "#0b2545",
+    "bg": "#f5f8ff", "surface": "#ffffff", "ink": "#0f1b33", "muted": "#4f5d78",
+    "font_head": "Manrope", "head_weights": "700;800", "head_weight": 800, "font_body": "Manrope",
+    "radius": "12px", "hero": "split", "head_spacing": "-0.03em"
+  },
+  "sections": ["hero", "services", "about", "insurance", "faq", "contact"],
+  "hours": [
+    {"es": "Lunes a viernes", "en": "Monday–Friday", "time": "7:30 AM – 4:30 PM"}
+  ],
+  "demo": {
+    "name": "Clínica Familiar del Norte",
+    "municipio": "Arecibo",
+    "address": "Carr. 2 Km 80.1, Arecibo, PR 00612",
+    "phone": "787-555-0103",
+    "rating": 4.7,
+    "reviews": 152
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Médico en {municipio}, Puerto Rico",
+        "description": "Clínica médica en {municipio}: medicina de familia, exámenes físicos, laboratorios, vacunas y control de condiciones crónicas. Aceptamos planes médicos."
+      },
+      "nav_cta": "Pedir cita",
+      "wa_text": "Hola, quisiera pedir una cita en {name}.",
+      "hero": {
+        "eyebrow": "Medicina de familia en {municipio}",
+        "title": "Su salud, atendida por médicos que le conocen",
+        "subtitle": "Consultas para toda la familia, seguimiento de condiciones como diabetes e hipertensión, y certificados médicos sin largas esperas.",
+        "cta": "Pedir cita por WhatsApp",
+        "cta2": "Llamar",
+        "points": ["Planes médicos", "Citas y walk-ins", "Certificados el mismo día"]
+      },
+      "services": {
+        "title": "Servicios",
+        "items": [
+          {"icon": "stethoscope", "title": "Medicina de familia", "text": "Consultas para niños, adultos y adultos mayores."},
+          {"icon": "heart-pulse", "title": "Condiciones crónicas", "text": "Control de diabetes, presión alta, colesterol y asma."},
+          {"icon": "clipboard-check", "title": "Exámenes y certificados", "text": "Físicos para empleo, escuela, deportes y licencia."},
+          {"icon": "syringe", "title": "Vacunas", "text": "Vacunas de temporada y para adultos."},
+          {"icon": "microscope", "title": "Laboratorios", "text": "Órdenes y resultados explicados en su próxima visita."},
+          {"icon": "video", "title": "Telemedicina", "text": "Consultas de seguimiento desde su casa."}
+        ]
+      },
+      "about": {
+        "title": "Medicina con tiempo para escucharle",
+        "text": "En {name} creemos que una buena consulta empieza por escuchar. Le explicamos su diagnóstico y su tratamiento en palabras claras, y le damos seguimiento.",
+        "points": ["Aceptamos la mayoría de los planes médicos y Medicare", "Recetas electrónicas a su farmacia", "Personal bilingüe"]
+      },
+      "insurance": {
+        "title": "Planes médicos",
+        "text": "Trabajamos con la mayoría de los planes médicos en Puerto Rico. Escríbanos el nombre de su plan y le confirmamos antes de su cita.",
+        "button": "Verificar mi plan",
+        "items": []
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Atienden sin cita?", "a": "Sí, recibimos pacientes sin cita según la disponibilidad del día. Con cita, su espera es menor."},
+          {"q": "¿Qué debo traer a mi primera cita?", "a": "Su identificación, tarjeta del plan médico y la lista de medicamentos que toma."},
+          {"q": "¿Hacen certificados médicos?", "a": "Sí: empleo, escuela, deportes y licencia de conducir, normalmente el mismo día."}
+        ]
+      },
+      "contact": {"title": "Contacto y horario", "text": "Escríbanos, llámenos o visítenos en {municipio}."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Doctor in {municipio}, Puerto Rico",
+        "description": "Medical clinic in {municipio}, PR: family medicine, physicals, labs, vaccines and chronic care. Most health plans accepted."
+      },
+      "nav_cta": "Book a visit",
+      "wa_text": "Hi, I'd like to book an appointment at {name}.",
+      "hero": {
+        "eyebrow": "Family medicine in {municipio}",
+        "title": "Your health, cared for by doctors who know you",
+        "subtitle": "Visits for the whole family, follow-up for conditions like diabetes and high blood pressure, and medical certificates without long waits.",
+        "cta": "Book on WhatsApp",
+        "cta2": "Call",
+        "points": ["Health plans accepted", "Appointments and walk-ins", "Same-day certificates"]
+      },
+      "services": {
+        "title": "Services",
+        "items": [
+          {"icon": "stethoscope", "title": "Family medicine", "text": "Visits for children, adults and seniors."},
+          {"icon": "heart-pulse", "title": "Chronic conditions", "text": "Care for diabetes, high blood pressure, cholesterol and asthma."},
+          {"icon": "clipboard-check", "title": "Physicals and certificates", "text": "For work, school, sports and driver's licenses."},
+          {"icon": "syringe", "title": "Vaccines", "text": "Seasonal and adult vaccines."},
+          {"icon": "microscope", "title": "Lab work", "text": "Orders and results explained at your next visit."},
+          {"icon": "video", "title": "Telemedicine", "text": "Follow-up visits from home."}
+        ]
+      },
+      "about": {
+        "title": "Medicine with time to listen",
+        "text": "At {name} we believe a good visit starts with listening. We explain your diagnosis and treatment in plain words, and we follow up.",
+        "points": ["Most health plans and Medicare accepted", "E-prescriptions sent to your pharmacy", "Bilingual staff"]
+      },
+      "insurance": {
+        "title": "Health plans",
+        "text": "We work with most health plans in Puerto Rico. Send us your plan name and we'll confirm before your visit.",
+        "button": "Check my plan",
+        "items": []
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "Do you take walk-ins?", "a": "Yes, depending on the day's availability. With an appointment your wait is shorter."},
+          {"q": "What should I bring to my first visit?", "a": "Your ID, health plan card, and a list of the medications you take."},
+          {"q": "Do you do medical certificates?", "a": "Yes: work, school, sports and driver's license, usually the same day."}
+        ]
+      },
+      "contact": {"title": "Contact and hours", "text": "Message us, call, or visit us in {municipio}."}
+    }
+  }
+}

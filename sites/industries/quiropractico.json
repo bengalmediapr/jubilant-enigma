@@ -1,0 +1,132 @@
+{
+  "label": {"es": "Quiropráctico", "en": "Chiropractor"},
+  "schema_type": "Chiropractor",
+  "hero_icon": "activity",
+  "theme": {
+    "primary": "#3f5f4a", "primary_ink": "#ffffff", "accent": "#e3b36a", "accent_ink": "#2b2112",
+    "bg": "#f7f5ef", "surface": "#fffdf8", "ink": "#1f2a22", "muted": "#5b665e",
+    "font_head": "DM Serif Display", "head_weights": "400", "head_weight": 400, "font_body": "DM Sans",
+    "radius": "20px", "hero": "center", "head_spacing": "0"
+  },
+  "sections": ["hero", "services", "steps", "about", "faq", "cta", "contact"],
+  "hours": [
+    {"es": "Lunes a viernes", "en": "Monday–Friday", "time": "9:00 AM – 6:00 PM"},
+    {"es": "Sábado", "en": "Saturday", "time": "9:00 AM – 1:00 PM"}
+  ],
+  "demo": {
+    "name": "Centro Quiropráctico Bienestar",
+    "municipio": "Caguas",
+    "address": "Ave. Rafael Cordero 45, Caguas, PR 00725",
+    "phone": "787-555-0102",
+    "rating": 4.8,
+    "reviews": 64
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Quiropráctico en {municipio}, PR",
+        "description": "Quiropráctico en {municipio}: alivio para dolor de espalda, cuello y ciática, terapia física y casos de accidentes de auto (ACAA). Llame al {phone}."
+      },
+      "nav_cta": "Pedir cita",
+      "wa_text": "Hola, quisiera una cita en {name}.",
+      "hero": {
+        "eyebrow": "Quiropráctico en {municipio}",
+        "title": "Vuelva a moverse sin dolor",
+        "subtitle": "Tratamiento quiropráctico y terapia para dolor de espalda, cuello, ciática y lesiones de accidentes. Le evaluamos y le explicamos su plan desde la primera visita.",
+        "cta": "Pedir cita por WhatsApp",
+        "cta2": "Llamar",
+        "points": ["Evaluación completa", "Casos de ACAA", "Citas el mismo día"]
+      },
+      "services": {
+        "title": "¿Cómo le podemos ayudar?",
+        "intro": "Tratamos la causa del dolor, no solo el síntoma.",
+        "items": [
+          {"icon": "activity", "title": "Dolor de espalda y ciática", "text": "Ajustes y ejercicios para aliviar la presión en la espalda baja y el nervio ciático."},
+          {"icon": "user", "title": "Dolor de cuello y hombros", "text": "Alivio para la tensión de trabajar sentado, manejar o dormir mal."},
+          {"icon": "car-front", "title": "Accidentes de auto", "text": "Atendemos lesiones de accidentes y le orientamos con su caso de ACAA."},
+          {"icon": "dumbbell", "title": "Lesiones deportivas", "text": "Recuperación y prevención para atletas de fin de semana y de competencia."},
+          {"icon": "hand-heart", "title": "Terapia física", "text": "Electroterapia, calor, masaje terapéutico y ejercicios guiados."},
+          {"icon": "baby", "title": "Embarazo", "text": "Cuidado suave para el dolor de espalda y pelvis durante el embarazo."}
+        ]
+      },
+      "steps": {
+        "title": "Su primera visita",
+        "items": [
+          {"title": "Evaluación", "text": "Escuchamos su historia y evaluamos postura, movimiento y dolor."},
+          {"title": "Plan claro", "text": "Le explicamos qué encontramos, cuántas visitas recomendamos y por qué."},
+          {"title": "Tratamiento", "text": "Empezamos el mismo día si es seguro hacerlo."},
+          {"title": "En casa", "text": "Le damos ejercicios sencillos para que el alivio dure."}
+        ]
+      },
+      "about": {
+        "title": "Un cuidado cercano, sin prisa",
+        "text": "En {name} cada paciente recibe tiempo y atención. No hacemos tratamientos de línea de ensamblaje: le explicamos, le escuchamos y ajustamos el plan según cómo se sienta.",
+        "points": ["Planes de tratamiento sin compromisos largos", "Trabajamos con planes médicos y ACAA", "Estacionamiento disponible"]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Necesito referido médico?", "a": "No para la mayoría de los pacientes. Si su plan lo requiere, le ayudamos a verificarlo."},
+          {"q": "¿Atienden casos de ACAA?", "a": "Sí. Si tuvo un accidente de auto, le orientamos sobre cómo usar su cubierta de ACAA."},
+          {"q": "¿Duele el ajuste?", "a": "La mayoría de los pacientes sienten alivio. Usamos técnicas suaves cuando es necesario."},
+          {"q": "¿Cuántas visitas voy a necesitar?", "a": "Depende de su caso. Se lo decimos claramente después de la evaluación."}
+        ]
+      },
+      "cta": {"title": "No se acostumbre al dolor", "text": "Escríbanos hoy y coordine su evaluación.", "button": "Pedir mi cita"},
+      "contact": {"title": "Visítenos en {municipio}", "text": "Escríbanos por WhatsApp o llámenos para coordinar su cita."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Chiropractor in {municipio}, PR",
+        "description": "Chiropractor in {municipio}, Puerto Rico: relief for back pain, neck pain and sciatica, physical therapy and car accident (ACAA) cases. Call {phone}."
+      },
+      "nav_cta": "Book a visit",
+      "wa_text": "Hi, I'd like to book an appointment at {name}.",
+      "hero": {
+        "eyebrow": "Chiropractor in {municipio}",
+        "title": "Move again without pain",
+        "subtitle": "Chiropractic care and therapy for back pain, neck pain, sciatica and accident injuries. We evaluate you and explain your plan on the first visit.",
+        "cta": "Book on WhatsApp",
+        "cta2": "Call",
+        "points": ["Full evaluation", "ACAA cases", "Same-day visits"]
+      },
+      "services": {
+        "title": "How we can help",
+        "intro": "We treat the cause of the pain, not just the symptom.",
+        "items": [
+          {"icon": "activity", "title": "Back pain and sciatica", "text": "Adjustments and exercises to relieve pressure on the lower back and sciatic nerve."},
+          {"icon": "user", "title": "Neck and shoulder pain", "text": "Relief from the strain of desk work, driving or poor sleep."},
+          {"icon": "car-front", "title": "Car accidents", "text": "We treat accident injuries and guide you through your ACAA claim."},
+          {"icon": "dumbbell", "title": "Sports injuries", "text": "Recovery and prevention for weekend and competitive athletes."},
+          {"icon": "hand-heart", "title": "Physical therapy", "text": "Electrotherapy, heat, therapeutic massage and guided exercise."},
+          {"icon": "baby", "title": "Pregnancy", "text": "Gentle care for back and pelvic pain during pregnancy."}
+        ]
+      },
+      "steps": {
+        "title": "Your first visit",
+        "items": [
+          {"title": "Evaluation", "text": "We hear your story and assess posture, movement and pain."},
+          {"title": "A clear plan", "text": "We explain what we found, how many visits we recommend, and why."},
+          {"title": "Treatment", "text": "We start the same day when it's safe to."},
+          {"title": "At home", "text": "Simple exercises so the relief lasts."}
+        ]
+      },
+      "about": {
+        "title": "Personal, unhurried care",
+        "text": "At {name} every patient gets real time and attention. No assembly-line visits: we explain, we listen, and we adjust the plan to how you feel.",
+        "points": ["No long-term contracts", "Health plans and ACAA accepted", "Parking available"]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "Do I need a doctor's referral?", "a": "Not for most patients. If your plan requires one, we'll help you check."},
+          {"q": "Do you take ACAA cases?", "a": "Yes. If you were in a car accident, we'll walk you through using your ACAA coverage."},
+          {"q": "Does an adjustment hurt?", "a": "Most patients feel relief. We use gentle techniques when needed."},
+          {"q": "How many visits will I need?", "a": "It depends on your case. We'll tell you clearly after the evaluation."}
+        ]
+      },
+      "cta": {"title": "Don't get used to the pain", "text": "Message us today to set up your evaluation.", "button": "Book my visit"},
+      "contact": {"title": "Visit us in {municipio}", "text": "Message us on WhatsApp or call to set up your appointment."}
+    }
+  }
+}

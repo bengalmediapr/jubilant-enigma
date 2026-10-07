@@ -1,0 +1,157 @@
+{
+  "label": {"es": "Restaurante", "en": "Restaurant"},
+  "schema_type": "Restaurant",
+  "schema_extra": {"servesCuisine": "Puerto Rican"},
+  "hero_icon": "utensils",
+  "theme": {
+    "primary": "#b4532a", "primary_ink": "#fffaf3", "accent": "#2f6b57", "accent_ink": "#ffffff",
+    "bg": "#fdf6ec", "surface": "#fffcf7", "ink": "#2a1a12", "muted": "#6e5a4d",
+    "font_head": "Fraunces", "head_weights": "600;700", "head_weight": 700, "font_body": "Work Sans",
+    "radius": "18px", "hero": "center", "head_spacing": "-0.02em"
+  },
+  "sections": ["hero", "menu", "about", "gallery", "faq", "contact"],
+  "hours": [
+    {"es": "Miércoles a domingo", "en": "Wednesday–Sunday", "time": "11:30 AM – 9:00 PM"},
+    {"es": "Lunes y martes", "en": "Monday & Tuesday", "time": {"es": "Cerrado", "en": "Closed"}}
+  ],
+  "demo": {
+    "name": "El Fogón de Abuela",
+    "municipio": "Mayagüez",
+    "address": "Calle McKinley 18, Mayagüez, PR 00680",
+    "phone": "787-555-0109",
+    "rating": 4.6,
+    "reviews": 342
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Restaurante de comida criolla en {municipio}, PR",
+        "description": "Comida criolla en {municipio}: mofongo, pernil, arroz con gandules y frituras. Vea el menú, horario y ordene para recoger al {phone}."
+      },
+      "nav_cta": "Ordenar",
+      "wa_text": "Hola, quisiera hacer una orden para recoger en {name}: ",
+      "hero": {
+        "eyebrow": "Comida criolla en {municipio}",
+        "title": "Sabor de casa, como lo hacía abuela",
+        "subtitle": "Mofongo, pernil, arroz con gandules y frituras hechas al momento. Coma aquí, ordene para recoger o celebre con nosotros.",
+        "cta": "Ordenar por WhatsApp",
+        "cta2": "Llamar",
+        "points": ["Para recoger", "Grupos y actividades", "ATH Móvil"]
+      },
+      "menu": {
+        "title": "Menú",
+        "intro": "Todo hecho al momento con ingredientes frescos.",
+        "groups": [
+          {"name": "Frituras", "items": [
+            {"name": "Alcapurrias", "desc": "De carne o de jueyes.", "price": "$3"},
+            {"name": "Bacalaítos", "desc": "Crujientes, como en la playa.", "price": "$3"},
+            {"name": "Sorullitos de maíz", "desc": "Con mayoketchup.", "price": "$6"},
+            {"name": "Tostones con ajo", "desc": "", "price": "$5"}
+          ]},
+          {"name": "Platos principales", "items": [
+            {"name": "Mofongo relleno de camarones", "desc": "En salsa criolla.", "price": "$18"},
+            {"name": "Pernil asado", "desc": "Con arroz con gandules y ensalada.", "price": "$15"},
+            {"name": "Chuleta can-can", "desc": "Con tostones o arroz y habichuelas.", "price": "$20"},
+            {"name": "Churrasco", "desc": "Con chimichurri y mofongo.", "price": "$24"},
+            {"name": "Pechuga a la plancha", "desc": "Con viandas o ensalada.", "price": "$13"}
+          ]},
+          {"name": "Postres", "items": [
+            {"name": "Flan de queso", "desc": "", "price": "$5"},
+            {"name": "Tembleque", "desc": "", "price": "$4"},
+            {"name": "Tres leches", "desc": "", "price": "$5"}
+          ]},
+          {"name": "Bebidas", "items": [
+            {"name": "Jugos naturales", "desc": "Parcha, acerola o china.", "price": "$4"},
+            {"name": "Malta", "desc": "", "price": "$2.50"},
+            {"name": "Cerveza local", "desc": "", "price": "$4"},
+            {"name": "Piña colada", "desc": "Con o sin alcohol.", "price": "$8"}
+          ]}
+        ],
+        "note": "Precios sujetos a cambio. Pregunte por el plato del día."
+      },
+      "about": {
+        "title": "Una mesa para la familia",
+        "text": "{name} nació de las recetas de la familia. Cocinamos como en casa: con sofrito hecho aquí, sin prisa, y con porciones para compartir.",
+        "points": ["Sofrito y adobos hechos en casa", "Espacio para grupos y cumpleaños", "Opciones para niños"]
+      },
+      "gallery": {
+        "title": "Del fogón a su mesa",
+        "labels": ["Mofongo relleno", "Pernil", "Frituras", "Nuestro comedor", "Flan de queso", "La barra"]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Hacen órdenes para recoger?", "a": "Sí. Escríbanos por WhatsApp o llame y su orden estará lista en 20 a 30 minutos."},
+          {"q": "¿Aceptan reservaciones?", "a": "Para grupos de 8 personas o más, sí. Escríbanos con la fecha y la cantidad de personas."},
+          {"q": "¿Qué formas de pago aceptan?", "a": "Efectivo, tarjetas y ATH Móvil."}
+        ]
+      },
+      "contact": {"title": "Visítenos", "text": "Le esperamos en {municipio}."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Puerto Rican restaurant in {municipio}, PR",
+        "description": "Puerto Rican food in {municipio}: mofongo, pernil, rice with pigeon peas and fritters. See the menu and hours, and order for pickup at {phone}."
+      },
+      "nav_cta": "Order",
+      "wa_text": "Hi, I'd like to place a pickup order at {name}: ",
+      "hero": {
+        "eyebrow": "Puerto Rican food in {municipio}",
+        "title": "A taste of home, the way grandma made it",
+        "subtitle": "Mofongo, pernil, arroz con gandules and fritters made to order. Dine in, take out, or celebrate with us.",
+        "cta": "Order on WhatsApp",
+        "cta2": "Call",
+        "points": ["Pickup", "Groups and events", "ATH Móvil"]
+      },
+      "menu": {
+        "title": "Menu",
+        "intro": "Everything made to order with fresh ingredients.",
+        "groups": [
+          {"name": "Fritters", "items": [
+            {"name": "Alcapurrias", "desc": "Beef or crab.", "price": "$3"},
+            {"name": "Bacalaítos", "desc": "Crispy codfish fritters, beach-style.", "price": "$3"},
+            {"name": "Sorullitos", "desc": "Corn sticks with mayoketchup.", "price": "$6"},
+            {"name": "Garlic tostones", "desc": "", "price": "$5"}
+          ]},
+          {"name": "Main dishes", "items": [
+            {"name": "Shrimp-stuffed mofongo", "desc": "In creole sauce.", "price": "$18"},
+            {"name": "Roast pernil", "desc": "With rice and pigeon peas and salad.", "price": "$15"},
+            {"name": "Chuleta can-can", "desc": "With tostones or rice and beans.", "price": "$20"},
+            {"name": "Skirt steak", "desc": "With chimichurri and mofongo.", "price": "$24"},
+            {"name": "Grilled chicken breast", "desc": "With root vegetables or salad.", "price": "$13"}
+          ]},
+          {"name": "Desserts", "items": [
+            {"name": "Cheese flan", "desc": "", "price": "$5"},
+            {"name": "Tembleque", "desc": "Coconut custard.", "price": "$4"},
+            {"name": "Tres leches", "desc": "", "price": "$5"}
+          ]},
+          {"name": "Drinks", "items": [
+            {"name": "Fresh juices", "desc": "Passion fruit, acerola or orange.", "price": "$4"},
+            {"name": "Malta", "desc": "", "price": "$2.50"},
+            {"name": "Local beer", "desc": "", "price": "$4"},
+            {"name": "Piña colada", "desc": "With or without alcohol.", "price": "$8"}
+          ]}
+        ],
+        "note": "Prices subject to change. Ask about the dish of the day."
+      },
+      "about": {
+        "title": "A table for the family",
+        "text": "{name} was born from family recipes. We cook like at home: with sofrito made here, no rush, and portions meant for sharing.",
+        "points": ["House-made sofrito and adobo", "Room for groups and birthdays", "Kids' options"]
+      },
+      "gallery": {
+        "title": "From our kitchen to your table",
+        "labels": ["Stuffed mofongo", "Pernil", "Fritters", "Dining room", "Cheese flan", "The bar"]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "Do you do pickup orders?", "a": "Yes. Message us on WhatsApp or call, and your order will be ready in 20 to 30 minutes."},
+          {"q": "Do you take reservations?", "a": "For groups of 8 or more, yes. Message us the date and number of people."},
+          {"q": "What payment methods do you take?", "a": "Cash, cards and ATH Móvil."}
+        ]
+      },
+      "contact": {"title": "Visit us", "text": "We'll see you in {municipio}."}
+    }
+  }
+}

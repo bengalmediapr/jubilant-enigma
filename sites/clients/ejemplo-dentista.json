@@ -1,0 +1,31 @@
+{
+  "industry": "dentista",
+  "name": "Dra. Ana Rivera, DMD",
+  "slug": "dra-ana-rivera",
+  "domain": "draanarivera.com",
+  "municipio": "Juana Díaz",
+  "address": "Calle Comercio 12, Juana Díaz, PR 00795",
+  "phone": "787-555-0199",
+  "whatsapp": "17875550199",
+  "email": "citas@draanarivera.com",
+  "rating": 4.9,
+  "reviews": 56,
+  "social": {"facebook": "https://facebook.com/draanarivera", "instagram": ""},
+  "hours": [
+    {"es": "Lunes a jueves", "en": "Monday–Thursday", "time": "8:00 AM – 5:00 PM"},
+    {"es": "Viernes", "en": "Friday", "time": "8:00 AM – 1:00 PM"}
+  ],
+  "hero_image": "",
+  "gallery_images": [],
+  "testimonials": [],
+  "content": {
+    "es": {
+      "hero": {"title": "Odontología familiar en Juana Díaz, con calma y sin dolor"},
+      "insurance": {"items": ["Triple-S", "MCS", "Humana"]}
+    },
+    "en": {
+      "hero": {"title": "Family dentistry in Juana Díaz, calm and pain-free"},
+      "insurance": {"items": ["Triple-S", "MCS", "Humana"]}
+    }
+  }
+}

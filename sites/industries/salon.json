@@ -1,0 +1,156 @@
+{
+  "label": {"es": "Salón / Barbería", "en": "Salon / Barbershop"},
+  "schema_type": "BeautySalon",
+  "hero_icon": "scissors",
+  "theme": {
+    "primary": "#1c1917", "primary_ink": "#fbf7f4", "accent": "#d4a5a5", "accent_ink": "#2a1414",
+    "bg": "#fbf7f4", "surface": "#ffffff", "ink": "#1c1917", "muted": "#6b625d",
+    "font_head": "Playfair Display", "head_weights": "500;600", "head_weight": 500, "font_body": "Jost",
+    "radius": "18px", "btn_radius": "999px", "hero": "center", "head_spacing": "-0.01em"
+  },
+  "sections": ["hero", "menu", "about", "gallery", "faq", "cta", "contact"],
+  "hours": [
+    {"es": "Martes a viernes", "en": "Tuesday–Friday", "time": "9:00 AM – 7:00 PM"},
+    {"es": "Sábado", "en": "Saturday", "time": "8:00 AM – 5:00 PM"}
+  ],
+  "demo": {
+    "name": "Studio Bella Salón",
+    "municipio": "Dorado",
+    "address": "Calle Méndez Vigo 50, Dorado, PR 00646",
+    "phone": "787-555-0108",
+    "rating": 4.9,
+    "reviews": 178
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Salón de belleza en {municipio}, PR",
+        "description": "Salón en {municipio}: cortes, color, balayage, keratina, uñas y barbería. Reserve su cita por WhatsApp al {phone}."
+      },
+      "nav": {"menu": "Precios"},
+      "nav_cta": "Reservar",
+      "wa_text": "Hola, quisiera reservar una cita en {name}. Servicio: ",
+      "hero": {
+        "eyebrow": "Salón de belleza en {municipio}",
+        "title": "Salga sintiéndose como usted, pero mejor",
+        "subtitle": "Cortes, color, tratamientos y uñas en un espacio tranquilo, con estilistas que escuchan lo que usted quiere.",
+        "cta": "Reservar por WhatsApp",
+        "cta2": "Llamar",
+        "points": ["Cita o walk-in", "Productos profesionales", "Estacionamiento"]
+      },
+      "menu": {
+        "title": "Servicios y precios",
+        "intro": "Precios desde. El precio final depende del largo y la densidad del cabello.",
+        "groups": [
+          {"name": "Cabello", "items": [
+            {"name": "Corte de dama", "desc": "Lavado, corte y secado.", "price": "desde $35"},
+            {"name": "Corte de caballero", "desc": "Fade, tijera o máquina.", "price": "desde $20"},
+            {"name": "Blower", "desc": "Lavado y secado con brushing.", "price": "desde $30"},
+            {"name": "Peinado para evento", "desc": "Bodas, quinceañeros y graduaciones.", "price": "desde $60"}
+          ]},
+          {"name": "Color", "items": [
+            {"name": "Tinte completo", "desc": "Color de raíz a puntas.", "price": "desde $65"},
+            {"name": "Retoque de raíz", "desc": "", "price": "desde $50"},
+            {"name": "Balayage / mechas", "desc": "Incluye matizado.", "price": "desde $140"}
+          ]},
+          {"name": "Tratamientos", "items": [
+            {"name": "Keratina", "desc": "Cabello liso y sin frizz por meses.", "price": "desde $150"},
+            {"name": "Hidratación profunda", "desc": "", "price": "desde $40"}
+          ]},
+          {"name": "Uñas y cejas", "items": [
+            {"name": "Manicura en gel", "desc": "", "price": "desde $30"},
+            {"name": "Pedicura spa", "desc": "", "price": "desde $40"},
+            {"name": "Uñas acrílicas", "desc": "Set completo.", "price": "desde $50"},
+            {"name": "Diseño de cejas", "desc": "", "price": "desde $15"}
+          ]}
+        ],
+        "note": "Pregunte por paquetes para novias y grupos."
+      },
+      "about": {
+        "title": "Su momento para usted",
+        "text": "En {name} cada cita empieza con una conversación: qué le gusta, qué quiere cambiar y cómo cuida su cabello en casa. Sin prisa y sin sorpresas en el precio.",
+        "points": ["Consulta de color sin costo", "Productos libres de crueldad animal", "Recordatorio de cita por WhatsApp"]
+      },
+      "gallery": {
+        "title": "Nuestro trabajo",
+        "intro": "Síganos en Instagram para ver más.",
+        "labels": ["Balayage", "Corte bob", "Fade", "Uñas acrílicas", "Peinado de novia", "Keratina"]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Necesito cita?", "a": "Recomendamos reservar, sobre todo los sábados. Si hay espacio, atendemos walk-ins."},
+          {"q": "¿Cuánto tiempo toma un balayage?", "a": "Entre 3 y 4 horas, dependiendo de su cabello. Se lo confirmamos en la consulta."},
+          {"q": "¿Qué formas de pago aceptan?", "a": "Efectivo, tarjetas y ATH Móvil."}
+        ]
+      },
+      "cta": {"title": "¿Lista para su cambio?", "text": "Reserve su cita en un minuto por WhatsApp.", "button": "Reservar ahora"},
+      "contact": {"title": "Visítenos", "text": "Estamos en {municipio}. Reserve por WhatsApp o llámenos."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Hair salon in {municipio}, PR",
+        "description": "Salon in {municipio}, Puerto Rico: haircuts, color, balayage, keratin, nails and barbering. Book on WhatsApp at {phone}."
+      },
+      "nav": {"menu": "Prices"},
+      "nav_cta": "Book",
+      "wa_text": "Hi, I'd like to book at {name}. Service: ",
+      "hero": {
+        "eyebrow": "Hair salon in {municipio}",
+        "title": "Leave feeling like yourself, only better",
+        "subtitle": "Cuts, color, treatments and nails in a calm space, with stylists who listen to what you want.",
+        "cta": "Book on WhatsApp",
+        "cta2": "Call",
+        "points": ["Appointments or walk-ins", "Professional products", "Parking"]
+      },
+      "menu": {
+        "title": "Services and prices",
+        "intro": "Starting prices. Final price depends on hair length and thickness.",
+        "groups": [
+          {"name": "Hair", "items": [
+            {"name": "Women's cut", "desc": "Wash, cut and style.", "price": "from $35"},
+            {"name": "Men's cut", "desc": "Fade, scissors or clippers.", "price": "from $20"},
+            {"name": "Blowout", "desc": "Wash and brush-out.", "price": "from $30"},
+            {"name": "Event styling", "desc": "Weddings, quinceañeras and graduations.", "price": "from $60"}
+          ]},
+          {"name": "Color", "items": [
+            {"name": "All-over color", "desc": "Root to ends.", "price": "from $65"},
+            {"name": "Root touch-up", "desc": "", "price": "from $50"},
+            {"name": "Balayage / highlights", "desc": "Toner included.", "price": "from $140"}
+          ]},
+          {"name": "Treatments", "items": [
+            {"name": "Keratin", "desc": "Smooth, frizz-free hair for months.", "price": "from $150"},
+            {"name": "Deep conditioning", "desc": "", "price": "from $40"}
+          ]},
+          {"name": "Nails and brows", "items": [
+            {"name": "Gel manicure", "desc": "", "price": "from $30"},
+            {"name": "Spa pedicure", "desc": "", "price": "from $40"},
+            {"name": "Acrylic nails", "desc": "Full set.", "price": "from $50"},
+            {"name": "Brow shaping", "desc": "", "price": "from $15"}
+          ]}
+        ],
+        "note": "Ask about bridal and group packages."
+      },
+      "about": {
+        "title": "Your time for you",
+        "text": "At {name} every appointment starts with a conversation: what you like, what you want to change, and how you care for your hair at home. No rush, and no surprises on the price.",
+        "points": ["Free color consultation", "Cruelty-free products", "Appointment reminders on WhatsApp"]
+      },
+      "gallery": {
+        "title": "Our work",
+        "intro": "Follow us on Instagram to see more.",
+        "labels": ["Balayage", "Bob cut", "Fade", "Acrylic nails", "Bridal styling", "Keratin"]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "Do I need an appointment?", "a": "We recommend booking, especially on Saturdays. We take walk-ins when there's room."},
+          {"q": "How long does balayage take?", "a": "3 to 4 hours, depending on your hair. We'll confirm at your consultation."},
+          {"q": "What payment methods do you take?", "a": "Cash, cards and ATH Móvil."}
+        ]
+      },
+      "cta": {"title": "Ready for a change?", "text": "Book in a minute on WhatsApp.", "button": "Book now"},
+      "contact": {"title": "Visit us", "text": "We're in {municipio}. Book on WhatsApp or give us a call."}
+    }
+  }
+}

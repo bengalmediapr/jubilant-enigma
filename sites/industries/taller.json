@@ -1,0 +1,128 @@
+{
+  "label": {"es": "Taller de mecánica", "en": "Auto repair"},
+  "schema_type": "AutoRepair",
+  "hero_icon": "wrench",
+  "theme": {
+    "primary": "#18181b", "primary_ink": "#fafafa", "accent": "#f97316", "accent_ink": "#1c0d02",
+    "bg": "#f4f4f5", "surface": "#ffffff", "ink": "#18181b", "muted": "#52525b",
+    "font_head": "Oswald", "head_weights": "500;600", "head_weight": 600, "font_body": "Barlow",
+    "radius": "6px", "hero": "dark", "uppercase_heads": true, "head_spacing": "0.01em"
+  },
+  "sections": ["hero", "services", "about", "steps", "faq", "cta", "contact"],
+  "hours": [
+    {"es": "Lunes a viernes", "en": "Monday–Friday", "time": "7:30 AM – 5:00 PM"},
+    {"es": "Sábado", "en": "Saturday", "time": "8:00 AM – 12:00 PM"}
+  ],
+  "demo": {
+    "name": "Taller Hermanos Ortiz",
+    "municipio": "Bayamón",
+    "address": "Carr. 167 Km 3.2, Bayamón, PR 00956",
+    "phone": "787-555-0106",
+    "rating": 4.7,
+    "reviews": 213
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Taller de mecánica en {municipio}, PR",
+        "description": "Taller de mecánica en {municipio}: diagnóstico computadorizado, frenos, aire acondicionado, cambio de aceite, suspensión y preparación para el marbete. Llame al {phone}."
+      },
+      "nav_cta": "Pedir estimado",
+      "wa_text": "Hola, quisiera un estimado para mi carro. Marca, modelo y año: ",
+      "hero": {
+        "eyebrow": "Taller de mecánica en {municipio}",
+        "title": "Mecánica honesta. Sin sorpresas.",
+        "subtitle": "Diagnóstico, frenos, aire acondicionado y mantenimiento para todas las marcas. Estimado por adelantado y le llamamos antes de hacer cualquier trabajo adicional.",
+        "cta": "Estimado por WhatsApp",
+        "cta2": "Llamar",
+        "points": ["Todas las marcas", "Estimado por adelantado", "Garantía en el trabajo"]
+      },
+      "services": {
+        "title": "Servicios",
+        "items": [
+          {"icon": "gauge", "title": "Diagnóstico computadorizado", "text": "¿Se prendió el check engine? Le decimos qué es y cuánto cuesta arreglarlo."},
+          {"icon": "disc", "title": "Frenos", "text": "Pastillas, discos, líquido y sistema ABS."},
+          {"icon": "snowflake", "title": "Aire acondicionado", "text": "Recarga, fugas y compresores. Que el calor no le gane."},
+          {"icon": "droplet", "title": "Cambio de aceite", "text": "Aceite, filtros y revisión de puntos de seguridad."},
+          {"icon": "car-front", "title": "Suspensión y alineación", "text": "Amortiguadores, bushings, tren delantero y alineación."},
+          {"icon": "clipboard-check", "title": "Listo para el marbete", "text": "Revisamos y reparamos lo necesario para que pase la inspección."}
+        ]
+      },
+      "about": {
+        "title": "Un taller de confianza en {municipio}",
+        "text": "En {name} tratamos su carro como si fuera nuestro. Le enseñamos la pieza dañada, le explicamos sus opciones y respetamos el estimado.",
+        "points": ["Le llamamos antes de cualquier trabajo adicional", "Piezas nuevas con garantía", "Le devolvemos las piezas viejas si las quiere"]
+      },
+      "steps": {
+        "title": "Así de fácil",
+        "items": [
+          {"title": "Escríbanos", "text": "Envíenos marca, modelo, año y qué le pasa al carro."},
+          {"title": "Diagnóstico", "text": "Lo revisamos y le damos el estimado antes de empezar."},
+          {"title": "Reparación", "text": "Trabajamos solo lo que usted aprobó."},
+          {"title": "Listo", "text": "Le avisamos por WhatsApp para que lo recoja."}
+        ]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Necesito cita?", "a": "Para diagnósticos y reparaciones recomendamos cita. Para cambios de aceite puede llegar temprano."},
+          {"q": "¿Trabajan todas las marcas?", "a": "Sí, carros y guaguas japonesas, coreanas, americanas y europeas."},
+          {"q": "¿Tienen garantía?", "a": "Sí, todo trabajo tiene garantía en piezas y mano de obra. Pregúntenos los términos."}
+        ]
+      },
+      "cta": {"title": "¿Su carro está haciendo un ruido raro?", "text": "No espere a que se quede. Envíenos un mensaje y le damos un estimado.", "button": "Pedir estimado"},
+      "contact": {"title": "Visítenos", "text": "Estamos en {municipio}. Escríbanos para coordinar o pase por el taller."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Auto repair in {municipio}, PR",
+        "description": "Auto repair in {municipio}, Puerto Rico: computer diagnostics, brakes, A/C, oil changes, suspension and inspection prep. Call {phone}."
+      },
+      "nav_cta": "Get an estimate",
+      "wa_text": "Hi, I'd like an estimate for my car. Make, model and year: ",
+      "hero": {
+        "eyebrow": "Auto repair in {municipio}",
+        "title": "Honest repairs. No surprises.",
+        "subtitle": "Diagnostics, brakes, A/C and maintenance for every make. Estimates up front, and we call before doing any extra work.",
+        "cta": "Estimate on WhatsApp",
+        "cta2": "Call",
+        "points": ["All makes", "Up-front estimates", "Warranty on our work"]
+      },
+      "services": {
+        "title": "Services",
+        "items": [
+          {"icon": "gauge", "title": "Computer diagnostics", "text": "Check engine light on? We'll tell you what it is and what it costs to fix."},
+          {"icon": "disc", "title": "Brakes", "text": "Pads, rotors, fluid and ABS."},
+          {"icon": "snowflake", "title": "Air conditioning", "text": "Recharge, leaks and compressors. Don't let the heat win."},
+          {"icon": "droplet", "title": "Oil change", "text": "Oil, filters and a safety-point check."},
+          {"icon": "car-front", "title": "Suspension and alignment", "text": "Shocks, bushings, front end and alignment."},
+          {"icon": "clipboard-check", "title": "Inspection ready", "text": "We check and fix what's needed so you pass inspection."}
+        ]
+      },
+      "about": {
+        "title": "A shop you can trust in {municipio}",
+        "text": "At {name} we treat your car like our own. We show you the damaged part, explain your options, and stick to the estimate.",
+        "points": ["We call before any extra work", "New parts with warranty", "Your old parts back if you want them"]
+      },
+      "steps": {
+        "title": "It's easy",
+        "items": [
+          {"title": "Message us", "text": "Send make, model, year and what's going on."},
+          {"title": "Diagnosis", "text": "We check it and give you the estimate before starting."},
+          {"title": "Repair", "text": "We only do the work you approved."},
+          {"title": "Done", "text": "We let you know on WhatsApp when it's ready."}
+        ]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "Do I need an appointment?", "a": "We recommend one for diagnostics and repairs. For oil changes, just come early."},
+          {"q": "Do you work on all makes?", "a": "Yes: Japanese, Korean, American and European cars and SUVs."},
+          {"q": "Is there a warranty?", "a": "Yes, all work is covered on parts and labor. Ask us about the terms."}
+        ]
+      },
+      "cta": {"title": "Car making a strange noise?", "text": "Don't wait until it leaves you stranded. Send us a message for an estimate.", "button": "Get an estimate"},
+      "contact": {"title": "Visit us", "text": "We're in {municipio}. Message us to schedule, or stop by the shop."}
+    }
+  }
+}

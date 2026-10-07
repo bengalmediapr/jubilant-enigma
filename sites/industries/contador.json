@@ -1,0 +1,128 @@
+{
+  "label": {"es": "Contador (CPA)", "en": "Accountant (CPA)"},
+  "schema_type": "AccountingService",
+  "hero_icon": "calculator",
+  "theme": {
+    "primary": "#14532d", "primary_ink": "#ffffff", "accent": "#d4a017", "accent_ink": "#241a02",
+    "bg": "#f7f7f2", "surface": "#ffffff", "ink": "#16201a", "muted": "#566159",
+    "font_head": "IBM Plex Serif", "head_weights": "500;600", "head_weight": 600, "font_body": "IBM Plex Sans",
+    "radius": "8px", "hero": "split", "head_spacing": "-0.015em"
+  },
+  "sections": ["hero", "services", "steps", "about", "faq", "cta", "contact"],
+  "hours": [
+    {"es": "Lunes a viernes", "en": "Monday–Friday", "time": "8:30 AM – 5:00 PM"},
+    {"es": "Sábados (temporada de planillas)", "en": "Saturdays (tax season)", "time": "9:00 AM – 1:00 PM"}
+  ],
+  "demo": {
+    "name": "Méndez & Torres CPA",
+    "municipio": "Guaynabo",
+    "address": "Calle Marginal 22, Guaynabo, PR 00966",
+    "phone": "787-555-0105",
+    "rating": 5.0,
+    "reviews": 38
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Contador en {municipio}, Puerto Rico",
+        "description": "Contadores en {municipio}: planillas de Hacienda y federales, IVU, nóminas, contabilidad para negocios, incorporaciones y decretos de Ley 60. Llame al {phone}."
+      },
+      "nav_cta": "Agendar reunión",
+      "wa_text": "Hola, quisiera información sobre los servicios de {name}.",
+      "hero": {
+        "eyebrow": "Contadores en {municipio}",
+        "title": "Sus finanzas en orden. Hacienda, al día.",
+        "subtitle": "Preparamos planillas, llevamos la contabilidad de su negocio y le ayudamos a pagar lo justo, sin multas ni sorpresas.",
+        "cta": "Escríbanos por WhatsApp",
+        "cta2": "Llamar",
+        "points": ["Individuos y negocios", "Hacienda e IRS", "Ley 60"]
+      },
+      "services": {
+        "title": "Servicios",
+        "items": [
+          {"icon": "file-text", "title": "Planillas de contribución", "text": "Planillas de Hacienda y federales para individuos, empleados por cuenta propia y corporaciones."},
+          {"icon": "receipt", "title": "IVU y SURI", "text": "Radicación mensual del IVU y manejo de su cuenta en SURI."},
+          {"icon": "users", "title": "Nóminas", "text": "Nómina, retenciones, formularios 499R-2/W-2 y planillas trimestrales."},
+          {"icon": "book-open", "title": "Contabilidad", "text": "Estados financieros mensuales para que sepa cómo va su negocio."},
+          {"icon": "building-2", "title": "Incorporaciones", "text": "Registro de corporaciones y LLC, patentes municipales y permisos."},
+          {"icon": "landmark", "title": "Ley 60 y decretos", "text": "Cumplimiento de decretos e informes anuales para inversionistas residentes."}
+        ]
+      },
+      "steps": {
+        "title": "Cómo empezamos",
+        "items": [
+          {"title": "Reunión", "text": "Revisamos su situación y los documentos que tiene."},
+          {"title": "Propuesta", "text": "Le damos un precio fijo por escrito, sin cargos escondidos."},
+          {"title": "Organizamos", "text": "Ponemos al día lo atrasado y montamos un sistema simple."},
+          {"title": "Le acompañamos", "text": "Fechas límite, recordatorios y respuestas cuando las necesite."}
+        ]
+      },
+      "about": {
+        "title": "Un contador que le explica sus números",
+        "text": "En {name} no solo radicamos: le explicamos qué está pagando y por qué, y le avisamos antes de cada fecha límite. Atendemos individuos, pequeños negocios y profesionales en {municipio} y toda la isla.",
+        "points": ["Precios fijos por servicio", "Comparta documentos de forma segura en línea", "Atención en español e inglés"]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Qué documentos necesito para mi planilla?", "a": "Formularios 499R-2/W-2, 480.6, información de dependientes y gastos deducibles. Le enviamos una lista completa."},
+          {"q": "Tengo planillas atrasadas, ¿me pueden ayudar?", "a": "Sí. Le ayudamos a ponerse al día con Hacienda y el IRS y a negociar planes de pago si hace falta."},
+          {"q": "¿Trabajan con negocios pequeños?", "a": "Sí, la mayoría de nuestros clientes son pequeños negocios y profesionales por cuenta propia."}
+        ]
+      },
+      "cta": {"title": "No espere a la fecha límite", "text": "Coordine una reunión y salga con un plan claro.", "button": "Agendar reunión"},
+      "contact": {"title": "Oficina en {municipio}", "text": "Escríbanos, llámenos o coordine una reunión virtual."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Accountant in {municipio}, Puerto Rico",
+        "description": "Accountants in {municipio}, PR: Hacienda and federal tax returns, sales tax (IVU), payroll, bookkeeping, incorporations and Act 60 decrees. Call {phone}."
+      },
+      "nav_cta": "Book a meeting",
+      "wa_text": "Hi, I'd like information about {name}'s services.",
+      "hero": {
+        "eyebrow": "Accountants in {municipio}",
+        "title": "Your finances in order. Your taxes, on time.",
+        "subtitle": "We prepare returns, keep your business books, and help you pay what's fair, with no penalties or surprises.",
+        "cta": "Message us on WhatsApp",
+        "cta2": "Call",
+        "points": ["Individuals and businesses", "Hacienda and IRS", "Act 60"]
+      },
+      "services": {
+        "title": "Services",
+        "items": [
+          {"icon": "file-text", "title": "Tax returns", "text": "Puerto Rico and federal returns for individuals, self-employed and corporations."},
+          {"icon": "receipt", "title": "IVU and SURI", "text": "Monthly sales tax filings and SURI account management."},
+          {"icon": "users", "title": "Payroll", "text": "Payroll, withholding, 499R-2/W-2 forms and quarterly returns."},
+          {"icon": "book-open", "title": "Bookkeeping", "text": "Monthly financial statements so you know how your business is doing."},
+          {"icon": "building-2", "title": "Incorporations", "text": "Corporation and LLC registration, municipal licenses and permits."},
+          {"icon": "landmark", "title": "Act 60 and decrees", "text": "Decree compliance and annual reports for resident investors."}
+        ]
+      },
+      "steps": {
+        "title": "How we start",
+        "items": [
+          {"title": "Meeting", "text": "We review your situation and the documents you have."},
+          {"title": "Proposal", "text": "A fixed price in writing, no hidden fees."},
+          {"title": "Clean-up", "text": "We catch up anything late and set up a simple system."},
+          {"title": "Ongoing", "text": "Deadlines, reminders and answers when you need them."}
+        ]
+      },
+      "about": {
+        "title": "An accountant who explains your numbers",
+        "text": "At {name} we don't just file: we explain what you're paying and why, and remind you before every deadline. We serve individuals, small businesses and professionals in {municipio} and across the island.",
+        "points": ["Fixed prices per service", "Share documents securely online", "Service in Spanish and English"]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "What documents do I need for my return?", "a": "Forms 499R-2/W-2, 480.6, dependent information and deductible expenses. We'll send you a full checklist."},
+          {"q": "I'm behind on my taxes. Can you help?", "a": "Yes. We'll help you catch up with Hacienda and the IRS and negotiate payment plans if needed."},
+          {"q": "Do you work with small businesses?", "a": "Yes, most of our clients are small businesses and self-employed professionals."}
+        ]
+      },
+      "cta": {"title": "Don't wait for the deadline", "text": "Book a meeting and leave with a clear plan.", "button": "Book a meeting"},
+      "contact": {"title": "Office in {municipio}", "text": "Message us, call, or set up a video meeting."}
+    }
+  }
+}

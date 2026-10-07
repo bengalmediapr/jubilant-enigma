@@ -1,0 +1,142 @@
+{
+  "label": {"es": "Placas solares / Contratista", "en": "Solar / Contractor"},
+  "schema_type": "HomeAndConstructionBusiness",
+  "hero_icon": "sun",
+  "theme": {
+    "primary": "#0c3b5e", "primary_ink": "#ffffff", "accent": "#facc15", "accent_ink": "#1f1a03",
+    "bg": "#f5f8fb", "surface": "#ffffff", "ink": "#0b1f30", "muted": "#4d6070",
+    "font_head": "Archivo", "head_weights": "700;800", "head_weight": 800, "font_body": "Archivo",
+    "radius": "10px", "hero": "dark", "head_spacing": "-0.03em"
+  },
+  "sections": ["hero", "services", "steps", "about", "gallery", "faq", "cta", "contact"],
+  "hours": [
+    {"es": "Lunes a viernes", "en": "Monday–Friday", "time": "8:00 AM – 5:00 PM"},
+    {"es": "Sábado", "en": "Saturday", "time": "9:00 AM – 1:00 PM"}
+  ],
+  "demo": {
+    "name": "Sol Boricua Energy",
+    "municipio": "Carolina",
+    "address": "Ave. 65 de Infantería 300, Carolina, PR 00985",
+    "phone": "787-555-0107",
+    "rating": 4.8,
+    "reviews": 96
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Placas solares y baterías en {municipio}, PR",
+        "description": "Instalación de placas solares, baterías de respaldo y sellado de techos en {municipio} y todo Puerto Rico. Evaluación gratis y financiamiento. Llame al {phone}."
+      },
+      "nav": {"gallery": "Proyectos"},
+      "nav_cta": "Evaluación gratis",
+      "wa_text": "Hola, quisiera una evaluación para placas solares. Mi pueblo es: ",
+      "hero": {
+        "eyebrow": "Energía solar en {municipio} y toda la isla",
+        "title": "Que se vaya la luz no tiene que ser su problema",
+        "subtitle": "Placas solares y baterías que mantienen su casa o negocio funcionando y bajan su factura de LUMA. Evaluación gratis y opciones de financiamiento.",
+        "cta": "Evaluación gratis por WhatsApp",
+        "cta2": "Llamar",
+        "points": ["Evaluación gratis", "Financiamiento", "Instaladores certificados"]
+      },
+      "services": {
+        "title": "Lo que hacemos",
+        "items": [
+          {"icon": "sun", "title": "Placas solares", "text": "Sistemas a la medida de su consumo, para casas y negocios."},
+          {"icon": "battery-charging", "title": "Baterías de respaldo", "text": "Energía cuando se va la luz: nevera, abanicos, internet y equipos médicos."},
+          {"icon": "zap", "title": "Medición neta", "text": "Le gestionamos la interconexión con LUMA para que reciba crédito por su energía."},
+          {"icon": "house", "title": "Sellado de techos", "text": "Impermeabilización antes de instalar, para proteger su techo por años."},
+          {"icon": "plug", "title": "Trabajos eléctricos", "text": "Paneles eléctricos, generadores y transfer switches."},
+          {"icon": "wrench", "title": "Mantenimiento", "text": "Limpieza de placas, revisión de baterías y monitoreo del sistema."}
+        ]
+      },
+      "steps": {
+        "title": "Del estimado a la instalación",
+        "items": [
+          {"title": "Evaluación gratis", "text": "Revisamos su factura de luz y su techo, en persona o por WhatsApp."},
+          {"title": "Diseño y precio", "text": "Le presentamos el sistema, el ahorro estimado y las opciones de pago."},
+          {"title": "Permisos", "text": "Nos encargamos de los permisos y la interconexión con LUMA."},
+          {"title": "Instalación", "text": "Instalamos, probamos y le enseñamos a monitorear su sistema."}
+        ]
+      },
+      "about": {
+        "title": "Instaladores de aquí, para aquí",
+        "text": "En {name} diseñamos cada sistema para el clima de Puerto Rico: huracanes, salitre y sol todo el año. Le decimos la verdad sobre cuánto va a ahorrar, sin promesas exageradas.",
+        "points": ["Equipos con garantía de fábrica", "Instalación resistente a huracanes", "Servicio después de la venta"]
+      },
+      "gallery": {
+        "title": "Proyectos recientes",
+        "intro": "Algunas instalaciones en casas y negocios de la isla.",
+        "labels": ["Residencial · Carolina", "Comercial · Bayamón", "Baterías · Caguas", "Techo sellado · Dorado", "Residencial · Ponce", "Comercial · Humacao"]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Cuánto puedo ahorrar?", "a": "Depende de su consumo y su techo. En la evaluación gratis le damos un estimado basado en su factura real."},
+          {"q": "¿Las baterías funcionan cuando se va la luz?", "a": "Sí. Las baterías mantienen encendidos los equipos que usted escoja cuando falla el servicio de LUMA."},
+          {"q": "¿Ofrecen financiamiento?", "a": "Sí, trabajamos con opciones de financiamiento y pago mensual. Le explicamos cada una."},
+          {"q": "¿Cuánto tarda la instalación?", "a": "La instalación toma de 1 a 3 días. Los permisos y la interconexión toman más; le mantenemos informado."}
+        ]
+      },
+      "cta": {"title": "Deje de depender de LUMA", "text": "Envíenos una foto de su factura de luz y le preparamos un estimado gratis.", "button": "Pedir evaluación gratis"},
+      "contact": {"title": "Hablemos", "text": "Servimos a {municipio} y a todo Puerto Rico."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Solar panels and batteries in {municipio}, PR",
+        "description": "Solar panel installation, backup batteries and roof sealing in {municipio} and across Puerto Rico. Free evaluation and financing. Call {phone}."
+      },
+      "nav": {"gallery": "Projects"},
+      "nav_cta": "Free evaluation",
+      "wa_text": "Hi, I'd like a solar evaluation. My town is: ",
+      "hero": {
+        "eyebrow": "Solar energy in {municipio} and island-wide",
+        "title": "A power outage doesn't have to be your problem",
+        "subtitle": "Solar panels and batteries that keep your home or business running and cut your LUMA bill. Free evaluation and financing options.",
+        "cta": "Free evaluation on WhatsApp",
+        "cta2": "Call",
+        "points": ["Free evaluation", "Financing", "Certified installers"]
+      },
+      "services": {
+        "title": "What we do",
+        "items": [
+          {"icon": "sun", "title": "Solar panels", "text": "Systems sized to your usage, for homes and businesses."},
+          {"icon": "battery-charging", "title": "Backup batteries", "text": "Power when the grid goes down: fridge, fans, internet and medical equipment."},
+          {"icon": "zap", "title": "Net metering", "text": "We handle your LUMA interconnection so you get credit for your energy."},
+          {"icon": "house", "title": "Roof sealing", "text": "Waterproofing before installation, to protect your roof for years."},
+          {"icon": "plug", "title": "Electrical work", "text": "Electrical panels, generators and transfer switches."},
+          {"icon": "wrench", "title": "Maintenance", "text": "Panel cleaning, battery checks and system monitoring."}
+        ]
+      },
+      "steps": {
+        "title": "From estimate to installation",
+        "items": [
+          {"title": "Free evaluation", "text": "We review your power bill and roof, in person or over WhatsApp."},
+          {"title": "Design and price", "text": "We present the system, estimated savings and payment options."},
+          {"title": "Permits", "text": "We handle permits and the LUMA interconnection."},
+          {"title": "Installation", "text": "We install, test, and show you how to monitor your system."}
+        ]
+      },
+      "about": {
+        "title": "Local installers, built for the island",
+        "text": "At {name} we design every system for Puerto Rico's climate: hurricanes, salt air and year-round sun. We tell you the truth about your savings, with no inflated promises.",
+        "points": ["Equipment with manufacturer warranty", "Hurricane-rated installation", "Service after the sale"]
+      },
+      "gallery": {
+        "title": "Recent projects",
+        "intro": "A few installations on homes and businesses around the island.",
+        "labels": ["Residential · Carolina", "Commercial · Bayamón", "Batteries · Caguas", "Roof sealing · Dorado", "Residential · Ponce", "Commercial · Humacao"]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "How much can I save?", "a": "It depends on your usage and roof. The free evaluation gives you an estimate based on your real bill."},
+          {"q": "Do batteries work during outages?", "a": "Yes. Batteries keep the equipment you choose running when LUMA service fails."},
+          {"q": "Do you offer financing?", "a": "Yes, we work with financing and monthly payment options. We'll explain each one."},
+          {"q": "How long does installation take?", "a": "Installation takes 1 to 3 days. Permits and interconnection take longer; we keep you updated."}
+        ]
+      },
+      "cta": {"title": "Stop depending on the grid", "text": "Send us a photo of your power bill and we'll prepare a free estimate.", "button": "Get a free evaluation"},
+      "contact": {"title": "Let's talk", "text": "We serve {municipio} and all of Puerto Rico."}
+    }
+  }
+}

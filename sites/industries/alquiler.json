@@ -1,0 +1,124 @@
+{
+  "label": {"es": "Alquiler vacacional", "en": "Vacation rental"},
+  "schema_type": "LodgingBusiness",
+  "hero_icon": "palmtree",
+  "theme": {
+    "primary": "#0e7490", "primary_ink": "#ffffff", "accent": "#f2c38b", "accent_ink": "#2b1a06",
+    "bg": "#fbf8f2", "surface": "#ffffff", "ink": "#0f2a33", "muted": "#55676d",
+    "font_head": "Cormorant Garamond", "head_weights": "500;600;700", "head_weight": 600, "font_body": "Nunito Sans",
+    "radius": "22px", "hero": "center", "head_spacing": "-0.01em"
+  },
+  "sections": ["hero", "services", "gallery", "about", "faq", "cta", "contact"],
+  "hours": [
+    {"es": "Check-in", "en": "Check-in", "time": "3:00 PM"},
+    {"es": "Check-out", "en": "Check-out", "time": "11:00 AM"}
+  ],
+  "demo": {
+    "name": "Casa Brisa Rincón",
+    "municipio": "Rincón",
+    "address": "Carr. 413, Rincón, PR 00677",
+    "phone": "787-555-0110",
+    "rating": 4.95,
+    "reviews": 128
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Alquiler vacacional en {municipio}, Puerto Rico",
+        "description": "Casa de vacaciones en {municipio}, Puerto Rico, cerca de la playa: piscina, aire acondicionado, wifi y generador. Reserve directo y ahorre."
+      },
+      "nav": {"services": "Comodidades"},
+      "nav_cta": "Reservar directo",
+      "wa_text": "Hola, quisiera reservar {name}. Fechas: ",
+      "hero": {
+        "eyebrow": "{municipio}, Puerto Rico",
+        "title": "Su casa frente al atardecer",
+        "subtitle": "A pasos de la playa, con piscina, aire acondicionado en todos los cuartos y energía de respaldo. Reserve directo con nosotros y ahorre las comisiones.",
+        "cta": "Consultar fechas",
+        "cta2": "Llamar",
+        "points": ["Reserva directa", "Generador y cisterna", "Mascotas bienvenidas"]
+      },
+      "services": {
+        "title": "Comodidades",
+        "intro": "Todo lo que necesita para descansar.",
+        "items": [
+          {"icon": "waves", "title": "Cerca de la playa", "text": "Camine a la playa en minutos."},
+          {"icon": "droplets", "title": "Piscina", "text": "Piscina privada con terraza y sillas de sol."},
+          {"icon": "snowflake", "title": "Aire acondicionado", "text": "En todos los cuartos."},
+          {"icon": "wifi", "title": "Wifi rápido", "text": "Para trabajar o ver sus series."},
+          {"icon": "battery-charging", "title": "Generador y cisterna", "text": "Sin preocuparse si se va la luz o el agua."},
+          {"icon": "car", "title": "Estacionamiento", "text": "Estacionamiento privado para dos carros."}
+        ]
+      },
+      "gallery": {
+        "title": "Conozca la casa",
+        "labels": ["Vista al mar", "Piscina", "Sala", "Cuarto principal", "Cocina", "Terraza al atardecer"]
+      },
+      "about": {
+        "title": "¿Por qué reservar directo?",
+        "text": "Cuando reserva directo con {name} no paga las comisiones de las plataformas, habla directamente con los dueños y recibe recomendaciones locales de verdad: dónde comer, qué playas visitar y a qué hora ver el atardecer.",
+        "points": ["Mejor precio que en las plataformas", "Respuesta rápida por WhatsApp", "Guía local incluida"]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Cuántas personas pueden quedarse?", "a": "La casa tiene espacio para hasta 6 personas. Escríbanos si son más."},
+          {"q": "¿Aceptan mascotas?", "a": "Sí, con un cargo adicional de limpieza. Pregúntenos los detalles."},
+          {"q": "¿Cómo se paga una reserva directa?", "a": "Con un depósito para separar sus fechas y el balance antes de la llegada. Le enviamos un acuerdo por escrito."},
+          {"q": "¿Qué pasa si se va la luz?", "a": "La casa tiene generador y cisterna, así que su estadía no se interrumpe."}
+        ]
+      },
+      "cta": {"title": "¿Ya tiene fechas?", "text": "Escríbanos y le confirmamos disponibilidad y precio en minutos.", "button": "Consultar disponibilidad"},
+      "contact": {"title": "Ubicación", "text": "En {municipio}, Puerto Rico. Le enviamos las instrucciones de llegada al reservar."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Vacation rental in {municipio}, Puerto Rico",
+        "description": "Vacation home in {municipio}, Puerto Rico, near the beach: pool, A/C, wifi and generator. Book direct and save."
+      },
+      "nav": {"services": "Amenities"},
+      "nav_cta": "Book direct",
+      "wa_text": "Hi, I'd like to book {name}. Dates: ",
+      "hero": {
+        "eyebrow": "{municipio}, Puerto Rico",
+        "title": "Your home facing the sunset",
+        "subtitle": "Steps from the beach, with a pool, A/C in every room and backup power. Book direct with us and skip the platform fees.",
+        "cta": "Check dates",
+        "cta2": "Call",
+        "points": ["Direct booking", "Generator and water tank", "Pets welcome"]
+      },
+      "services": {
+        "title": "Amenities",
+        "intro": "Everything you need to unwind.",
+        "items": [
+          {"icon": "waves", "title": "Near the beach", "text": "Walk to the beach in minutes."},
+          {"icon": "droplets", "title": "Pool", "text": "Private pool with a deck and sun loungers."},
+          {"icon": "snowflake", "title": "Air conditioning", "text": "In every bedroom."},
+          {"icon": "wifi", "title": "Fast wifi", "text": "For work or streaming."},
+          {"icon": "battery-charging", "title": "Generator and water tank", "text": "No worries if the power or water goes out."},
+          {"icon": "car", "title": "Parking", "text": "Private parking for two cars."}
+        ]
+      },
+      "gallery": {
+        "title": "Tour the house",
+        "labels": ["Ocean view", "Pool", "Living room", "Main bedroom", "Kitchen", "Sunset deck"]
+      },
+      "about": {
+        "title": "Why book direct?",
+        "text": "When you book direct with {name} you skip the platform fees, talk to the owners directly, and get real local tips: where to eat, which beaches to visit, and when to catch the sunset.",
+        "points": ["Better price than the platforms", "Fast replies on WhatsApp", "Local guide included"]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "How many guests can stay?", "a": "The house sleeps up to 6. Message us if you're more."},
+          {"q": "Are pets allowed?", "a": "Yes, with an extra cleaning fee. Ask us for details."},
+          {"q": "How does direct booking payment work?", "a": "A deposit holds your dates and the balance is due before arrival. We send you a written agreement."},
+          {"q": "What if the power goes out?", "a": "The house has a generator and water tank, so your stay isn't interrupted."}
+        ]
+      },
+      "cta": {"title": "Have your dates?", "text": "Message us and we'll confirm availability and price in minutes.", "button": "Check availability"},
+      "contact": {"title": "Location", "text": "In {municipio}, Puerto Rico. We send arrival instructions when you book."}
+    }
+  }
+}

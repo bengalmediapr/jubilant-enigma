@@ -1,0 +1,311 @@
+{#- One page per language. Sections are listed in the industry file; each block below renders one. -#}
+{%- set wa_text = c.wa_text or "Hola" -%}
+{%- set wa_href = "https://wa.me/" ~ site.whatsapp ~ "?text=" ~ quote(wa_text) if site.whatsapp else "" -%}
+{%- set primary_href = site.booking_url or wa_href or ("tel:" ~ site.phone_link if site.phone_link else "#contacto") -%}
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ c.meta.title }}</title>
+  <meta name="description" content="{{ c.meta.description }}">
+  {%- if site.is_demo or site.noindex %}
+  <meta name="robots" content="noindex">
+  {%- endif %}
+  {%- if base_url %}
+  <link rel="canonical" href="{{ base_url }}/{{ '' if lang == 'es' else 'en/' }}">
+  <link rel="alternate" hreflang="es" href="{{ base_url }}/">
+  <link rel="alternate" hreflang="en" href="{{ base_url }}/en/">
+  {%- endif %}
+  <meta property="og:title" content="{{ c.meta.title }}">
+  <meta property="og:description" content="{{ c.meta.description }}">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="{{ theme.primary }}">
+  <link rel="icon" href="{{ prefix }}favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="{{ fonts_url }}">
+  <link rel="stylesheet" href="{{ prefix }}site.css">
+  <style>
+    :root {
+      --primary: {{ theme.primary }}; --primary-ink: {{ theme.primary_ink }};
+      --accent: {{ theme.accent }}; --accent-ink: {{ theme.accent_ink or theme.ink }};
+      --bg: {{ theme.bg }}; --surface: {{ theme.surface }}; --ink: {{ theme.ink }}; --muted: {{ theme.muted }};
+      --line: {{ theme.line or 'rgba(0,0,0,.09)' }};
+      --btn-radius: {{ theme.btn_radius or 'var(--radius)' }};
+      --font-head: "{{ theme.font_head }}", Georgia, serif; --font-body: "{{ theme.font_body }}", system-ui, sans-serif;
+      --head-weight: {{ theme.head_weight or 700 }}; --radius: {{ theme.radius or '14px' }};
+      --head-transform: {{ 'uppercase' if theme.uppercase_heads else 'none' }};
+      --head-spacing: {{ theme.head_spacing or '-0.01em' }};
+    }
+  </style>
+  <script type="application/ld+json">{{ schema | safe }}</script>
+</head>
+<body class="hero-{{ theme.hero or 'split' }}">
+<a class="skip" href="#main">{{ 'Saltar al contenido' if lang == 'es' else 'Skip to content' }}</a>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="./">
+      {%- if site.logo %}<img src="{{ prefix }}{{ site.logo }}" alt="{{ site.name }}" height="40">
+      {%- else %}<span class="brand-mark">{{ icon(site.hero_icon, 20) | safe }}</span><span class="brand-name">{{ site.name }}</span>{% endif %}
+    </a>
+    <nav class="nav" id="nav" aria-label="{{ 'Principal' if lang == 'es' else 'Main' }}">
+      {%- for s in nav %}
+      <a href="#{{ s }}">{{ (c.nav or {}).get(s) or ui.nav[s] }}</a>
+      {%- endfor %}
+      <a class="lang" href="{{ other_href }}" hreflang="{{ 'en' if lang == 'es' else 'es' }}">{{ ui.lang_switch }}</a>
+    </nav>
+    <a class="btn btn-sm header-cta" href="{{ primary_href }}">{{ c.nav_cta }}</a>
+    <button class="menu-btn" aria-controls="nav" aria-expanded="false" aria-label="{{ ui.menu_toggle }}">{{ icon('menu') | safe }}</button>
+  </div>
+</header>
+
+<main id="main">
+{%- for section in sections %}
+
+{%- if section == 'hero' %}
+<section class="hero" {% if site.hero_image %}style="--hero-img:url('{{ prefix }}{{ site.hero_image }}')"{% endif %}>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">{{ c.hero.eyebrow }}</p>
+      <h1>{{ c.hero.title }}</h1>
+      <p class="lead">{{ c.hero.subtitle }}</p>
+      <div class="actions">
+        <a class="btn" href="{{ primary_href }}">{{ icon('message-circle' if (wa_href and not site.booking_url) else 'calendar-check', 20) | safe }}{{ c.hero.cta }}</a>
+        {%- if site.phone_link %}
+        <a class="btn btn-ghost" href="tel:{{ site.phone_link }}">{{ icon('phone', 20) | safe }}{{ c.hero.cta2 or ui.call }}</a>
+        {%- endif %}
+      </div>
+      {%- if c.hero.points %}
+      <ul class="hero-points">
+        {%- for p in c.hero.points %}<li>{{ icon('check', 18) | safe }}{{ p }}</li>{% endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+    <aside class="hero-card" aria-label="{{ site.name }}">
+      <div class="hero-visual">
+        {%- if site.hero_image %}<div class="hero-photo" role="img" aria-label="{{ site.name }}"></div>
+        {%- else %}<span class="hero-icon">{{ icon(site.hero_icon, 72) | safe }}</span>{% endif %}
+      </div>
+      <div class="hero-info">
+        {%- if site.rating %}
+        <p class="rating"><span class="stars" aria-hidden="true">★★★★★</span> <strong>{{ site.rating }}</strong>{% if site.reviews %} · {{ site.reviews }} {{ ui.reviews }}{% endif %}</p>
+        {%- endif %}
+        {%- if site.hours %}
+        <p class="info-row">{{ icon('clock', 18) | safe }}<span>{% for h in site.hours[:2] %}{{ h[lang] }}: {{ h.time[lang] if h.time is mapping else h.time }}{% if not loop.last %}<br>{% endif %}{% endfor %}</span></p>
+        {%- endif %}
+        {%- if site.address or site.municipio %}
+        <p class="info-row">{{ icon('map-pin', 18) | safe }}<span>{{ site.address or (site.municipio ~ ', Puerto Rico') }}</span></p>
+        {%- endif %}
+        {%- if site.phone %}
+        <p class="info-row">{{ icon('phone', 18) | safe }}<a href="tel:{{ site.phone_link }}">{{ site.phone }}</a></p>
+        {%- endif %}
+      </div>
+    </aside>
+  </div>
+</section>
+
+{%- elif section == 'services' %}
+<section class="section" id="services">
+  <div class="wrap">
+    <header class="section-head">
+      <h2>{{ c.services.title }}</h2>
+      {%- if c.services.intro %}<p>{{ c.services.intro }}</p>{% endif %}
+    </header>
+    <div class="cards">
+      {%- for item in c.services['items'] %}
+      <article class="card">
+        <span class="card-icon">{{ icon(item.icon or 'check', 26) | safe }}</span>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+        {%- if item.price %}<p class="price">{{ item.price }}</p>{% endif %}
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{%- elif section == 'menu' %}
+<section class="section section-alt" id="menu">
+  <div class="wrap">
+    <header class="section-head">
+      <h2>{{ c.menu.title }}</h2>
+      {%- if c.menu.intro %}<p>{{ c.menu.intro }}</p>{% endif %}
+    </header>
+    <div class="menu-groups">
+      {%- for group in c.menu.groups %}
+      <div class="menu-group">
+        <h3>{{ group.name }}</h3>
+        <ul>
+          {%- for item in group['items'] %}
+          <li>
+            <div class="menu-line"><span class="menu-name">{{ item.name }}</span><span class="dots" aria-hidden="true"></span><span class="menu-price">{{ item.price }}</span></div>
+            {%- if item.desc %}<p>{{ item.desc }}</p>{% endif %}
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- if c.menu.note %}<p class="note">{{ c.menu.note }}</p>{% endif %}
+  </div>
+</section>
+
+{%- elif section == 'about' %}
+<section class="section {{ 'section-alt' if 'menu' not in sections }}" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <h2>{{ c.about.title }}</h2>
+      {%- for para in (c.about.text if c.about.text is not string else [c.about.text]) %}<p>{{ para }}</p>{% endfor %}
+    </div>
+    {%- if c.about.points %}
+    <ul class="checklist">
+      {%- for p in c.about.points %}<li>{{ icon('badge-check', 22) | safe }}<span>{{ p }}</span></li>{% endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</section>
+
+{%- elif section == 'steps' %}
+<section class="section" id="steps">
+  <div class="wrap">
+    <header class="section-head">
+      <h2>{{ c.steps.title }}</h2>
+      {%- if c.steps.intro %}<p>{{ c.steps.intro }}</p>{% endif %}
+    </header>
+    <ol class="steps">
+      {%- for item in c.steps['items'] %}
+      <li><span class="step-n">{{ loop.index }}</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+{%- elif section == 'insurance' %}
+<section class="section section-band" id="insurance">
+  <div class="wrap band-grid">
+    <div>
+      <h2>{{ c.insurance.title }}</h2>
+      <p>{{ c.insurance.text }}</p>
+    </div>
+    {%- if c.insurance['items'] %}
+    <ul class="pills">{% for i in c.insurance['items'] %}<li>{{ i }}</li>{% endfor %}</ul>
+    {%- else %}
+    <a class="btn btn-light" href="{{ primary_href }}">{{ c.insurance.button or c.nav_cta }}</a>
+    {%- endif %}
+  </div>
+</section>
+
+{%- elif section == 'gallery' %}
+<section class="section" id="gallery">
+  <div class="wrap">
+    <header class="section-head">
+      <h2>{{ c.gallery.title }}</h2>
+      {%- if c.gallery.intro %}<p>{{ c.gallery.intro }}</p>{% endif %}
+    </header>
+    <div class="gallery">
+      {%- if site.gallery_images %}
+      {%- for img in site.gallery_images %}
+      <figure><img src="{{ prefix }}{{ img.src or img }}" alt="{{ img.alt or site.name }}" loading="lazy"></figure>
+      {%- endfor %}
+      {%- else %}
+      {%- for label in c.gallery.labels %}
+      <figure class="ph"><span>{{ icon(site.hero_icon, 32) | safe }}</span><figcaption>{{ label }}</figcaption></figure>
+      {%- endfor %}
+      {%- endif %}
+    </div>
+  </div>
+</section>
+
+{%- elif section == 'testimonials' %}
+<section class="section section-alt" id="testimonials">
+  <div class="wrap">
+    <header class="section-head"><h2>{{ c.testimonials_title or ui.nav.testimonials }}</h2></header>
+    <div class="cards">
+      {%- for t in site.testimonials %}
+      <blockquote class="card quote">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p>“{{ t.quote[lang] if t.quote is mapping else t.quote }}”</p>
+        <footer>— {{ t.author }}{% if t.source %} · {{ t.source }}{% endif %}</footer>
+      </blockquote>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{%- elif section == 'faq' %}
+<section class="section" id="faq">
+  <div class="wrap narrow">
+    <header class="section-head"><h2>{{ c.faq.title }}</h2></header>
+    <div class="faq">
+      {%- for item in c.faq['items'] %}
+      <details{% if loop.first %} open{% endif %}><summary>{{ item.q }}</summary><p>{{ item.a }}</p></details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{%- elif section == 'cta' %}
+<section class="cta-band">
+  <div class="wrap cta-row">
+    <div>
+      <h2>{{ c.cta.title }}</h2>
+      <p>{{ c.cta.text }}</p>
+    </div>
+    <a class="btn btn-light" href="{{ primary_href }}">{{ c.cta.button or c.hero.cta }}</a>
+  </div>
+</section>
+
+{%- elif section == 'contact' %}
+<section class="section section-alt" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>{{ c.contact.title }}</h2>
+      <p>{{ c.contact.text }}</p>
+      <dl class="contact-list">
+        {%- if site.phone %}<div><dt>{{ icon('phone', 20) | safe }}{{ ui.phone }}</dt><dd><a href="tel:{{ site.phone_link }}">{{ site.phone }}</a></dd></div>{% endif %}
+        {%- if site.email %}<div><dt>{{ icon('mail', 20) | safe }}Email</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd></div>{% endif %}
+        {%- if site.address or site.municipio %}<div><dt>{{ icon('map-pin', 20) | safe }}{{ ui.address }}</dt><dd>{{ site.address or (site.municipio ~ ', Puerto Rico') }}<br><a href="https://www.google.com/maps/search/?api=1&query={{ quote_plus(site.map_query) }}" rel="noopener" target="_blank">{{ ui.directions }} →</a></dd></div>{% endif %}
+        {%- if site.hours %}<div><dt>{{ icon('clock', 20) | safe }}{{ ui.hours }}</dt><dd>{% for h in site.hours %}<span class="hours-row"><span>{{ h[lang] }}</span><span>{{ h.time[lang] if h.time is mapping else h.time }}</span></span>{% endfor %}</dd></div>{% endif %}
+      </dl>
+    </div>
+    <div class="contact-side">
+      {%- if site.whatsapp or site.email %}
+      <form class="contact-form" data-whatsapp="{{ site.whatsapp }}" data-email="{{ site.email }}">
+        <label>{{ ui.form_name }}<input name="name" autocomplete="name" required></label>
+        <label>{{ ui.form_message }}<textarea name="message" rows="4" required></textarea></label>
+        <button class="btn" type="submit">{{ icon('message-circle' if site.whatsapp else 'mail', 20) | safe }}{{ ui.form_send if site.whatsapp else ui.form_send_email }}</button>
+      </form>
+      {%- endif %}
+      <iframe class="map" title="{{ ui.address }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://maps.google.com/maps?q={{ quote_plus(site.map_query) }}&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+{%- endif %}
+{%- endfor %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div>
+      <p class="footer-name">{{ site.name }}</p>
+      <p>{{ site.address or site.municipio }}{% if site.phone %} · <a href="tel:{{ site.phone_link }}">{{ site.phone }}</a>{% endif %}</p>
+      {%- if site.social %}
+      <p class="social">{% for net, url in site.social.items() if url %}<a href="{{ url }}" rel="noopener" target="_blank">{{ net | capitalize }}</a>{% endfor %}</p>
+      {%- endif %}
+    </div>
+    <div class="footer-meta">
+      <p>© {{ site.year }} {{ site.name }}. {{ ui.rights }}</p>
+      <p>{{ ui.made_by }} <a href="https://bengalmediapr.com" rel="noopener">Bengal Media PR</a></p>
+    </div>
+  </div>
+</footer>
+
+{%- if wa_href %}
+<a class="wa-float" href="{{ wa_href }}" aria-label="{{ ui.open_whatsapp }}" rel="noopener" target="_blank">{{ icon('message-circle', 28) | safe }}</a>
+{%- endif %}
+<script src="{{ prefix }}site.js" defer></script>
+</body>
+</html>

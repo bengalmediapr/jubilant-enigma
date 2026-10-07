@@ -1,67 +1,92 @@
-# Bengal Media PR — Prospector
+# Bengal Media PR — Prospector + Site Templates
 
 A Puerto Rico version of the "200 websites in 12 months" system:
-**find local businesses → audit their websites → write personalized outreach → build the sites with Claude Code → host on Cloudflare.**
+**find local businesses → audit their websites → write personalized outreach → send a free mockup → build and host the site.**
 
-| Reel's stack | This repo / PR version | Why |
+There are no paid API keys. Claude Code does the writing and research inside this project through slash commands.
+
+| Reel's stack | This repo | |
 |---|---|---|
-| Apollo (leads) | `prospector/leads.py` — Google Places API | Apollo barely covers PR restaurants, clinics, talleres, salones. Google Maps has all of them, plus whether they have a website. |
-| Swokei (site analysis + outreach) | `prospector/audit.py` + `prospector/outreach.py` | Checks HTTPS, mobile, speed, SEO basics, abandoned sites; Claude writes the email in Puerto Rican Spanish quoting the real problems. |
-| Soro (SEO blog) | Phase 3 below | Bilingual blog for bengalmediapr.com. |
-| Claude Code (build sites) | This repo, later `sites/` | One template per industry, customized per client. |
-| Cloudflare (hosting) | Cloudflare Pages | Free, fast, SSL included. |
+| Apollo (leads) | `/find-leads` (web search), or Google Places (optional key) | Google Maps covers PR's restaurants, clinics, talleres and salons. Apollo doesn't. |
+| Swokei (site analysis + outreach) | `prospector/audit.py` + `/outreach` | Checks HTTPS, mobile, speed, SEO basics and abandoned sites, then writes Puerto Rican Spanish outreach quoting the real problems. |
+| Claude Code (build sites) | `sites/`: 10 industry templates + `/mockup` | Bilingual, mobile-first, WhatsApp button, Google schema. |
+| Cloudflare (hosting) | `npx wrangler pages deploy` | Free, fast, SSL included. |
+| Soro (SEO blog) | Roadmap | |
 
-## Quick start
+## Setup
 
 ```bash
 pip install -r requirements.txt
-cp .env.example .env        # fill in keys
+cp .env.example .env    # fill in SENDER_NAME and SENDER_ADDRESS
 set -a; source .env; set +a
-
-# 1. Leads: dentists and restaurants in Ponce and Mayagüez
-python -m prospector.run leads --category dentistas restaurantes --municipio Ponce Mayagüez
-
-# 2. Audit every lead that has a website
-python -m prospector.run audit --limit 100
-
-# 3. Draft outreach (Spanish by default, --language en for English)
-python -m prospector.run outreach --limit 25
 ```
 
-Results go to `data/leads.csv`, `data/audits.csv`, and `data/outreach.csv`. Open them in Google Sheets.
-**Nothing is sent automatically.** Read each draft, change `status` to `approved`, then send.
+Open the folder in Claude Code, and the slash commands below become available.
 
-Keys you need:
-- **Claude API key**: console.anthropic.com. Drafts cost a few cents each.
-- **Google Places API key**: Google Cloud Console → enable "Places API (New)". There is a free monthly allowance, so check current pricing.
-- *(optional)* **PageSpeed Insights API key**: free. It adds Google's real mobile speed score to each audit.
+## Daily workflow
 
-## The three kinds of leads
+```text
+/find-leads dentistas Ponce Juana Díaz     1. Claude searches the web and adds real businesses to data/leads.csv
+python -m prospector.run audit             2. checks every lead that has a website
+/outreach 10                               3. Claude writes 10 drafts → data/outreach.csv (with legal footer)
+/mockup "Clínica Dental X"                 4. Claude builds a homepage mockup customized with their real info
+```
 
-`leads.csv` sorts each business by `website_status`:
+Open `data/outreach.csv` in Google Sheets, read each draft, and change `status` to `approved` before you send.
+Nothing is ever sent automatically.
 
-1. **`none`**: no website. This is your biggest pool in PR. Pitch: *"When people search for 'dentista en Ponce' on Google, they find your competitors."* Contact them by **phone or WhatsApp** (use `whatsapp_message`), because they rarely publish an email.
-2. **`social_only`**: only Facebook or Instagram. Pitch: social pages don't show up on Google and can't take appointments or orders. Contact them by Instagram DM or WhatsApp.
-3. **`has_site`**: the site gets audited, and only sites with 2 or more real problems get pitched. Contact them by email, using the address the audit found on their site.
+Other commands: `python -m prospector.run stats` shows lead counts, `add --name ... --municipio ...` adds a lead by hand, and
+`leads --category ... --municipio ...` bulk-searches Google Maps if you set `GOOGLE_PLACES_API_KEY`.
 
-Outreach is ordered by Google review count, so you contact established businesses, which can pay, first.
+## Website templates
+
+```bash
+python -m sites.build demo          # all 10 demos + a gallery page at dist/index.html
+python -m sites.build lead "Café"   # mockup for a lead in data/leads.csv (writes sites/clients/<slug>.json)
+python -m sites.build client sites/clients/ejemplo-dentista.json   # a real client site
+npx wrangler pages deploy dist/<slug> --project-name <slug>        # publish to Cloudflare Pages
+```
+
+| Industry key | For | Look |
+|---|---|---|
+| `dentista` | Dentists | Teal, clean |
+| `quiropractico` | Chiropractors, physical therapy (ACAA cases) | Sage and sand, calm serif |
+| `medico` | Clinics and family doctors | Trust blue |
+| `abogado` | Attorney-notaries | Navy and gold, dark hero |
+| `contador` | CPAs (Hacienda, IVU, SURI, Act 60) | Deep green, editorial |
+| `taller` | Auto repair (marbete prep) | Charcoal and orange, bold caps |
+| `solar` | Solar, batteries, roof sealing, electricians | Navy and sun yellow |
+| `salon` | Salons, barbershops, nails | Black and rose, pricelist |
+| `restaurante` | Restaurants, cafés (menu section) | Terracotta, warm |
+| `alquiler` | Vacation rentals, "book direct" | Turquoise and sand, gallery |
+
+Every site comes in Spanish (`/`) and English (`/en/`). Each one includes a floating WhatsApp button, a contact form that opens WhatsApp (so there's no server to maintain), a Google Map, hours, a schema.org LocalBusiness entry, a sitemap, and a "Sitio web por Bengal Media PR" footer link.
+
+**Customizing a client.** Copy `sites/clients/ejemplo-dentista.json`. Any key you add overrides the industry template: name, phone, hours, colors (`theme`), any text (`content.es.hero.title`), photos (`hero_image`, `gallery_images`, `assets_dir`), and real `testimonials`. Sections, colors and copy for each industry live in `sites/industries/<key>.json`.
+
+**Honesty rules built in.** The testimonials section only appears when you add real reviews, so it never shows invented ones. Demo and mockup pages carry `noindex` so Google doesn't index them. Template prices and plan names are examples, so replace them with the client's real ones before launch.
 
 ## Puerto Rico playbook
 
-**Niches to start with** (high ticket, Google-search driven): dentistas, quiroprácticos, clínicas/médicos, abogados, contadores (CPA), talleres de mecánica, contratistas/placas solares, salones/barberías, restaurantes, real estate / alquileres a corto plazo (Rincón, Vieques, Culebra, Isabela).
+**Niches with high-value clients who find customers on Google:** dentistas, quiroprácticos, clínicas, abogados-notarios, CPAs, talleres, solar and techos, salones and barberías, restaurantes, and alquileres vacacionales (Rincón, Isabela, Vieques, Culebra).
 
-**Offer.** Keep it simple, with one or two packages, for example a website in 7 days plus a monthly plan for hosting, updates, and Google Business Profile. The monthly plan is what builds steady income, not one-off sales.
+**Leads by `website_status`:**
+1. `none`: no website. This is your biggest pool. Reach them by phone or WhatsApp, one at a time.
+2. `social_only`: Facebook or Instagram only. Reach them by Instagram DM or WhatsApp.
+3. `has_site`: pitched only when the audit finds 2 or more real problems. Reach them by email, using the address the audit found.
+
+**Offer.** Keep it to one or two packages, for example a website in 7 days plus a monthly plan for hosting, updates, and Google Business Profile. The monthly plan is what builds steady income.
+
+**Closing.** Run `/mockup`, deploy it, and send the preview link: *"Le preparé un ejemplo de cómo se vería su página."* Seeing their own business on a modern site closes far better than a proposal.
 
 **Send safely:**
-- **Do not send cold email from @bengalmediapr.com.** Buy a look-alike domain (e.g. `bengalmedia-pr.com`) and set up SPF, DKIM, and DMARC. Warm it up for 2–3 weeks and send at most 30–50 emails per inbox per day. Tools like Instantly or Smartlead handle sending and warm-up. Import `outreach.csv` into them.
-- **CAN-SPAM applies in Puerto Rico.** Every email needs your real name, a physical postal address (set `SENDER_ADDRESS`; a PO box works), and an easy way to opt out. The signature added to each draft covers this, so honor opt-outs right away.
-- WhatsApp: send messages one at a time by hand from a business number. Bulk-blasting gets the number banned.
-
-**Closing.** Offer a free homepage mockup. Build it with Claude Code in under an hour, deploy it to a Cloudflare Pages preview URL, and send them the link. Seeing their own business on a modern site closes far better than a proposal.
+- **Don't send cold email from @bengalmediapr.com.** Use a look-alike domain with SPF, DKIM, and DMARC set up, warm it up for 2–3 weeks, and send at most 30–50 emails per inbox per day (Instantly or Smartlead can import `outreach.csv`).
+- **CAN-SPAM applies in PR.** Every email needs your real name, a postal address (`SENDER_ADDRESS`; a PO box works), and an opt-out. Each draft gets these automatically, so honor opt-outs right away.
+- **WhatsApp:** send messages by hand from a business number. Bulk-blasting gets the number banned.
 
 ## Roadmap
 
-- [x] Phase 1: leads → audit → personalized outreach (this repo)
-- [ ] Phase 2: `sites/` folder with industry templates (bilingual, mobile-first, LocalBusiness schema) and a one-command deploy to Cloudflare Pages
-- [ ] Phase 3: bilingual SEO blog on bengalmediapr.com targeting "diseño web en Puerto Rico", "páginas web para negocios en [municipio]", and similar searches
-- [ ] Phase 4: Free "Analiza tu web" page on bengalmediapr.com that runs `audit.py` and captures inbound leads
+- [x] Leads → audit → personalized outreach
+- [x] 10 bilingual industry templates + mockup builder
+- [ ] Bilingual SEO blog on bengalmediapr.com ("diseño web en Puerto Rico", "páginas web para [industria] en [municipio]")
+- [ ] Free "Analiza tu web" page on bengalmediapr.com that runs the audit and captures inbound leads

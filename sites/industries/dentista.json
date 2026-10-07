@@ -1,0 +1,132 @@
+{
+  "label": {"es": "Dentista", "en": "Dentist"},
+  "schema_type": "Dentist",
+  "hero_icon": "smile",
+  "theme": {
+    "primary": "#0f766e", "primary_ink": "#ffffff", "accent": "#5eead4", "accent_ink": "#053b37",
+    "bg": "#f5faf9", "surface": "#ffffff", "ink": "#0b2523", "muted": "#4b6563",
+    "font_head": "Plus Jakarta Sans", "head_weights": "700;800", "head_weight": 800, "font_body": "Plus Jakarta Sans",
+    "radius": "16px", "hero": "split", "head_spacing": "-0.025em"
+  },
+  "sections": ["hero", "services", "about", "insurance", "faq", "cta", "contact"],
+  "hours": [
+    {"es": "Lunes a viernes", "en": "Monday–Friday", "time": "8:00 AM – 5:00 PM"},
+    {"es": "Sábado", "en": "Saturday", "time": "8:00 AM – 12:00 PM"}
+  ],
+  "demo": {
+    "name": "Clínica Dental Sonrisa",
+    "municipio": "Ponce",
+    "address": "Calle Comercio 123, Ponce, PR 00730",
+    "phone": "787-555-0101",
+    "rating": 4.9,
+    "reviews": 87
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Dentista en {municipio}, Puerto Rico",
+        "description": "Dentista en {municipio}: limpiezas, blanqueamiento, coronas, implantes y emergencias. Haga su cita por WhatsApp o llame al {phone}."
+      },
+      "nav_cta": "Haga su cita",
+      "wa_text": "Hola, quisiera hacer una cita en {name}.",
+      "hero": {
+        "eyebrow": "Dentista en {municipio}",
+        "title": "Una sonrisa sana empieza con un dentista de confianza",
+        "subtitle": "En {name} cuidamos a toda la familia con atención sin prisa, explicaciones claras y citas que se ajustan a su horario.",
+        "cta": "Haga su cita por WhatsApp",
+        "cta2": "Llamar",
+        "points": ["Niños y adultos", "Emergencias dentales", "Planes médicos"]
+      },
+      "services": {
+        "title": "Servicios dentales",
+        "intro": "Desde su limpieza de rutina hasta tratamientos que le devuelven la confianza al sonreír.",
+        "items": [
+          {"icon": "sparkles", "title": "Limpieza y prevención", "text": "Limpiezas, exámenes y radiografías para detectar problemas a tiempo."},
+          {"icon": "sun", "title": "Blanqueamiento", "text": "Dientes más blancos en una sola visita, con resultados naturales."},
+          {"icon": "shield-check", "title": "Empastes y coronas", "text": "Restauraciones del color de su diente que duran años."},
+          {"icon": "bone", "title": "Implantes", "text": "Reemplace dientes perdidos con una solución fija y cómoda."},
+          {"icon": "baby", "title": "Odontología infantil", "text": "Visitas tranquilas para que los niños le pierdan el miedo al dentista."},
+          {"icon": "activity", "title": "Emergencias", "text": "¿Dolor o un diente roto? Escríbanos y le atendemos lo antes posible."}
+        ]
+      },
+      "about": {
+        "title": "Atención de cerca, como debe ser",
+        "text": [
+          "En {name} sabemos que ir al dentista no es lo favorito de nadie. Por eso le explicamos cada paso, le damos el presupuesto antes de empezar y trabajamos con calma.",
+          "Somos una clínica de {municipio} para la gente de {municipio}: le conocemos por su nombre."
+        ],
+        "points": ["Presupuesto claro antes de cada tratamiento", "Equipo moderno y esterilización rigurosa", "Recordatorios de cita por WhatsApp"]
+      },
+      "insurance": {
+        "title": "Trabajamos con planes médicos",
+        "text": "Aceptamos la mayoría de los planes dentales en Puerto Rico. Escríbanos con el nombre de su plan y le confirmamos su cobertura antes de la cita.",
+        "button": "Verificar mi plan",
+        "items": []
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Aceptan mi plan médico?", "a": "Trabajamos con la mayoría de los planes dentales. Envíenos el nombre de su plan por WhatsApp y le confirmamos."},
+          {"q": "¿Atienden emergencias?", "a": "Sí. Si tiene dolor, inflamación o un diente roto, escríbanos y le buscamos espacio lo antes posible."},
+          {"q": "¿Desde qué edad pueden venir los niños?", "a": "Recomendamos la primera visita cuando sale el primer diente o antes de cumplir un año."},
+          {"q": "¿Ofrecen planes de pago?", "a": "Para tratamientos mayores le ofrecemos opciones de pago. Pregúntenos durante su evaluación."}
+        ]
+      },
+      "cta": {"title": "¿Hace tiempo que no va al dentista?", "text": "Haga su cita hoy. Le respondemos por WhatsApp en horas laborables.", "button": "Hacer mi cita"},
+      "contact": {"title": "Visítenos", "text": "Estamos en {municipio}. Escríbanos, llámenos o pase por la clínica."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Dentist in {municipio}, Puerto Rico",
+        "description": "Dentist in {municipio}, PR: cleanings, whitening, crowns, implants and emergencies. Book on WhatsApp or call {phone}."
+      },
+      "nav_cta": "Book a visit",
+      "wa_text": "Hi, I'd like to book an appointment at {name}.",
+      "hero": {
+        "eyebrow": "Dentist in {municipio}",
+        "title": "A healthy smile starts with a dentist you trust",
+        "subtitle": "At {name} we care for the whole family with unhurried visits, clear explanations, and appointments that fit your schedule.",
+        "cta": "Book on WhatsApp",
+        "cta2": "Call",
+        "points": ["Kids and adults", "Dental emergencies", "Insurance accepted"]
+      },
+      "services": {
+        "title": "Dental services",
+        "intro": "From your routine cleaning to treatments that give you your confidence back.",
+        "items": [
+          {"icon": "sparkles", "title": "Cleanings and prevention", "text": "Cleanings, exams and X-rays to catch problems early."},
+          {"icon": "sun", "title": "Whitening", "text": "A brighter smile in a single visit, with natural-looking results."},
+          {"icon": "shield-check", "title": "Fillings and crowns", "text": "Tooth-colored restorations built to last."},
+          {"icon": "bone", "title": "Implants", "text": "Replace missing teeth with a fixed, comfortable solution."},
+          {"icon": "baby", "title": "Kids' dentistry", "text": "Calm visits so children stop fearing the dentist."},
+          {"icon": "activity", "title": "Emergencies", "text": "Pain or a broken tooth? Message us and we'll see you as soon as possible."}
+        ]
+      },
+      "about": {
+        "title": "Personal care, the way it should be",
+        "text": [
+          "At {name} we know the dentist isn't anyone's favorite visit. So we explain every step, give you the price before we start, and never rush.",
+          "We're a {municipio} practice for {municipio} families, and we know you by name."
+        ],
+        "points": ["Clear pricing before every treatment", "Modern equipment and strict sterilization", "Appointment reminders on WhatsApp"]
+      },
+      "insurance": {
+        "title": "Insurance accepted",
+        "text": "We work with most dental plans in Puerto Rico. Send us your plan name and we'll confirm your coverage before your visit.",
+        "button": "Check my plan",
+        "items": []
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "Do you take my insurance?", "a": "We work with most dental plans. Send us your plan name on WhatsApp and we'll confirm."},
+          {"q": "Do you handle emergencies?", "a": "Yes. If you have pain, swelling or a broken tooth, message us and we'll fit you in as soon as we can."},
+          {"q": "When should kids first visit?", "a": "We recommend the first visit when the first tooth comes in, or before age one."},
+          {"q": "Do you offer payment plans?", "a": "For larger treatments we offer payment options. Ask us during your evaluation."}
+        ]
+      },
+      "cta": {"title": "Been a while since your last checkup?", "text": "Book today. We reply on WhatsApp during business hours.", "button": "Book my visit"},
+      "contact": {"title": "Visit us", "text": "We're in {municipio}. Message us, call, or stop by the office."}
+    }
+  }
+}

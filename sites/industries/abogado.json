@@ -1,0 +1,135 @@
+{
+  "label": {"es": "Abogado-Notario", "en": "Lawyer / Notary"},
+  "schema_type": "Attorney",
+  "hero_icon": "scale",
+  "theme": {
+    "primary": "#13233f", "primary_ink": "#f8f4ea", "accent": "#c09a55", "accent_ink": "#1a1408",
+    "bg": "#faf8f3", "surface": "#ffffff", "ink": "#151a24", "muted": "#596070",
+    "font_head": "Libre Baskerville", "head_weights": "400;700", "head_weight": 700, "font_body": "Source Sans 3",
+    "radius": "4px", "hero": "dark", "head_spacing": "-0.01em"
+  },
+  "sections": ["hero", "services", "steps", "about", "faq", "cta", "contact"],
+  "hours": [
+    {"es": "Lunes a viernes", "en": "Monday–Friday", "time": "9:00 AM – 5:00 PM"}
+  ],
+  "demo": {
+    "name": "Bufete Rodríguez & Asociados",
+    "municipio": "San Juan",
+    "address": "Ave. Ponce de León 1000, San Juan, PR 00907",
+    "phone": "787-555-0104",
+    "rating": 4.9,
+    "reviews": 41
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Abogado y Notario en {municipio}, PR",
+        "description": "Abogado-notario en {municipio}: herencias y testamentos, divorcios, compraventas, daños y perjuicios y derecho laboral. Consulta inicial. Llame al {phone}."
+      },
+      "nav": {"services": "Áreas de práctica"},
+      "nav_cta": "Consulta inicial",
+      "wa_text": "Hola, quisiera coordinar una consulta con {name}.",
+      "hero": {
+        "eyebrow": "Abogados y notarios en {municipio}",
+        "title": "Asesoría legal clara para los momentos que importan",
+        "subtitle": "Le explicamos sus opciones en palabras sencillas y le acompañamos de principio a fin, ya sea una herencia, un divorcio o la compra de su casa.",
+        "cta": "Coordinar consulta",
+        "cta2": "Llamar",
+        "points": ["Consulta confidencial", "Servicios notariales", "Honorarios claros"]
+      },
+      "services": {
+        "title": "Áreas de práctica",
+        "items": [
+          {"icon": "file-text", "title": "Herencias y testamentos", "text": "Testamentos, declaratorias de herederos, particiones y planificación de patrimonio."},
+          {"icon": "users", "title": "Derecho de familia", "text": "Divorcios, custodia, pensiones alimentarias y relaciones filiales."},
+          {"icon": "house", "title": "Bienes raíces", "text": "Compraventas, escrituras, hipotecas y estudios de título."},
+          {"icon": "stamp", "title": "Notaría", "text": "Poderes, affidávits, declaraciones juradas y autenticaciones."},
+          {"icon": "shield-alert", "title": "Daños y perjuicios", "text": "Accidentes, caídas e impericia médica. Evaluamos su caso."},
+          {"icon": "briefcase", "title": "Derecho laboral", "text": "Despidos injustificados, discrimen y reclamaciones de salario."}
+        ]
+      },
+      "steps": {
+        "title": "Cómo trabajamos",
+        "items": [
+          {"title": "Consulta", "text": "Nos cuenta su situación en confianza y le decimos si podemos ayudarle."},
+          {"title": "Estrategia", "text": "Le explicamos sus opciones, los pasos y los costos por escrito."},
+          {"title": "Gestión", "text": "Nos encargamos de los trámites y le mantenemos informado."},
+          {"title": "Resultado", "text": "Cerramos su caso y le entregamos copia de todos sus documentos."}
+        ]
+      },
+      "about": {
+        "title": "Un bufete que le contesta el teléfono",
+        "text": [
+          "En {name} creemos que un cliente informado toma mejores decisiones. Le devolvemos las llamadas, contestamos sus preguntas y nunca le sorprendemos con una factura.",
+          "Atendemos clientes en {municipio} y en toda la isla, en español y en inglés."
+        ],
+        "points": ["Más de una vía de contacto: teléfono, email y WhatsApp", "Honorarios acordados por escrito", "Atención en español e inglés"]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {"q": "¿Cuánto cuesta la consulta inicial?", "a": "Escríbanos y le informamos. En casos de daños y perjuicios la evaluación inicial no tiene costo."},
+          {"q": "¿Qué necesito para una declaratoria de herederos?", "a": "Certificado de defunción, certificados de nacimiento de los herederos y certificación del Registro de Testamentos. Le orientamos en todo."},
+          {"q": "¿Pueden atenderme si vivo fuera de Puerto Rico?", "a": "Sí. Muchos trámites se pueden coordinar a distancia, incluyendo poderes otorgados ante notario o cónsul."}
+        ]
+      },
+      "cta": {"title": "Hablemos de su caso", "text": "La primera conversación es confidencial y sin compromiso.", "button": "Coordinar consulta"},
+      "contact": {"title": "Oficina en {municipio}", "text": "Coordine su consulta por teléfono, WhatsApp o email."}
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Lawyer and Notary in {municipio}, PR",
+        "description": "Attorney and notary in {municipio}, Puerto Rico: estates and wills, divorce, real estate closings, personal injury and employment law. Call {phone}."
+      },
+      "nav": {"services": "Practice areas"},
+      "nav_cta": "Free consult",
+      "wa_text": "Hi, I'd like to schedule a consultation with {name}.",
+      "hero": {
+        "eyebrow": "Attorneys and notaries in {municipio}",
+        "title": "Clear legal advice for the moments that matter",
+        "subtitle": "We explain your options in plain language and stay with you from start to finish, whether it's an inheritance, a divorce or buying your home.",
+        "cta": "Schedule a consultation",
+        "cta2": "Call",
+        "points": ["Confidential consultation", "Notary services", "Clear fees"]
+      },
+      "services": {
+        "title": "Practice areas",
+        "items": [
+          {"icon": "file-text", "title": "Estates and wills", "text": "Wills, heirship declarations, estate partitions and planning."},
+          {"icon": "users", "title": "Family law", "text": "Divorce, custody, child support and paternity."},
+          {"icon": "house", "title": "Real estate", "text": "Purchases and sales, deeds, mortgages and title studies."},
+          {"icon": "stamp", "title": "Notary", "text": "Powers of attorney, affidavits, sworn statements and authentications."},
+          {"icon": "shield-alert", "title": "Personal injury", "text": "Accidents, falls and medical malpractice. We'll evaluate your case."},
+          {"icon": "briefcase", "title": "Employment law", "text": "Wrongful termination, discrimination and wage claims."}
+        ]
+      },
+      "steps": {
+        "title": "How we work",
+        "items": [
+          {"title": "Consultation", "text": "You tell us your situation in confidence and we tell you if we can help."},
+          {"title": "Strategy", "text": "We lay out your options, the steps and the costs in writing."},
+          {"title": "Handling", "text": "We take care of the paperwork and keep you informed."},
+          {"title": "Resolution", "text": "We close your case and give you copies of every document."}
+        ]
+      },
+      "about": {
+        "title": "A firm that answers the phone",
+        "text": [
+          "At {name} we believe informed clients make better decisions. We return calls, answer questions, and never surprise you with a bill.",
+          "We serve clients in {municipio} and across the island, in Spanish and English."
+        ],
+        "points": ["Reach us by phone, email or WhatsApp", "Fees agreed in writing", "Service in Spanish and English"]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {"q": "How much is the initial consultation?", "a": "Message us and we'll let you know. Personal injury evaluations are free."},
+          {"q": "What do I need for an heirship declaration?", "a": "The death certificate, the heirs' birth certificates and a certification from the Wills Registry. We'll guide you through it."},
+          {"q": "Can you help if I live outside Puerto Rico?", "a": "Yes. Many matters can be handled remotely, including powers of attorney signed before a notary or consul."}
+        ]
+      },
+      "cta": {"title": "Let's talk about your case", "text": "The first conversation is confidential, with no obligation.", "button": "Schedule a consultation"},
+      "contact": {"title": "Office in {municipio}", "text": "Schedule your consultation by phone, WhatsApp or email."}
+    }
+  }
+}
