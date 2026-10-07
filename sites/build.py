@@ -140,7 +140,8 @@ def fonts_url(theme: dict) -> str:
     return "https://fonts.googleapis.com/css2?" + "&".join(families) + "&display=swap"
 
 
-def build_site(site: dict, out_dir: Path) -> Path:
+def build_site(site: dict, out_dir: Path, explicit_index: bool = False) -> Path:
+    """explicit_index links to .../index.html, for hosts that don't serve folder URLs."""
     site = copy.deepcopy(site)
     site.setdefault("slug", slugify(site["name"]))
     phone_digits = re.sub(r"\D", "", site.get("phone", ""))
@@ -170,7 +171,9 @@ def build_site(site: dict, out_dir: Path) -> Path:
         html = page.render(
             site=site, c=content, ui=UI[lang], lang=lang, sections=sections, nav=nav,
             theme=site["theme"], fonts_url=fonts_url(site["theme"]), base_url=base_url,
-            prefix="" if lang == "es" else "../", other_href="en/" if lang == "es" else "../",
+            prefix="" if lang == "es" else "../", other_href=("en/" if lang == "es" else "../") + ("index.html" if explicit_index else ""),
+            home_href="index.html" if explicit_index else "./",
+            back_href=("../index.html" if lang == "es" else "../../index.html") if explicit_index else "",
             schema=json.dumps(_schema(site, base_url), ensure_ascii=False),
         )
         target = out_dir / ("index.html" if lang == "es" else "en/index.html")
@@ -252,7 +255,7 @@ def cmd_demo(args) -> None:
     built = []
     for key in keys:
         site = site_for(key)
-        out = build_site(site, DIST / f"demo-{key}")
+        out = build_site(site, DIST / f"demo-{key}", explicit_index=args.preview)
         built.append((key, site))
         print(f"{key:14} -> {out}/index.html")
     _gallery(built)
@@ -327,6 +330,7 @@ def main() -> None:
     sub = parser.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("demo", help="Build demo sites for industries")
     p.add_argument("industries", nargs="*")
+    p.add_argument("--preview", action="store_true", help="Link to index.html files explicitly (for static previews)")
     p = sub.add_parser("client", help="Build a client site from a JSON file")
     p.add_argument("path")
     p.add_argument("--industry")

@@ -225,6 +225,13 @@ p { margin: 0 0 1em; }
 }
 .wa-float:hover { transform: scale(1.06); }
 
+/* Only in `demo --preview` builds: link back to the template gallery */
+.preview-back {
+  position: fixed; left: 16px; bottom: 22px; z-index: 60; padding: 10px 16px; border-radius: 999px;
+  background: var(--ink); color: var(--bg); font-size: .9rem; font-weight: 600; text-decoration: none;
+  box-shadow: 0 10px 28px -8px rgba(0,0,0,.45);
+}
+
 /* Phones and tablets */
 @media (max-width: 900px) {
   .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }

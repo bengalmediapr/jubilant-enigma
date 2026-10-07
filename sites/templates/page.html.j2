@@ -46,7 +46,7 @@
 
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="brand" href="./">
+    <a class="brand" href="{{ home_href }}">
       {%- if site.logo %}<img src="{{ prefix }}{{ site.logo }}" alt="{{ site.name }}" height="40">
       {%- else %}<span class="brand-mark">{{ icon(site.hero_icon, 20) | safe }}</span><span class="brand-name">{{ site.name }}</span>{% endif %}
     </a>
@@ -305,6 +305,9 @@
 
 {%- if wa_href %}
 <a class="wa-float" href="{{ wa_href }}" aria-label="{{ ui.open_whatsapp }}" rel="noopener" target="_blank">{{ icon('message-circle', 28) | safe }}</a>
+{%- endif %}
+{%- if back_href %}
+<a class="preview-back" href="{{ back_href }}">← {{ 'Todas las plantillas' if lang == 'es' else 'All templates' }}</a>
 {%- endif %}
 <script src="{{ prefix }}site.js" defer></script>
 </body>
