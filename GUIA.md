@@ -14,7 +14,13 @@ La lista de prospectos está en `reports/prospectos-metro-2026-10.csv`; ábrala 
 
 **1. Buscar.** En Claude Code: `/find-leads barberías Guaynabo`. Claude busca y apunta los negocios en `data/leads.csv`.
 
-**2. Juntar material.** Del Instagram del negocio, guarde el logo y de 3 a 6 fotos buenas en `sites/clients/<nombre>/`. Anote el horario y los precios si los publican.
+**2. Juntar material (unos 5 minutos).** Del Instagram o Facebook del negocio, guarde en `sites/clients/<nombre>/raw/`:
+- el logo o foto de perfil, con el nombre `logo` (por ejemplo `logo.jpg`);
+- de 6 a 10 fotos buenas: el local, sus trabajos, su comida;
+- 1 o 2 reels cortos si tienen (grabación de pantalla sirve).
+
+Después, en Claude Code: `/brandkit <nombre>`. Saca los colores del logo, optimiza fotos y videos, escoge la letra
+que más se parece a la del logo y lo pone todo en la página de ese cliente. Revise `sites/clients/<nombre>/brand-board.html`.
 
 **3. Hacer el preview.** En Claude Code: `/mockup "Nombre del negocio"`. Claude arma la página con su nombre, fotos, servicios y contacto. Revísela y publique todos los previews juntos:
 
