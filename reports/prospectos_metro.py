@@ -93,19 +93,88 @@ DESCARTADOS = [
  ("JL Barber Studio / Barbero Ema","Bayamón","Buenas reseñas en Booksy (5.0), pero no les encontré Instagram ni Facebook"),
 ]
 
+# Corrections found while checking booking platforms (Oct 2026).
+UPDATES = {
+ "Crea'tif Salon and Spa": {"direccion": "Centro Comercial, Edificio B, Ave. Lopategui Local 3", "telefono": "787-668-9645",
+                            "resenas": "Clientas de años la recomiendan en Fresha"},
+ "Sport BarberShop": {"direccion": "273 Calle Los Andes, 00926", "telefono": "787-216-7618"},
+ "Top Nail Bar": {"resenas": "4.9 con 2,590 votos en Fresha"},
+ "Jean C Stilo": {"direccion": "3V7 Ave. Lomas Verdes, Bayamón, 00956", "resenas": "5.0 (32) en Booksy"},
+ "Santurce La Barbería Salón": {"direccion": "312 Ave. De Diego, Santurce", "resenas": "5.0 en Booksy: 807 + 190 + 89 + 36 reseñas entre 4 perfiles"},
+ "Curl Boss Salon": {"resenas": "Reseñas en Vagaro; salió en Remezcla"},
+}
+
+# Booking platform each business uses today, and what it costs them (published 2026 prices).
+# Booksy: $29.99/mes + $20 por empleado; Boost cobra 30% de la 1.a visita del cliente nuevo ($10–$100).
+# Fresha: $19.95/mes individual o $14.95 por empleado; 20% (mín. $6) por cliente nuevo del marketplace.
+# Vagaro: $23.99/mes + $10 por usuario. Setmore: gratis hasta 4 empleados. Jane: desde $54/mes.
+# Uber Eats: 7–10% en pickup y 20–30% en delivery.
+PLATAFORMA = {
+ "Santurce La Barbería Salón": ("Booksy (4 perfiles de barbero)", "https://booksy.com/en-us/1236100_santurce-la-barberia-salon_barber-shop_7_usa", "$90–$120+ al mes (4 perfiles) + 30% de la 1.a visita de clientes de Boost"),
+ "Estudio La Barbería (Cecilio Men's Stylist)": ("Booksy", "", "$30–$70 al mes según cuántos barberos + comisiones de Boost"),
+ "Jireh Nail Salón": ("Booksy", "", "Desde $29.99 al mes + comisiones de Boost"),
+ "Jean C Stilo": ("Booksy (2 perfiles en PR y 1 en Florida)", "https://booksy.com/en-us/1521265_jean-c-stilo-salon_hair-salon_34799_san-juan", "$60–$90 al mes entre sus perfiles"),
+ "167 Barber Shop": ("Fresha", "https://www.fresha.com/lvp/167barbersshop-ramon-luis-rivera-avenue-bayamon-3o9GPN", "$19.95–$45 al mes + 20% por cliente nuevo del marketplace"),
+ "Retoque Guaynabo": ("Fresha", "", "$19.95–$45 al mes + 20% por cliente nuevo del marketplace"),
+ "JJ Barbershop Old San Juan": ("Fresha y Setmore", "https://www.fresha.com/lvp/jj-barber-shop-old-san-juan-calle-de-san-francisco-san-juan-Eko3Gb", "$19.95+ al mes en Fresha (Setmore puede ser gratis)"),
+ "Sport BarberShop": ("Fresha", "https://www.fresha.com/lvp/sport-barbershop-calle-los-andes-san-juan-xXxYj6", "$19.95–$45 al mes + 20% por cliente nuevo del marketplace"),
+ "Crea'tif Salon and Spa": ("Fresha", "https://www.fresha.com/lvp/creatif-salon-and-spa-avenue-lopategui-guaynabo-7x9b25", "$30–$75 al mes (varias empleadas) + 20% por cliente nuevo"),
+ "Top Nail Bar": ("Fresha (88 servicios)", "https://www.fresha.com/a/top-nail-bar-bayamon-plaza-bayamon-qed67sbu", "$75–$150 al mes (equipo grande) + 20% por cliente nuevo del marketplace"),
+ "Pintauñas Nails & Salon": ("Aparece en Fresha (confirmar)", "", "Por confirmar"),
+ "bloOm Salon & Spa": ("Aparece en Fresha (confirmar)", "", "Por confirmar"),
+ "Curl Boss Salon": ("Vagaro (y aparece en Fresha)", "https://www.vagaro.com/curlboss", "$34–$60 al mes en Vagaro según usuarios"),
+ "Aviva Family Chiropractic – Dr. Ariel Tomey": ("Jane App", "https://avivachiropractic.janeapp.com", "Desde $54 al mes"),
+ "La Chulada Foodtruck": ("Uber Eats", "https://www.ubereats.com/us-es/store/la-chulada-foodtruck/OtW4PpDAXfCDMDdeslloBw", "7–10% de cada pedido para recoger y 20–30% de cada delivery"),
+ "Guaynabo Bakery & Pizzeria": ("Uber Eats", "", "7–10% de cada pedido para recoger y 20–30% de cada delivery"),
+}
+
+# Bengal Media PR packages. Setup is one payment; the monthly fee covers hosting, domain, SSL,
+# small changes and support. PR market reference: $450–$2,295 one-time; boutique maintenance $50–$200/mo.
+PAQUETES = {
+ "presencia":   ("Presencia", 650, 49, "Página bilingüe con su marca, fotos, servicios, WhatsApp, mapa y SEO local."),
+ "conectada":   ("Citas conectadas", 900, 69, "Presencia + un botón 'Reservar' en cada servicio que abre ese servicio en su Booksy, Fresha o Vagaro. Esas citas entran como directas, sin la comisión de cliente nuevo del marketplace."),
+ "propias":     ("Citas propias", 1600, 99, "Presencia + reservas dentro de la página: cada servicio con su precio, duración y barbero o técnica, confirmación por WhatsApp o email y recordatorios. Reemplaza Booksy o Fresha."),
+ "pedidos":     ("Pedidos directos", 1200, 79, "Presencia + menú con pedidos para recoger por WhatsApp o pago en línea, sin comisión de Uber Eats en los clientes que ya le conocen."),
+ "profesional": ("Profesional", 1500, 99, "Varias secciones (servicios, equipo, planes, preguntas), formulario de contacto, SEO local y Google Business Profile."),
+ "profesional_citas": ("Profesional + citas", 2000, 129, "Profesional + citas en línea por servicio dentro de la página."),
+ "alquiler":    ("Reservas directas", 1800, 99, "Página de la propiedad con galería, calendario de disponibilidad sincronizado con Airbnb y solicitud de reserva directa (sin la comisión de la plataforma)."),
+}
+
+def paquete_para(nombre: str, categoria: str) -> str:
+    plat = PLATAFORMA.get(nombre, ("",))[0]
+    if categoria in ("Food truck", "Restaurante / repostería"):
+        return "pedidos"
+    if categoria == "Alquiler vacacional":
+        return "alquiler"
+    if categoria in ("Dentista", "Médico", "Quiropráctico"):
+        return "profesional_citas"
+    if categoria in ("Abogado", "Contador", "Techos / solar", "Taller"):
+        return "profesional"
+    if plat.startswith(("Booksy", "Fresha", "Vagaro")):
+        return "propias" if nombre in ("Santurce La Barbería Salón", "Top Nail Bar", "Jean C Stilo", "Crea'tif Salon and Spa") else "conectada"
+    return "presencia"
+
 FIELDS = ["categoria","nombre","pueblo","direccion","instagram","facebook","telefono","whatsapp","email",
           "resenas","senales_de_pago","potencial_pago","verificacion_web","confianza","fuentes"]
+
+EXTRA = ["plataforma_citas", "link_plataforma", "costo_actual_plataforma", "paquete", "setup_usd", "mensual_usd"]
 
 def rows():
     for p in P:
         d = dict(zip(FIELDS, p))
         d["fuentes"] = " ".join(p[-1])
+        d.update(UPDATES.get(d["nombre"], {}))
+        plat, link, costo = PLATAFORMA.get(d["nombre"], ("No detectada", "", ""))
+        key = paquete_para(d["nombre"], d["categoria"])
+        nombre_paq, setup, mensual, _ = PAQUETES[key]
+        d.update(plataforma_citas=plat, link_plataforma=link, costo_actual_plataforma=costo,
+                 paquete=nombre_paq, setup_usd=setup, mensual_usd=mensual, paquete_key=key)
         yield d
 
 if __name__ == "__main__":
     out = Path(__file__).with_name("prospectos-metro-2026-10.csv")
     with out.open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS)
+        w = csv.DictWriter(f, fieldnames=FIELDS + EXTRA, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows())
     print(f"{len(P)} prospectos -> {out}")
