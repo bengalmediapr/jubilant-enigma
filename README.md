@@ -40,6 +40,8 @@ Other commands: `python -m prospector.run stats` shows lead counts, `add --name 
 
 ## Website templates
 
+![The 10 industry templates](docs/templates-preview.png)
+
 ```bash
 python -m sites.build demo          # all 10 demos + a gallery page at dist/index.html
 python -m sites.build lead "Café"   # mockup for a lead in data/leads.csv (writes sites/clients/<slug>.json)
