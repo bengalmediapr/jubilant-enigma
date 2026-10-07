@@ -1,0 +1,288 @@
+{
+  "label": {
+    "es": "Barbería",
+    "en": "Barbershop"
+  },
+  "schema_type": "BarberShop",
+  "hero_icon": "scissors",
+  "theme": {
+    "primary": "#1f3a8a",
+    "primary_ink": "#f6f1e7",
+    "accent": "#d7263d",
+    "accent_ink": "#ffffff",
+    "bg": "#f3ede2",
+    "surface": "#fbf8f2",
+    "ink": "#14161c",
+    "muted": "#5c5a55",
+    "font_head": "Anton",
+    "head_weights": "400",
+    "head_weight": 400,
+    "font_body": "Work Sans",
+    "radius": "4px",
+    "hero": "poster",
+    "poster_style": "stripes",
+    "uppercase_heads": true,
+    "head_spacing": "0.005em",
+    "char_width": 0.5
+  },
+  "sections": [
+    "hero",
+    "menu",
+    "about",
+    "gallery",
+    "faq",
+    "contact"
+  ],
+  "hours": [
+    {
+      "es": "Martes a sábado",
+      "en": "Tuesday–Saturday",
+      "time": "9:00 AM – 7:00 PM"
+    },
+    {
+      "es": "Domingo",
+      "en": "Sunday",
+      "time": "9:00 AM – 3:00 PM"
+    }
+  ],
+  "demo": {
+    "name": "Barbería El Bloque",
+    "municipio": "Bayamón",
+    "address": "Ave. Main 10, Bayamón, PR 00961",
+    "phone": "787-555-0111",
+    "rating": 4.9,
+    "reviews": 210
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Barbería en {municipio}, PR",
+        "description": "Barbería en {municipio}: fades, cortes clásicos, barba con toalla caliente y diseños. Reserve su turno por WhatsApp al {phone}."
+      },
+      "nav": {
+        "menu": "Precios"
+      },
+      "nav_cta": "Reservar turno",
+      "wa_text": "Saludos, quiero reservar un turno en {name}. Servicio: ",
+      "hero": {
+        "eyebrow": "Barbería · {municipio}",
+        "title": "Fade limpio, barba en línea, cero espera.",
+        "subtitle": "Reserve su turno por WhatsApp y llegue directo a la silla.",
+        "cta": "Reservar por WhatsApp"
+      },
+      "ticker": [
+        "Fades",
+        "Taper",
+        "Barba con toalla caliente",
+        "Diseños",
+        "Cortes de niño",
+        "Cejas"
+      ],
+      "board_title": "Lista de precios",
+      "menu": {
+        "title": "Precios",
+        "intro": "Precios de referencia. Pregunte por combos.",
+        "groups": [
+          {
+            "name": "Cortes",
+            "items": [
+              {
+                "name": "Corte + fade",
+                "desc": "Incluye lavado y estilizado.",
+                "price": "$25"
+              },
+              {
+                "name": "Corte clásico",
+                "desc": "Tijera o máquina.",
+                "price": "$20"
+              },
+              {
+                "name": "Corte de niño",
+                "desc": "Hasta 12 años.",
+                "price": "$15"
+              }
+            ]
+          },
+          {
+            "name": "Barba y extras",
+            "items": [
+              {
+                "name": "Barba con toalla caliente",
+                "desc": "Navaja y aceite.",
+                "price": "$15"
+              },
+              {
+                "name": "Corte + barba",
+                "desc": "",
+                "price": "$35"
+              },
+              {
+                "name": "Diseño / líneas",
+                "desc": "",
+                "price": "desde $5"
+              },
+              {
+                "name": "Cejas",
+                "desc": "",
+                "price": "$5"
+              }
+            ]
+          }
+        ]
+      },
+      "about": {
+        "title": "La silla que usted ya conoce",
+        "text": "En {name} el corte se hace con calma y al detalle. Música buena, buena conversación y un trabajo que se nota cuando sale por la puerta.",
+        "points": [
+          "Turnos por WhatsApp",
+          "Herramientas desinfectadas en cada cliente",
+          "ATH Móvil y tarjetas"
+        ]
+      },
+      "gallery": {
+        "title": "Trabajos recientes",
+        "intro": "Más en nuestro Instagram.",
+        "labels": [
+          "Mid fade",
+          "Taper",
+          "Barba",
+          "Diseño",
+          "Corte clásico",
+          "Niño"
+        ]
+      },
+      "faq": {
+        "title": "Preguntas",
+        "items": [
+          {
+            "q": "¿Tengo que reservar?",
+            "a": "Recomendado, sobre todo viernes y sábado. Si hay silla libre, atendemos sin cita."
+          },
+          {
+            "q": "¿Cómo pago?",
+            "a": "Efectivo, ATH Móvil y tarjetas."
+          }
+        ]
+      },
+      "contact": {
+        "title": "Dónde estamos",
+        "text": "Pase por {municipio} o escríbanos para su turno."
+      }
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Barbershop in {municipio}, PR",
+        "description": "Barbershop in {municipio}, Puerto Rico: fades, classic cuts, hot-towel beard trims and designs. Book on WhatsApp at {phone}."
+      },
+      "nav": {
+        "menu": "Prices"
+      },
+      "nav_cta": "Book a chair",
+      "wa_text": "Hi, I'd like to book at {name}. Service: ",
+      "hero": {
+        "eyebrow": "Barbershop · {municipio}",
+        "title": "Clean fades, sharp beards, no waiting.",
+        "subtitle": "Book on WhatsApp and walk straight to the chair.",
+        "cta": "Book on WhatsApp"
+      },
+      "ticker": [
+        "Fades",
+        "Tapers",
+        "Hot-towel beard",
+        "Designs",
+        "Kids' cuts",
+        "Brows"
+      ],
+      "board_title": "Price list",
+      "menu": {
+        "title": "Prices",
+        "intro": "Reference prices. Ask about combos.",
+        "groups": [
+          {
+            "name": "Cuts",
+            "items": [
+              {
+                "name": "Cut + fade",
+                "desc": "Wash and style included.",
+                "price": "$25"
+              },
+              {
+                "name": "Classic cut",
+                "desc": "Scissors or clippers.",
+                "price": "$20"
+              },
+              {
+                "name": "Kids' cut",
+                "desc": "Up to age 12.",
+                "price": "$15"
+              }
+            ]
+          },
+          {
+            "name": "Beard and extras",
+            "items": [
+              {
+                "name": "Hot-towel beard",
+                "desc": "Straight razor and oil.",
+                "price": "$15"
+              },
+              {
+                "name": "Cut + beard",
+                "desc": "",
+                "price": "$35"
+              },
+              {
+                "name": "Designs / lines",
+                "desc": "",
+                "price": "from $5"
+              },
+              {
+                "name": "Brows",
+                "desc": "",
+                "price": "$5"
+              }
+            ]
+          }
+        ]
+      },
+      "about": {
+        "title": "The chair you already know",
+        "text": "At {name} every cut gets time and detail. Good music, good conversation, and work you can see when you walk out the door.",
+        "points": [
+          "Book on WhatsApp",
+          "Tools disinfected for every client",
+          "ATH Móvil and cards"
+        ]
+      },
+      "gallery": {
+        "title": "Recent work",
+        "intro": "More on our Instagram.",
+        "labels": [
+          "Mid fade",
+          "Taper",
+          "Beard",
+          "Design",
+          "Classic cut",
+          "Kids"
+        ]
+      },
+      "faq": {
+        "title": "Questions",
+        "items": [
+          {
+            "q": "Do I need to book?",
+            "a": "Recommended, especially Friday and Saturday. If a chair is free, walk-ins are welcome."
+          },
+          {
+            "q": "How can I pay?",
+            "a": "Cash, ATH Móvil and cards."
+          }
+        ]
+      },
+      "contact": {
+        "title": "Find us",
+        "text": "Stop by in {municipio} or message us to book."
+      }
+    }
+  }
+}

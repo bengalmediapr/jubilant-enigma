@@ -1,0 +1,40 @@
+{
+  "preview": true,
+  "slug": "jj-barbershop-viejo-san-juan",
+  "industry": "barberia",
+  "name": "JJ Barbershop Old San Juan",
+  "display_name": "JJ Barbershop",
+  "municipio": "San Juan",
+  "address": "300 Calle San Francisco, Viejo San Juan, PR",
+  "phone": "787-318-4323",
+  "social": {
+    "instagram": "https://www.instagram.com/jjbarbershopoldsanjuan/"
+  },
+  "hours": [
+    {
+      "es": "Martes a sábado",
+      "en": "Tuesday–Saturday",
+      "time": "9:30 AM – 6:00 PM"
+    }
+  ],
+  "content": {
+    "es": {
+      "hero": {
+        "title": "Su barbero en el Viejo San Juan."
+      }
+    },
+    "en": {
+      "hero": {
+        "title": "Your barber in Old San Juan."
+      }
+    }
+  },
+  "lead": {
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "En zona de turistas: una página en inglés le traería clientes que hoy no lo encuentran.",
+    "sources": [
+      "https://www.instagram.com/jjbarbershopoldsanjuan/"
+    ]
+  }
+}

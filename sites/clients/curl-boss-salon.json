@@ -1,0 +1,134 @@
+{
+  "preview": true,
+  "slug": "curl-boss-salon",
+  "industry": "salon",
+  "name": "Curl Boss Salon",
+  "display_name": "Curl Boss",
+  "municipio": "San Juan",
+  "address": "Ave. 65 de Infantería, San Juan, PR",
+  "phone": "787-640-8800",
+  "whatsapp": "17876408800",
+  "social": {
+    "instagram": "https://www.instagram.com/curlbosspr/"
+  },
+  "hours": [
+    {
+      "es": "Martes a sábado",
+      "en": "Tuesday–Saturday",
+      "time": "9:00 AM – 6:00 PM"
+    }
+  ],
+  "theme": {
+    "hero": "poster",
+    "poster_style": "gloss",
+    "primary": "#7a3e9d",
+    "accent": "#f7c873",
+    "accent_ink": "#2b1a06",
+    "bg": "#fbf6f0",
+    "font_head": "Instrument Serif",
+    "head_weights": "400",
+    "head_weight": 400,
+    "char_width": 0.45
+  },
+  "content": {
+    "es": {
+      "hero": {
+        "eyebrow": "Salón multitextura · San Juan",
+        "title": "Su rizo, entendido.",
+        "subtitle": "Cortes y cuidado para cabello rizado y texturizado. Citas por WhatsApp."
+      },
+      "ticker": [
+        "Corte en rizo",
+        "Definición",
+        "Hidratación",
+        "Color en rizos",
+        "Transición"
+      ],
+      "menu": {
+        "title": "Servicios",
+        "intro": "Pregunte por precios según su largo y textura.",
+        "groups": [
+          {
+            "name": "Rizos",
+            "items": [
+              {
+                "name": "Corte en seco / en rizo",
+                "desc": "",
+                "price": "Consultar"
+              },
+              {
+                "name": "Definición y estilizado",
+                "desc": "",
+                "price": "Consultar"
+              },
+              {
+                "name": "Tratamiento de hidratación",
+                "desc": "",
+                "price": "Consultar"
+              },
+              {
+                "name": "Color para rizos",
+                "desc": "",
+                "price": "Consultar"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "en": {
+      "hero": {
+        "eyebrow": "Multi-texture salon · San Juan",
+        "title": "Your curls, understood.",
+        "subtitle": "Cuts and care for curly and textured hair. Book on WhatsApp."
+      },
+      "ticker": [
+        "Curly cut",
+        "Definition",
+        "Hydration",
+        "Color for curls",
+        "Transition"
+      ],
+      "menu": {
+        "title": "Services",
+        "intro": "Ask for prices based on length and texture.",
+        "groups": [
+          {
+            "name": "Curls",
+            "items": [
+              {
+                "name": "Dry / curl-by-curl cut",
+                "desc": "",
+                "price": "Ask us"
+              },
+              {
+                "name": "Definition and styling",
+                "desc": "",
+                "price": "Ask us"
+              },
+              {
+                "name": "Hydration treatment",
+                "desc": "",
+                "price": "Ask us"
+              },
+              {
+                "name": "Color for curls",
+                "desc": "",
+                "price": "Ask us"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "lead": {
+    "channel": "WhatsApp",
+    "email": "",
+    "why": "Nicho claro (cabello rizado) y salió en Remezcla; una página con SEO de 'cabello rizado San Juan' le rinde.",
+    "sources": [
+      "https://www.instagram.com/curlbosspr/",
+      "https://remezcla.com/lists/beauty/7-local-beauty-wellness-businesses-bad-bunny-residency/"
+    ]
+  }
+}

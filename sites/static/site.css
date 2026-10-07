@@ -232,6 +232,94 @@ p { margin: 0 0 1em; }
   box-shadow: 0 10px 28px -8px rgba(0,0,0,.45);
 }
 
+
+/* Poster hero: business name as the headline, a price board or photo collage, a sticker and a ticker. */
+.preview-banner {
+  margin: 0; padding: 10px 16px; text-align: center; font-size: .88rem;
+  background: var(--accent); color: var(--accent-ink);
+}
+.poster { position: relative; overflow: hidden; padding-top: clamp(36px, 6vw, 72px); background: var(--bg); }
+.poster-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(28px, 5vw, 64px); align-items: end; position: relative; z-index: 1; }
+.poster-name {
+  /* Sized so the longest word fits its column: --L = letters in that word, --cw = the face's average letter width in em */
+  font-size: clamp(2.4rem, calc((100vw - 40px) / (var(--L) * var(--cw))), 8.6rem);
+  line-height: .9; letter-spacing: -.03em; margin: 0 0 .22em; color: var(--ink);
+}
+.poster-title { font: var(--head-weight) clamp(1.25rem, 2.4vw, 1.75rem)/1.2 var(--font-head); margin: 0 0 .6em; max-width: 26ch; color: var(--primary); text-transform: var(--head-transform); }
+.poster .lead { max-width: 34em; }
+.poster .actions { margin-bottom: clamp(32px, 5vw, 56px); }
+.poster-art { position: relative; padding-bottom: clamp(32px, 5vw, 56px); min-width: 0; }
+.board {
+  background: var(--ink); color: var(--bg); border-radius: var(--radius); padding: 26px 26px 20px;
+  transform: rotate(-1.5deg); box-shadow: 0 30px 60px -28px rgba(0,0,0,.6);
+}
+.board-head { padding-right: 96px; font: var(--head-weight) 1.5rem/1 var(--font-head); text-transform: uppercase; letter-spacing: .02em; margin: 0 0 16px; color: var(--accent); }
+.board ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.board li { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 10px; border-bottom: 1px dashed color-mix(in srgb, var(--bg) 25%, transparent); font-weight: 600; }
+.board li:last-child { border-bottom: 0; }
+.board-price { color: var(--accent); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.board-foot { margin: 12px 0 0; font-size: .85rem; opacity: .7; }
+.collage { display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; aspect-ratio: 4 / 4.4; max-width: 100%; }
+.collage img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+.collage img:first-child { grid-row: span 2; }
+.collage img:only-child { grid-column: span 2; }
+.sticker {
+  position: absolute; top: -62px; right: -10px; width: 108px; height: 108px; border-radius: 50%; margin: 0;
+  display: grid; place-content: center; text-align: center; gap: 2px; padding: 10px;
+  background: var(--accent); color: var(--accent-ink); transform: rotate(10deg);
+  box-shadow: 0 12px 26px -12px rgba(0,0,0,.5); line-height: 1.05;
+}
+.sticker strong { font: var(--head-weight) 1.9rem/1 var(--font-head); }
+.sticker span { font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.ticker { background: var(--primary); color: var(--primary-ink); overflow: hidden; white-space: nowrap; border-block: 2px solid var(--ink); }
+.ticker-track { display: inline-flex; animation: ticker 40s linear infinite; }
+.ticker span { font: var(--head-weight) 1.15rem/1 var(--font-head); text-transform: uppercase; padding: 16px 0; }
+.ticker span::after { content: "✦"; margin: 0 22px; color: var(--accent); }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* Barbershop: barber-pole stripes behind the name */
+.poster-stripes .poster::before {
+  content: ""; position: absolute; inset: 0 0 auto auto; width: 38%; height: 100%; opacity: .14;
+  background: repeating-linear-gradient(-45deg, var(--primary) 0 22px, transparent 22px 44px, var(--accent) 44px 66px, transparent 66px 88px);
+}
+.poster-stripes .board { transform: rotate(0); border: 3px solid var(--primary); }
+
+/* Nail salon: glossy chrome blob and italic display */
+.poster-gloss .poster::before {
+  content: ""; position: absolute; width: 70vw; max-width: 900px; aspect-ratio: 1; right: -18%; top: -30%; border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  background: radial-gradient(circle at 30% 30%, #fff 0 6%, transparent 30%), conic-gradient(from 200deg, var(--accent), var(--primary), color-mix(in srgb, var(--accent) 50%, #fff), var(--accent));
+  opacity: .5; filter: blur(2px);
+}
+.poster-gloss .poster-name { font-style: italic; font-weight: 400; letter-spacing: -.045em; }
+.poster-gloss .board { background: var(--surface); color: var(--ink); transform: rotate(2deg); border: 1px solid var(--line); }
+.poster-gloss .board li { border-bottom-color: var(--line); }
+.poster-gloss .board-price { color: var(--primary); }
+.poster-gloss .board-head { color: var(--primary); }
+
+/* Food truck: loud street poster with a hard shadow */
+.poster-street .poster { background: var(--accent); }
+.poster-street .poster-name { color: var(--ink); text-shadow: 5px 5px 0 var(--primary); }
+.poster-street .poster-title { color: var(--ink); }
+.poster-street .poster .lead { color: color-mix(in srgb, var(--ink) 80%, transparent); }
+.poster-street .board { background: var(--surface); color: var(--ink); border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); border-radius: 6px; }
+.poster-street .board li { border-bottom-color: var(--line); }
+.poster-street .board-head, .poster-street .board-price { color: var(--primary); }
+.poster-street .btn { box-shadow: 4px 4px 0 var(--ink); }
+.poster-street .btn-ghost { background: var(--surface); border-color: var(--ink); color: var(--ink); }
+.poster-street .sticker { background: var(--primary); color: var(--primary-ink); }
+
+@media (min-width: 901px) {
+  .poster-name { font-size: clamp(2.4rem, calc(min(52vw, 640px) / (var(--L) * var(--cw))), 8.6rem); }
+}
+@media (max-width: 900px) {
+  .poster-grid { grid-template-columns: 1fr; align-items: start; }
+  .poster .actions { margin-bottom: 8px; }
+  .poster-art { margin-top: 48px; }
+  .sticker { width: 92px; height: 92px; top: -52px; right: 0; }
+  .sticker strong { font-size: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
 /* Phones and tablets */
 @media (max-width: 900px) {
   .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }

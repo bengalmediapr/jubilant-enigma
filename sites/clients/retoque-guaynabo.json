@@ -1,0 +1,92 @@
+{
+  "preview": true,
+  "slug": "retoque-guaynabo",
+  "industry": "unas",
+  "name": "Retoque Guaynabo",
+  "display_name": "Retoque",
+  "municipio": "Guaynabo",
+  "address": "Los Jardines Shopping Center, Calle Marginal 130, Frailes, Guaynabo, PR 00969",
+  "phone": "939-409-9090",
+  "social": {
+    "instagram": "https://www.instagram.com/retoque_guaynabo/"
+  },
+  "rating": 4.9,
+  "rating_source": {
+    "es": "en Fresha",
+    "en": "on Fresha"
+  },
+  "content": {
+    "es": {
+      "menu": {
+        "intro": "Precios publicados por el salón.",
+        "groups": [
+          {
+            "name": "Gel",
+            "items": [
+              {
+                "name": "Intelli Gel Clean",
+                "desc": "",
+                "price": "$35"
+              },
+              {
+                "name": "Esmalte gel manos",
+                "desc": "",
+                "price": "$25"
+              },
+              {
+                "name": "Esmalte gel pies",
+                "desc": "",
+                "price": "$25"
+              },
+              {
+                "name": "Retoque gel tips",
+                "desc": "",
+                "price": "desde $35"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "en": {
+      "menu": {
+        "intro": "Prices published by the salon.",
+        "groups": [
+          {
+            "name": "Gel",
+            "items": [
+              {
+                "name": "Intelli Gel Clean",
+                "desc": "",
+                "price": "$35"
+              },
+              {
+                "name": "Gel polish, hands",
+                "desc": "",
+                "price": "$25"
+              },
+              {
+                "name": "Gel polish, toes",
+                "desc": "",
+                "price": "$25"
+              },
+              {
+                "name": "Gel tips",
+                "desc": "",
+                "price": "from $35"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "lead": {
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "4.9 en Fresha, precios publicados; sin página propia.",
+    "sources": [
+      "https://www.instagram.com/retoque_guaynabo/"
+    ]
+  }
+}

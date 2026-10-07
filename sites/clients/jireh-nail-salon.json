@@ -1,0 +1,53 @@
+{
+  "preview": true,
+  "slug": "jireh-nail-salon",
+  "industry": "unas",
+  "name": "Jireh Nail Salón",
+  "display_name": "Jireh Nail",
+  "municipio": "Guaynabo",
+  "address": "PR-838, Guaynabo Rental Park, Guaynabo, PR 00969",
+  "phone": "939-325-6714",
+  "social": {
+    "instagram": "https://www.instagram.com/jirehnail/"
+  },
+  "hours": [
+    {
+      "es": "Lunes a viernes",
+      "en": "Monday–Friday",
+      "time": "9:00 AM – 5:00 PM"
+    },
+    {
+      "es": "Sábado",
+      "en": "Saturday",
+      "time": "9:00 AM – 3:00 PM"
+    }
+  ],
+  "content": {
+    "es": {
+      "ticker": [
+        "Gel",
+        "Acrílico",
+        "Pedicura",
+        "Nail art",
+        "Cejas con hilo"
+      ]
+    },
+    "en": {
+      "ticker": [
+        "Gel",
+        "Acrylic",
+        "Pedicure",
+        "Nail art",
+        "Eyebrow threading"
+      ]
+    }
+  },
+  "lead": {
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Reserva por Booksy pero no tiene página propia.",
+    "sources": [
+      "https://www.instagram.com/jirehnail/"
+    ]
+  }
+}

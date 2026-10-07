@@ -1,0 +1,285 @@
+{
+  "label": {
+    "es": "Salón de uñas",
+    "en": "Nail salon"
+  },
+  "schema_type": "NailSalon",
+  "hero_icon": "sparkles",
+  "theme": {
+    "primary": "#b0306a",
+    "primary_ink": "#ffffff",
+    "accent": "#f6b8d1",
+    "accent_ink": "#3a0f24",
+    "bg": "#fdf5f8",
+    "surface": "#ffffff",
+    "ink": "#2a1320",
+    "muted": "#7a5a6a",
+    "font_head": "Instrument Serif",
+    "head_weights": "400",
+    "head_weight": 400,
+    "font_body": "DM Sans",
+    "radius": "22px",
+    "btn_radius": "999px",
+    "hero": "poster",
+    "poster_style": "gloss",
+    "head_spacing": "-0.02em",
+    "char_width": 0.45
+  },
+  "sections": [
+    "hero",
+    "menu",
+    "gallery",
+    "about",
+    "faq",
+    "contact"
+  ],
+  "hours": [
+    {
+      "es": "Lunes a sábado",
+      "en": "Monday–Saturday",
+      "time": "9:00 AM – 5:00 PM"
+    }
+  ],
+  "demo": {
+    "name": "Glaze Nail Studio",
+    "municipio": "Guaynabo",
+    "address": "Ave. Esmeralda 20, Guaynabo, PR 00969",
+    "phone": "787-555-0112",
+    "rating": 4.9,
+    "reviews": 140
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Uñas en {municipio}, PR",
+        "description": "Salón de uñas en {municipio}: acrílico, gel, dip, pedicura y nail art. Reserve su cita por WhatsApp al {phone}."
+      },
+      "nav": {
+        "menu": "Servicios"
+      },
+      "nav_cta": "Reservar cita",
+      "wa_text": "Hola, quiero una cita en {name}. Servicio: ",
+      "hero": {
+        "eyebrow": "Nail studio · {municipio}",
+        "title": "Uñas que duran y se ven de revista.",
+        "subtitle": "Acrílico, gel, dip y diseños a mano. Envíenos su inspiración por WhatsApp y le separamos su cita.",
+        "cta": "Reservar por WhatsApp"
+      },
+      "ticker": [
+        "Acrílico",
+        "Gel",
+        "Dip powder",
+        "Nail art",
+        "Pedicura spa",
+        "Chrome",
+        "French"
+      ],
+      "board_title": "Favoritos",
+      "menu": {
+        "title": "Servicios",
+        "intro": "Precios desde. El diseño final puede variar el precio.",
+        "groups": [
+          {
+            "name": "Manos",
+            "items": [
+              {
+                "name": "Manicura en gel",
+                "desc": "",
+                "price": "desde $25"
+              },
+              {
+                "name": "Acrílico set completo",
+                "desc": "",
+                "price": "desde $45"
+              },
+              {
+                "name": "Dip powder",
+                "desc": "",
+                "price": "desde $35"
+              },
+              {
+                "name": "Relleno",
+                "desc": "",
+                "price": "desde $30"
+              }
+            ]
+          },
+          {
+            "name": "Pies y extras",
+            "items": [
+              {
+                "name": "Pedicura spa",
+                "desc": "",
+                "price": "desde $35"
+              },
+              {
+                "name": "Gel en pies",
+                "desc": "",
+                "price": "desde $25"
+              },
+              {
+                "name": "Nail art",
+                "desc": "Por uña o set.",
+                "price": "desde $5"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title": "Sets recientes",
+        "intro": "Más diseños en nuestro Instagram.",
+        "labels": [
+          "Chrome",
+          "French",
+          "Acrílico largo",
+          "Pedicura",
+          "Nail art",
+          "Gel nude"
+        ]
+      },
+      "about": {
+        "title": "Su rato para usted",
+        "text": "En {name} cada set se hace sin prisa, con productos de calidad y herramientas esterilizadas. Usted trae la idea; nosotras la hacemos realidad.",
+        "points": [
+          "Herramientas esterilizadas",
+          "Productos libres de crueldad",
+          "ATH Móvil y tarjetas"
+        ]
+      },
+      "faq": {
+        "title": "Preguntas",
+        "items": [
+          {
+            "q": "¿Puedo enviar una foto del diseño que quiero?",
+            "a": "Sí. Envíela por WhatsApp al reservar y le confirmamos el precio."
+          },
+          {
+            "q": "¿Cuánto dura un set de acrílico?",
+            "a": "Entre 3 y 4 semanas, con relleno a las 2–3 semanas."
+          }
+        ]
+      },
+      "contact": {
+        "title": "Visítenos",
+        "text": "Estamos en {municipio}. Reserve por WhatsApp."
+      }
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Nails in {municipio}, PR",
+        "description": "Nail salon in {municipio}, Puerto Rico: acrylic, gel, dip, pedicures and nail art. Book on WhatsApp at {phone}."
+      },
+      "nav": {
+        "menu": "Services"
+      },
+      "nav_cta": "Book",
+      "wa_text": "Hi, I'd like an appointment at {name}. Service: ",
+      "hero": {
+        "eyebrow": "Nail studio · {municipio}",
+        "title": "Nails that last and look editorial.",
+        "subtitle": "Acrylic, gel, dip and hand-painted designs. Send your inspiration on WhatsApp and we'll save your spot.",
+        "cta": "Book on WhatsApp"
+      },
+      "ticker": [
+        "Acrylic",
+        "Gel",
+        "Dip powder",
+        "Nail art",
+        "Spa pedicure",
+        "Chrome",
+        "French"
+      ],
+      "board_title": "Favorites",
+      "menu": {
+        "title": "Services",
+        "intro": "Starting prices. Final design can change the price.",
+        "groups": [
+          {
+            "name": "Hands",
+            "items": [
+              {
+                "name": "Gel manicure",
+                "desc": "",
+                "price": "from $25"
+              },
+              {
+                "name": "Full acrylic set",
+                "desc": "",
+                "price": "from $45"
+              },
+              {
+                "name": "Dip powder",
+                "desc": "",
+                "price": "from $35"
+              },
+              {
+                "name": "Fill",
+                "desc": "",
+                "price": "from $30"
+              }
+            ]
+          },
+          {
+            "name": "Feet and extras",
+            "items": [
+              {
+                "name": "Spa pedicure",
+                "desc": "",
+                "price": "from $35"
+              },
+              {
+                "name": "Gel on toes",
+                "desc": "",
+                "price": "from $25"
+              },
+              {
+                "name": "Nail art",
+                "desc": "Per nail or set.",
+                "price": "from $5"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title": "Recent sets",
+        "intro": "More designs on our Instagram.",
+        "labels": [
+          "Chrome",
+          "French",
+          "Long acrylic",
+          "Pedicure",
+          "Nail art",
+          "Nude gel"
+        ]
+      },
+      "about": {
+        "title": "Your time for you",
+        "text": "At {name} every set is done without rushing, with quality products and sterilized tools. You bring the idea; we make it real.",
+        "points": [
+          "Sterilized tools",
+          "Cruelty-free products",
+          "ATH Móvil and cards"
+        ]
+      },
+      "faq": {
+        "title": "Questions",
+        "items": [
+          {
+            "q": "Can I send a photo of the design I want?",
+            "a": "Yes. Send it on WhatsApp when you book and we'll confirm the price."
+          },
+          {
+            "q": "How long does an acrylic set last?",
+            "a": "3 to 4 weeks, with a fill at 2–3 weeks."
+          }
+        ]
+      },
+      "contact": {
+        "title": "Visit us",
+        "text": "We're in {municipio}. Book on WhatsApp."
+      }
+    }
+  }
+}

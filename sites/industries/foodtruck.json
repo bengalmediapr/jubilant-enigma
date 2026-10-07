@@ -1,0 +1,226 @@
+{
+  "label": {
+    "es": "Food truck / Comida rápida",
+    "en": "Food truck"
+  },
+  "schema_type": "FastFoodRestaurant",
+  "hero_icon": "utensils",
+  "theme": {
+    "primary": "#d62828",
+    "primary_ink": "#ffffff",
+    "accent": "#ffd23f",
+    "accent_ink": "#1a1a1a",
+    "bg": "#fffaf0",
+    "surface": "#ffffff",
+    "ink": "#1a1a1a",
+    "muted": "#5b5149",
+    "font_head": "Bowlby One",
+    "head_weights": "400",
+    "head_weight": 400,
+    "font_body": "Rubik",
+    "radius": "8px",
+    "hero": "poster",
+    "poster_style": "street",
+    "uppercase_heads": true,
+    "head_spacing": "0",
+    "char_width": 0.86
+  },
+  "sections": [
+    "hero",
+    "menu",
+    "about",
+    "faq",
+    "contact"
+  ],
+  "hours": [
+    {
+      "es": "Miércoles a domingo",
+      "en": "Wednesday–Sunday",
+      "time": "5:00 PM – 11:00 PM"
+    }
+  ],
+  "demo": {
+    "name": "Smash Bros PR",
+    "municipio": "Guaynabo",
+    "address": "Carr. 833, Guaynabo, PR",
+    "phone": "787-555-0113",
+    "rating": 4.8,
+    "reviews": 320
+  },
+  "content": {
+    "es": {
+      "meta": {
+        "title": "{name} | Food truck en {municipio}, PR",
+        "description": "{name} en {municipio}: menú, horario y órdenes para recoger por WhatsApp al {phone}."
+      },
+      "nav_cta": "Ordenar",
+      "wa_text": "Saludos, quiero ordenar para recoger en {name}: ",
+      "hero": {
+        "eyebrow": "Food truck · {municipio}",
+        "title": "Hecho al momento. Vale el viaje.",
+        "subtitle": "Ordene por WhatsApp y recoja sin hacer fila.",
+        "cta": "Ordenar por WhatsApp"
+      },
+      "board_title": "Lo más pedido",
+      "menu": {
+        "title": "Menú",
+        "intro": "Precios sujetos a cambio.",
+        "groups": [
+          {
+            "name": "Platos",
+            "items": [
+              {
+                "name": "Smash burger doble",
+                "desc": "Queso americano, cebolla y salsa de la casa.",
+                "price": "$12"
+              },
+              {
+                "name": "Smash burger sencilla",
+                "desc": "",
+                "price": "$9"
+              },
+              {
+                "name": "Sándwich de pollo crispy",
+                "desc": "",
+                "price": "$11"
+              }
+            ]
+          },
+          {
+            "name": "Acompañantes y bebidas",
+            "items": [
+              {
+                "name": "Papas",
+                "desc": "",
+                "price": "$4"
+              },
+              {
+                "name": "Papas cargadas",
+                "desc": "",
+                "price": "$8"
+              },
+              {
+                "name": "Refresco / agua",
+                "desc": "",
+                "price": "$2"
+              }
+            ]
+          }
+        ]
+      },
+      "about": {
+        "title": "Comida con calle",
+        "text": "{name} empezó con una idea simple: buenos ingredientes, todo al momento y precios justos. Búsquenos en {municipio}.",
+        "points": [
+          "Órdenes para recoger por WhatsApp",
+          "ATH Móvil y tarjetas",
+          "Pregunte por catering para actividades"
+        ]
+      },
+      "faq": {
+        "title": "Preguntas",
+        "items": [
+          {
+            "q": "¿Cómo ordeno para recoger?",
+            "a": "Escríbanos por WhatsApp con su orden y su nombre. Le avisamos cuando esté lista."
+          },
+          {
+            "q": "¿Hacen catering?",
+            "a": "Sí, llevamos el truck a actividades privadas. Escríbanos con la fecha y la cantidad de personas."
+          }
+        ]
+      },
+      "contact": {
+        "title": "Dónde estamos",
+        "text": "Le esperamos en {municipio}."
+      }
+    },
+    "en": {
+      "meta": {
+        "title": "{name} | Food truck in {municipio}, PR",
+        "description": "{name} in {municipio}, Puerto Rico: menu, hours and pickup orders on WhatsApp at {phone}."
+      },
+      "nav_cta": "Order",
+      "wa_text": "Hi, I'd like to order for pickup at {name}: ",
+      "hero": {
+        "eyebrow": "Food truck · {municipio}",
+        "title": "Made to order. Worth the trip.",
+        "subtitle": "Order on WhatsApp and skip the line.",
+        "cta": "Order on WhatsApp"
+      },
+      "board_title": "Most ordered",
+      "menu": {
+        "title": "Menu",
+        "intro": "Prices subject to change.",
+        "groups": [
+          {
+            "name": "Mains",
+            "items": [
+              {
+                "name": "Double smash burger",
+                "desc": "American cheese, onion and house sauce.",
+                "price": "$12"
+              },
+              {
+                "name": "Single smash burger",
+                "desc": "",
+                "price": "$9"
+              },
+              {
+                "name": "Crispy chicken sandwich",
+                "desc": "",
+                "price": "$11"
+              }
+            ]
+          },
+          {
+            "name": "Sides and drinks",
+            "items": [
+              {
+                "name": "Fries",
+                "desc": "",
+                "price": "$4"
+              },
+              {
+                "name": "Loaded fries",
+                "desc": "",
+                "price": "$8"
+              },
+              {
+                "name": "Soda / water",
+                "desc": "",
+                "price": "$2"
+              }
+            ]
+          }
+        ]
+      },
+      "about": {
+        "title": "Street food, done right",
+        "text": "{name} started with a simple idea: good ingredients, everything made to order, fair prices. Find us in {municipio}.",
+        "points": [
+          "Pickup orders on WhatsApp",
+          "ATH Móvil and cards",
+          "Ask about catering for events"
+        ]
+      },
+      "faq": {
+        "title": "Questions",
+        "items": [
+          {
+            "q": "How do I order for pickup?",
+            "a": "Message us on WhatsApp with your order and name. We'll tell you when it's ready."
+          },
+          {
+            "q": "Do you cater?",
+            "a": "Yes, we bring the truck to private events. Message us the date and headcount."
+          }
+        ]
+      },
+      "contact": {
+        "title": "Find us",
+        "text": "See you in {municipio}."
+      }
+    }
+  }
+}

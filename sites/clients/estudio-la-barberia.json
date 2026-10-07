@@ -1,0 +1,76 @@
+{
+  "preview": true,
+  "slug": "estudio-la-barberia",
+  "industry": "barberia",
+  "name": "Estudio La Barbería",
+  "municipio": "Guaynabo",
+  "address": "Carr. 833 / Ave. 177 #1499, Local 3, Bo. Los Frailes, Guaynabo, PR 00921",
+  "phone": "787-382-3097",
+  "social": {
+    "instagram": "https://www.instagram.com/estudiolabarberia/"
+  },
+  "content": {
+    "es": {
+      "menu": {
+        "intro": "Precios desde, según el estilo.",
+        "groups": [
+          {
+            "name": "Servicios",
+            "items": [
+              {
+                "name": "Corte",
+                "desc": "1 hora, sin prisa.",
+                "price": "desde $30"
+              },
+              {
+                "name": "Corte y barba",
+                "desc": "",
+                "price": "desde $40"
+              },
+              {
+                "name": "Corte, barba y lavado de barba",
+                "desc": "",
+                "price": "Consultar"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "en": {
+      "menu": {
+        "intro": "Starting prices, depending on the style.",
+        "groups": [
+          {
+            "name": "Services",
+            "items": [
+              {
+                "name": "Haircut",
+                "desc": "1 hour, no rush.",
+                "price": "from $30"
+              },
+              {
+                "name": "Haircut and beard",
+                "desc": "",
+                "price": "from $40"
+              },
+              {
+                "name": "Haircut, beard and beard wash",
+                "desc": "",
+                "price": "Ask us"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "lead": {
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Barbería de estudio con barberos propios (@ceciliomenstylist); reserva por Booksy.",
+    "sources": [
+      "https://www.instagram.com/estudiolabarberia/"
+    ]
+  }
+}

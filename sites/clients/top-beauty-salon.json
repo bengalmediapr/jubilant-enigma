@@ -1,0 +1,27 @@
+{
+  "preview": true,
+  "slug": "top-beauty-salon",
+  "industry": "salon",
+  "name": "Top Beauty Salón",
+  "display_name": "Top Beauty",
+  "municipio": "San Juan",
+  "address": "1367 Ave. Roosevelt, San Juan, PR",
+  "phone": "787-781-9642",
+  "whatsapp": "17877819642",
+  "social": {
+    "instagram": "https://www.instagram.com/topbeautysalonpr/"
+  },
+  "theme": {
+    "hero": "poster",
+    "poster_style": "gloss",
+    "char_width": 0.55
+  },
+  "lead": {
+    "channel": "WhatsApp",
+    "email": "",
+    "why": "Dos líneas de WhatsApp activas; atiende por mensaje, no tiene página.",
+    "sources": [
+      "https://www.instagram.com/topbeautysalonpr/"
+    ]
+  }
+}

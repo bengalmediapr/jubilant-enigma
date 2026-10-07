@@ -1,5 +1,7 @@
 # Bengal Media PR — Prospector + Site Templates
 
+**Start here: [GUIA.md](GUIA.md)** (Spanish, 5 steps).
+
 A Puerto Rico version of the "200 websites in 12 months" system:
 **find local businesses → audit their websites → write personalized outreach → send a free mockup → build and host the site.**
 
@@ -45,6 +47,7 @@ Other commands: `python -m prospector.run stats` shows lead counts, `add --name 
 ```bash
 python -m sites.build demo          # all 10 demos + a gallery page at dist/index.html
 python -m sites.build lead "Café"   # mockup for a lead in data/leads.csv (writes sites/clients/<slug>.json)
+python -m sites.build previews     # every client marked "preview": true -> dist/previews/<slug>/ (one Cloudflare project)
 python -m sites.build client sites/clients/ejemplo-dentista.json   # a real client site
 npx wrangler pages deploy dist/<slug> --project-name <slug>        # publish to Cloudflare Pages
 ```
@@ -61,6 +64,9 @@ npx wrangler pages deploy dist/<slug> --project-name <slug>        # publish to 
 | `salon` | Salons, barbershops, nails | Black and rose, pricelist |
 | `restaurante` | Restaurants, cafés (menu section) | Terracotta, warm |
 | `alquiler` | Vacation rentals, "book direct" | Turquoise and sand, gallery |
+| `barberia` | Barbershops | Poster: huge name, barber-pole stripes, price board |
+| `unas` | Nail salons | Poster: italic serif, glossy chrome, price card |
+| `foodtruck` | Food trucks, burgers, quick food | Poster: loud yellow, hard shadows, "most ordered" board |
 
 Every site comes in Spanish (`/`) and English (`/en/`). Each one includes a floating WhatsApp button, a contact form that opens WhatsApp (so there's no server to maintain), a Google Map, hours, a schema.org LocalBusiness entry, a sitemap, and a "Sitio web por Bengal Media PR" footer link.
 

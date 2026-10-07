@@ -1,0 +1,60 @@
+{
+  "preview": true,
+  "slug": "pintaunas",
+  "industry": "unas",
+  "name": "Pintauñas Nails & Salon",
+  "display_name": "Pintauñas",
+  "municipio": "Guaynabo",
+  "address": "56-62 Av. Esmeralda, Guaynabo, PR 00969",
+  "phone": "787-466-8529",
+  "social": {
+    "instagram": "https://www.instagram.com/pintaunasnailsalon/"
+  },
+  "hours": [
+    {
+      "es": "Lunes a sábado",
+      "en": "Monday–Saturday",
+      "time": "9:00 AM – 5:00 PM"
+    },
+    {
+      "es": "Domingo",
+      "en": "Sunday",
+      "time": {
+        "es": "Cerrado",
+        "en": "Closed"
+      }
+    }
+  ],
+  "content": {
+    "es": {
+      "ticker": [
+        "Fish pedicure",
+        "Gel",
+        "Acrílico",
+        "Dip powder",
+        "Nail art",
+        "Manicura",
+        "Pedicura"
+      ]
+    },
+    "en": {
+      "ticker": [
+        "Fish pedicure",
+        "Gel",
+        "Acrylic",
+        "Dip powder",
+        "Nail art",
+        "Manicure",
+        "Pedicure"
+      ]
+    }
+  },
+  "lead": {
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Ofrece fish pedicure, algo poco común; solo tiene Instagram y directorios.",
+    "sources": [
+      "https://www.instagram.com/pintaunasnailsalon/"
+    ]
+  }
+}

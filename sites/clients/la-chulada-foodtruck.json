@@ -1,0 +1,130 @@
+{
+  "preview": true,
+  "slug": "la-chulada-foodtruck",
+  "industry": "foodtruck",
+  "name": "La Chulada Foodtruck",
+  "display_name": "La Chulada",
+  "municipio": "Guaynabo",
+  "address": "Carr. Alejandrino Km 1.3, Sector Melia, Guaynabo, PR",
+  "phone": "787-664-5551",
+  "whatsapp": "17876645551",
+  "social": {
+    "instagram": "https://www.instagram.com/la_chulada_foodtruck/"
+  },
+  "rating": 4.9,
+  "reviews": "1,000+",
+  "rating_source": {
+    "es": "en Uber Eats",
+    "en": "on Uber Eats"
+  },
+  "hours": [
+    {
+      "es": "Miércoles a domingo",
+      "en": "Wednesday–Sunday",
+      "time": {
+        "es": "Escríbanos para el horario",
+        "en": "Message us for hours"
+      }
+    }
+  ],
+  "content": {
+    "es": {
+      "hero": {
+        "title": "Smash burgers desde 2021. Vale el viaje."
+      },
+      "menu": {
+        "groups": [
+          {
+            "name": "Smash burgers",
+            "items": [
+              {
+                "name": "Double smash con bacon jam",
+                "desc": "La favorita de la gente.",
+                "price": "$13"
+              },
+              {
+                "name": "Smash burger doble",
+                "desc": "",
+                "price": "$12"
+              },
+              {
+                "name": "Smash burger sencilla",
+                "desc": "",
+                "price": "$9"
+              }
+            ]
+          },
+          {
+            "name": "Acompañantes",
+            "items": [
+              {
+                "name": "Papas",
+                "desc": "",
+                "price": "$4"
+              },
+              {
+                "name": "Papas cargadas",
+                "desc": "",
+                "price": "$8"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "en": {
+      "hero": {
+        "title": "Smash burgers since 2021. Worth the trip."
+      },
+      "menu": {
+        "groups": [
+          {
+            "name": "Smash burgers",
+            "items": [
+              {
+                "name": "Double smash with bacon jam",
+                "desc": "The crowd favorite.",
+                "price": "$13"
+              },
+              {
+                "name": "Double smash burger",
+                "desc": "",
+                "price": "$12"
+              },
+              {
+                "name": "Single smash burger",
+                "desc": "",
+                "price": "$9"
+              }
+            ]
+          },
+          {
+            "name": "Sides",
+            "items": [
+              {
+                "name": "Fries",
+                "desc": "",
+                "price": "$4"
+              },
+              {
+                "name": "Loaded fries",
+                "desc": "",
+                "price": "$8"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "lead": {
+    "channel": "WhatsApp",
+    "email": "",
+    "why": "4.9 con más de 1,000 calificaciones en Uber Eats y sin página propia.",
+    "sources": [
+      "https://www.instagram.com/la_chulada_foodtruck/",
+      "https://www.ubereats.com/us-es/store/la-chulada-foodtruck/OtW4PpDAXfCDMDdeslloBw",
+      "https://www.plateapr.com/en/directory/metro/guaynabo/restaurantes/la-chulada-foodtruck-guaynabo"
+    ]
+  }
+}

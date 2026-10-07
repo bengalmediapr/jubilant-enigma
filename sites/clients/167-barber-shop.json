@@ -1,0 +1,52 @@
+{
+  "preview": true,
+  "slug": "167-barber-shop",
+  "industry": "barberia",
+  "name": "167 Barber Shop",
+  "municipio": "Bayamón",
+  "address": "Ave. Ramón Luis Rivera, Bayamón, PR 00957",
+  "phone": "787-515-2122",
+  "email": "colonoscar22@gmail.com",
+  "social": {
+    "instagram": "https://www.instagram.com/167barbershop/",
+    "facebook": "https://www.facebook.com/OscarBarberShopPR"
+  },
+  "hours": [
+    {
+      "es": "Lunes a miércoles",
+      "en": "Monday–Wednesday",
+      "time": "7:00 AM – 7:00 PM"
+    },
+    {
+      "es": "Jueves a sábado",
+      "en": "Thursday–Saturday",
+      "time": "7:00 AM – 10:00 PM"
+    },
+    {
+      "es": "Domingo",
+      "en": "Sunday",
+      "time": "9:00 AM – 5:00 PM"
+    }
+  ],
+  "content": {
+    "es": {
+      "hero": {
+        "title": "Abierto hasta las 10 PM de jueves a sábado."
+      }
+    },
+    "en": {
+      "hero": {
+        "title": "Open until 10 PM, Thursday to Saturday."
+      }
+    }
+  },
+  "lead": {
+    "channel": "Email + llamada",
+    "email": "colonoscar22@gmail.com",
+    "why": "Horario largo (hasta 10 PM) que nadie ve sin entrar a Instagram.",
+    "sources": [
+      "https://www.instagram.com/167barbershop/",
+      "https://www.fresha.com/lvp/167barbersshop-ramon-luis-rivera-avenue-bayamon-3o9GPN"
+    ]
+  }
+}

@@ -31,6 +31,9 @@ LEADS_CSV = Path("data/leads.csv")
 
 # Words in a Google Maps category or search term -> industry template.
 INDUSTRY_KEYWORDS = {
+    "barberia": ["barber"],
+    "unas": ["uñas", "unas", "nail"],
+    "foodtruck": ["food truck", "foodtruck", "burger", "smash"],
     "dentista": ["dent", "ortodon", "odonto"],
     "quiropractico": ["quiropr", "chiropr", "terapia física", "physical therap"],
     "medico": ["médic", "medic", "clínica", "clinic", "doctor", "pediatr", "salud", "health"],
@@ -239,14 +242,17 @@ def _favicon(site: dict) -> str:
 
 def site_for(industry_key: str, client: dict | None = None) -> dict:
     industry = load_industry(industry_key)
-    site = deep_merge(industry, industry.get("demo", {}))
-    site.pop("demo", None)
-    site["industry"] = industry_key
+    demo = industry.pop("demo", {})
     if client:
-        site = deep_merge(site, client)
+        # A real business never inherits the demo's sample address, phone or rating,
+        # and only shows hours when the client file lists them.
+        industry.pop("hours", None)
+        site = deep_merge(industry, client)
         site["is_demo"] = False
     else:
+        site = deep_merge(industry, demo)
         site["is_demo"] = True
+    site["industry"] = industry_key
     return site
 
 
@@ -270,6 +276,25 @@ def cmd_client(args) -> None:
     site = site_for(key, client)
     out = build_site(site, DIST / site.get("slug", slugify(site["name"])))
     print(f"Built {out}/index.html\nDeploy: npx wrangler pages deploy {out} --project-name {out.name}")
+
+
+def cmd_previews(args) -> None:
+    """Build every client file marked "preview": true into dist/previews/<slug>/ (one Cloudflare project)."""
+    root = DIST / "previews"
+    built = []
+    for path in sorted((ROOT / "clients").glob("*.json")):
+        client = json.loads(path.read_text(encoding="utf-8"))
+        if not client.get("preview"):
+            continue
+        site = site_for(client["industry"], client)
+        site.setdefault("noindex", True)
+        site.setdefault("preview_banner", True)
+        slug = site.get("slug") or slugify(site["name"])
+        build_site(site, root / slug, explicit_index=args.explicit_index)
+        built.append(slug)
+        print(f"{site['name']:32} -> {root / slug}/")
+    print(f"\n{len(built)} previews. Deploy all at once:\n  npx wrangler pages deploy {root} --project-name bengal-previews"
+          f"\nEach one is then at https://bengal-previews.pages.dev/<slug>/")
 
 
 def cmd_lead(args) -> None:
@@ -334,12 +359,14 @@ def main() -> None:
     p = sub.add_parser("client", help="Build a client site from a JSON file")
     p.add_argument("path")
     p.add_argument("--industry")
+    p = sub.add_parser("previews", help="Build all client previews into dist/previews/")
+    p.add_argument("--explicit-index", action="store_true", help="Link to index.html files explicitly")
     p = sub.add_parser("lead", help="Build a mockup for a lead in data/leads.csv")
     p.add_argument("query", help="Part of the business name, or its place_id")
     p.add_argument("--industry")
     p.add_argument("--max", type=int, default=1, help="Build up to this many matching leads")
     args = parser.parse_args()
-    {"demo": cmd_demo, "client": cmd_client, "lead": cmd_lead}[args.cmd](args)
+    {"demo": cmd_demo, "client": cmd_client, "lead": cmd_lead, "previews": cmd_previews}[args.cmd](args)
 
 
 if __name__ == "__main__":

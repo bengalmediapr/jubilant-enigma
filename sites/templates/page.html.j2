@@ -41,7 +41,7 @@
   </style>
   <script type="application/ld+json">{{ schema | safe }}</script>
 </head>
-<body class="hero-{{ theme.hero or 'split' }}">
+<body class="hero-{{ theme.hero or 'split' }}{% if theme.poster_style %} poster-{{ theme.poster_style }}{% endif %}">
 <a class="skip" href="#main">{{ 'Saltar al contenido' if lang == 'es' else 'Skip to content' }}</a>
 
 <header class="site-header">
@@ -62,10 +62,65 @@
 </header>
 
 <main id="main">
+{%- if site.preview_banner %}
+<p class="preview-banner">{{ 'Vista previa preparada por Bengal Media PR para' if lang == 'es' else 'Preview prepared by Bengal Media PR for' }} <strong>{{ site.name }}</strong>. {{ 'Fotos y precios de ejemplo.' if lang == 'es' else 'Sample photos and prices.' }}</p>
+{%- endif %}
+{%- set rating_label = (site.rating_source[lang] if site.rating_source else ui.reviews) -%}
 {%- for section in sections %}
 
-{%- if section == 'hero' %}
-<section class="hero" {% if site.hero_image %}style="--hero-img:url('{{ prefix }}{{ site.hero_image }}')"{% endif %}>
+{%- if section == 'hero' and theme.hero == 'poster' %}
+{#- Poster hero: the business name is the headline; a price board (or their photos) is the visual. -#}
+{%- set board = [] -%}
+{%- for g in (c.menu.groups if c.menu else []) %}{% for it in g['items'] %}{% if board | length < 5 %}{% set _ = board.append(it) %}{% endif %}{% endfor %}{% endfor %}
+<section class="poster">
+  <div class="wrap poster-grid">
+    <div class="poster-copy">
+      <p class="eyebrow">{{ c.hero.eyebrow }}</p>
+      {%- set pname = site.display_name or site.name %}
+      {%- set longest = pname.split() | map('length') | max %}
+      <h1 class="poster-name" style="--L: {{ [longest, 4] | max }}; --cw: {{ theme.char_width or 0.6 }}">{{ pname }}</h1>
+      <p class="poster-title">{{ c.hero.title }}</p>
+      <p class="lead">{{ c.hero.subtitle }}</p>
+      <div class="actions">
+        <a class="btn" href="{{ primary_href }}">{{ icon('message-circle' if (wa_href and not site.booking_url) else 'calendar-check', 20) | safe }}{{ c.hero.cta }}</a>
+        {%- if site.phone_link %}
+        <a class="btn btn-ghost" href="tel:{{ site.phone_link }}">{{ icon('phone', 20) | safe }}{{ site.phone }}</a>
+        {%- endif %}
+      </div>
+    </div>
+    <div class="poster-art">
+      {%- if site.photos %}
+      <div class="collage">
+        {%- for img in site.photos[:3] %}<img src="{{ prefix }}{{ img }}" alt="{{ site.name }}" loading="{{ 'eager' if loop.first else 'lazy' }}">{% endfor %}
+      </div>
+      {%- else %}
+      <div class="board">
+        <p class="board-head">{{ c.board_title or (c.menu.title if c.menu else site.name) }}</p>
+        <ul>
+          {%- for it in board %}
+          <li><span>{{ it.name }}</span><span class="board-price">{{ it.price }}</span></li>
+          {%- endfor %}
+        </ul>
+        {%- if site.hours %}<p class="board-foot">{{ site.hours[0][lang] }} · {{ site.hours[0].time[lang] if site.hours[0].time is mapping else site.hours[0].time }}</p>{% endif %}
+      </div>
+      {%- endif %}
+      {%- if site.rating %}
+      <p class="sticker"><strong>{{ site.rating }}★</strong><span>{% if site.reviews %}{{ site.reviews }} {% endif %}{{ rating_label }}</span></p>
+      {%- elif c.sticker %}
+      <p class="sticker"><strong>{{ c.sticker.big }}</strong><span>{{ c.sticker.small }}</span></p>
+      {%- endif %}
+    </div>
+  </div>
+  {%- set ticker = c.ticker or (board | map(attribute='name') | list) %}
+  {%- if ticker %}
+  <div class="ticker" aria-hidden="true"><div class="ticker-track">
+    {%- for _ in range(4) %}{% for t in ticker %}<span>{{ t }}</span>{% endfor %}{% endfor %}
+  </div></div>
+  {%- endif %}
+</section>
+
+{%- elif section == 'hero' %}
+<section class="hero"{% if site.hero_image %}style="--hero-img:url('{{ prefix }}{{ site.hero_image }}')"{% endif %}>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">{{ c.hero.eyebrow }}</p>
@@ -90,7 +145,7 @@
       </div>
       <div class="hero-info">
         {%- if site.rating %}
-        <p class="rating"><span class="stars" aria-hidden="true">★★★★★</span> <strong>{{ site.rating }}</strong>{% if site.reviews %} · {{ site.reviews }} {{ ui.reviews }}{% endif %}</p>
+        <p class="rating"><span class="stars" aria-hidden="true">★★★★★</span> <strong>{{ site.rating }}</strong>{% if site.reviews %} · {{ site.reviews }} {{ rating_label }}{% endif %}</p>
         {%- endif %}
         {%- if site.hours %}
         <p class="info-row">{{ icon('clock', 18) | safe }}<span>{% for h in site.hours[:2] %}{{ h[lang] }}: {{ h.time[lang] if h.time is mapping else h.time }}{% if not loop.last %}<br>{% endif %}{% endfor %}</span></p>
@@ -307,7 +362,7 @@
 <a class="wa-float" href="{{ wa_href }}" aria-label="{{ ui.open_whatsapp }}" rel="noopener" target="_blank">{{ icon('message-circle', 28) | safe }}</a>
 {%- endif %}
 {%- if back_href %}
-<a class="preview-back" href="{{ back_href }}">← {{ 'Todas las plantillas' if lang == 'es' else 'All templates' }}</a>
+<a class="preview-back" href="{{ back_href }}">← {{ 'Volver' if lang == 'es' else 'Back' }}</a>
 {%- endif %}
 <script src="{{ prefix }}site.js" defer></script>
 </body>

@@ -1,0 +1,49 @@
+{
+  "preview": true,
+  "slug": "santurce-la-barberia",
+  "industry": "barberia",
+  "name": "Santurce La Barbería Salón",
+  "display_name": "Santurce La Barbería",
+  "municipio": "San Juan",
+  "address": "Ave. De Diego, Santurce, San Juan, PR",
+  "phone": "787-312-4474",
+  "whatsapp": "17873124474",
+  "social": {
+    "instagram": "https://www.instagram.com/santurcelabarberiasalon/"
+  },
+  "content": {
+    "es": {
+      "hero": {
+        "title": "La barbería tradicional, con trato de spa."
+      },
+      "ticker": [
+        "Afeitado con toalla caliente",
+        "Cortes",
+        "Barba",
+        "Faciales",
+        "Lavado de cabeza"
+      ]
+    },
+    "en": {
+      "hero": {
+        "title": "The traditional barbershop, with spa treatment."
+      },
+      "ticker": [
+        "Hot-towel shave",
+        "Haircuts",
+        "Beard",
+        "Facials",
+        "Shampoo"
+      ]
+    }
+  },
+  "lead": {
+    "channel": "WhatsApp",
+    "email": "",
+    "why": "Concepto fuerte (barbería clásica tipo spa, agua y vino al cliente) que hoy solo vive en Instagram.",
+    "sources": [
+      "https://www.instagram.com/santurcelabarberiasalon/",
+      "https://www.metro.pr/estilo-vida/2016/11/22/regreso-barberia-tradicional"
+    ]
+  }
+}
