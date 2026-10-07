@@ -50,6 +50,7 @@ python -m sites.build lead "Café"   # mockup for a lead in data/leads.csv (writ
 python -m sites.build previews     # every client marked "preview": true -> dist/previews/<slug>/ (one Cloudflare project)
 python -m sites.build client sites/clients/ejemplo-dentista.json   # a real client site
 npx wrangler pages deploy dist/<slug> --project-name <slug>        # publish to Cloudflare Pages
+python -m sites.export <slug>      # one client's site as its own git repo in exports/<slug>/
 ```
 
 | Industry key | For | Look |

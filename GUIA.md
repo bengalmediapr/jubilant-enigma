@@ -2,6 +2,8 @@
 
 Meta: **10 previews enviados por semana**, en San Juan, Guaynabo y Bayamón (donde puede ir en persona).
 
+La lista de prospectos está en `reports/prospectos-metro-2026-10.csv`; ábrala en Google Sheets.
+
 ## El negocio ideal
 - No tiene página web propia (solo Instagram, Facebook, Booksy, Fresha o Uber Eats).
 - Instagram activo, con fotos buenas y reseñas buenas.
@@ -21,6 +23,14 @@ python -m sites.build previews
 npx wrangler pages deploy dist/previews --project-name bengal-previews
 ```
 Cada uno queda en `https://bengal-previews.pages.dev/<nombre>/`.
+
+**Cada cliente en su propio repo.** Para enseñarle la muestra a un cliente sin que vea a los demás:
+```bash
+python -m sites.export <nombre>      # crea exports/<nombre>/ con su propio git
+cd exports/<nombre> && git remote add origin <repo nuevo en GitHub o GitLab> && git push -u origin main
+```
+Ese repo solo tiene la página de ese cliente y ya viene listo para Cloudflare, GitHub Pages o GitLab Pages.
+Las plantillas en `sites/industries/` no se tocan: lo personal de cada cliente va en `sites/clients/<nombre>.json` y en sus fotos.
 
 **4. Enviar.** Mande un WhatsApp desde el número del negocio, a mano y uno por uno, con el link del preview. Si tienen email, envíe el mismo mensaje por email.
 
