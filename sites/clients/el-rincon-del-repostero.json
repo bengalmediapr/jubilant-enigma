@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/el-rincon-del-repostero/raw/)",
+  "slug": "el-rincon-del-repostero",
+  "industry": "restaurante",
+  "name": "El Rincón del Repostero",
+  "municipio": "Bayamón",
+  "address": "Bayamón",
+  "phone": "787-400-7146",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/elrincondelrepostero_/"
+  },
+  "lead": {
+    "nombre_reporte": "El Rincón del Repostero",
+    "ola": "1",
+    "prioridad": 7,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Repostería con local; abre lunes a sábado",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Pedidos directos",
+    "precio": "$1,200 + $79/mes",
+    "sources": []
+  }
+}

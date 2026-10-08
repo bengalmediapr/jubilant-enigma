@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/guaynabo-bakery-pizzeria/raw/)",
+  "slug": "guaynabo-bakery-pizzeria",
+  "industry": "restaurante",
+  "name": "Guaynabo Bakery & Pizzeria",
+  "municipio": "Guaynabo",
+  "address": "Av. Paz Granela 1476",
+  "phone": "939-338-3226",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/guaynabobakery/"
+  },
+  "lead": {
+    "nombre_reporte": "Guaynabo Bakery & Pizzeria",
+    "ola": "1",
+    "prioridad": 2,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Abre los 7 días desde las 5 AM",
+    "resenas": "En Uber Eats",
+    "plataforma": "Uber Eats",
+    "costo_plataforma": "7–10% de cada pedido para recoger y 20–30% de cada delivery",
+    "paquete": "Pedidos directos",
+    "precio": "$1,200 + $79/mes",
+    "sources": []
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/mejor-aqui-pr/raw/)",
+  "slug": "mejor-aqui-pr",
+  "industry": "restaurante",
+  "name": "Mejor Aquí PR",
+  "municipio": "Bayamón",
+  "address": "Bayamón",
+  "phone": "787-619-6453",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/mejoraqui.pr/"
+  },
+  "lead": {
+    "nombre_reporte": "Mejor Aquí PR",
+    "ola": "1",
+    "prioridad": 7,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Comida criolla, mariscos y mojitos",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Pedidos directos",
+    "precio": "$1,200 + $79/mes",
+    "sources": []
+  }
+}

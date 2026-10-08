@@ -1,0 +1,30 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/clinica-dental-bayamon/raw/)",
+  "slug": "clinica-dental-bayamon",
+  "industry": "dentista",
+  "name": "Clínica Dental Bayamón",
+  "municipio": "Bayamón",
+  "address": "Medical Ophthalmic Plaza, 1875 Carr. 2, Ste. 203",
+  "phone": "939-310-2555",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/crespodmd/"
+  },
+  "lead": {
+    "nombre_reporte": "Clínica Dental Bayamón – Dr. Eduardo Crespo",
+    "ola": "1",
+    "prioridad": 1,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Dos dentistas; implantes e Invisalign; acepta CareCredit",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Profesional + citas",
+    "precio": "$2,000 + $129/mes",
+    "sources": [
+      "https://local.newpatientsinc.com/dental/dr-eduardo-crespo-bayamon-pr"
+    ]
+  }
+}

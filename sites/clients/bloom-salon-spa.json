@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/bloom-salon-spa/raw/)",
+  "slug": "bloom-salon-spa",
+  "industry": "salon",
+  "name": "bloOm Salon & Spa",
+  "municipio": "Guaynabo",
+  "address": "100 Av. San Patricio, 00968",
+  "phone": "787-781-2525",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/bloomsalonspapr/"
+  },
+  "lead": {
+    "nombre_reporte": "bloOm Salon & Spa",
+    "ola": "1",
+    "prioridad": 1,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Zona San Patricio (alto poder adquisitivo); salón + spa",
+    "resenas": "Listado en Fresha",
+    "plataforma": "Aparece en Fresha (confirmar)",
+    "costo_plataforma": "Por confirmar",
+    "paquete": "Presencia",
+    "precio": "$650 + $49/mes",
+    "sources": []
+  }
+}

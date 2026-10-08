@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/bayamon-food-truck-station/raw/)",
+  "slug": "bayamon-food-truck-station",
+  "industry": "foodtruck",
+  "name": "Bayamón Food Truck Station",
+  "municipio": "Bayamón",
+  "address": "Ave. Lomas Verdes",
+  "phone": "",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/bayamonfoodtruckstation/"
+  },
+  "lead": {
+    "nombre_reporte": "Bayamón Food Truck Station (parque)",
+    "ola": "1",
+    "prioridad": 3,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Parque de food trucks: el operador cobra a varios trucks",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Pedidos directos",
+    "precio": "$1,200 + $79/mes",
+    "sources": []
+  }
+}

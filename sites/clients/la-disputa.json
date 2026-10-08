@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/la-disputa/raw/)",
+  "slug": "la-disputa",
+  "industry": "foodtruck",
+  "name": "La Disputa",
+  "municipio": "San Juan",
+  "address": "San Juan",
+  "phone": "787-223-1433",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/la_disputa_food_truck/"
+  },
+  "lead": {
+    "nombre_reporte": "La Disputa",
+    "ola": "1",
+    "prioridad": 7,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Sándwiches, empanadas y smash burgers; abre lunes a sábado",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Pedidos directos",
+    "precio": "$1,200 + $79/mes",
+    "sources": []
+  }
+}

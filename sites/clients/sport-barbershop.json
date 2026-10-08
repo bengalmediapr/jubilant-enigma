@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/sport-barbershop/raw/)",
+  "slug": "sport-barbershop",
+  "industry": "barberia",
+  "name": "Sport BarberShop",
+  "municipio": "San Juan",
+  "address": "273 Calle Los Andes, 00926",
+  "phone": "787-216-7618",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/sportbarbershop_/"
+  },
+  "lead": {
+    "nombre_reporte": "Sport BarberShop",
+    "ola": "1",
+    "prioridad": 6,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Se presenta como 'The Best Shop in Guaynabo'",
+    "resenas": "No encontradas",
+    "plataforma": "Fresha",
+    "costo_plataforma": "$19.95–$45 al mes + 20% por cliente nuevo del marketplace",
+    "paquete": "Citas conectadas",
+    "precio": "$900 + $69/mes",
+    "sources": []
+  }
+}

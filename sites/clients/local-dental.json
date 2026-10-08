@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/local-dental/raw/)",
+  "slug": "local-dental",
+  "industry": "dentista",
+  "name": "Local Dental",
+  "municipio": "San Juan",
+  "address": "San Juan",
+  "phone": "787-281-8106",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/localdental/"
+  },
+  "lead": {
+    "nombre_reporte": "Local Dental",
+    "ola": "1",
+    "prioridad": 3,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "General, pediatría y periodoncia; dos teléfonos",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Profesional + citas",
+    "precio": "$2,000 + $129/mes",
+    "sources": []
+  }
+}

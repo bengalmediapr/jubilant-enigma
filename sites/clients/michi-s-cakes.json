@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/michi-s-cakes/raw/)",
+  "slug": "michi-s-cakes",
+  "industry": "restaurante",
+  "name": "Michi's Cakes",
+  "municipio": "San Juan",
+  "address": "San Juan",
+  "phone": "787-447-7772",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/michiscakespr/"
+  },
+  "lead": {
+    "nombre_reporte": "Michi's Cakes",
+    "ola": "1",
+    "prioridad": 7,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Bizcochos, cupcakes y galletas por encargo",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Pedidos directos",
+    "precio": "$1,200 + $79/mes",
+    "sources": []
+  }
+}

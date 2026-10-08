@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/ladelos-pastelillos/raw/)",
+  "slug": "ladelos-pastelillos",
+  "industry": "restaurante",
+  "name": "Ladelos Pastelillos",
+  "municipio": "Bayamón",
+  "address": "Bayamón y Cataño",
+  "phone": "787-639-4054",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/ladelospastelillos/"
+  },
+  "lead": {
+    "nombre_reporte": "Ladelos Pastelillos",
+    "ola": "1",
+    "prioridad": 3,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Dos locales; más de 40 sabores",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Pedidos directos",
+    "precio": "$1,200 + $79/mes",
+    "sources": []
+  }
+}

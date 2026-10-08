@@ -157,7 +157,20 @@ def paquete_para(nombre: str, categoria: str) -> str:
 FIELDS = ["categoria","nombre","pueblo","direccion","instagram","facebook","telefono","whatsapp","email",
           "resenas","senales_de_pago","potencial_pago","verificacion_web","confianza","fuentes"]
 
-EXTRA = ["plataforma_citas", "link_plataforma", "costo_actual_plataforma", "paquete", "setup_usd", "mensual_usd"]
+def ola(d: dict) -> str:
+    """Wave 1: no website, reachable on WhatsApp and/or Instagram, location and phone confirmed."""
+    if (d["instagram"] or d["whatsapp"]) and d["confianza"] != "Baja":
+        return "1"
+    return ""
+
+
+def prioridad(d: dict) -> int:
+    """Lower is first: can pay, certainly has no website, WhatsApp confirmed, already pays a platform."""
+    return ((d["potencial_pago"] != "Alto") * 4 + (d["confianza"] != "Alta") * 2 + (not d["whatsapp"])
+            - (d["plataforma_citas"] not in ("No detectada", "") and not d["plataforma_citas"].startswith("Aparece")))
+
+
+EXTRA = ["ola", "prioridad", "plataforma_citas", "link_plataforma", "costo_actual_plataforma", "paquete", "setup_usd", "mensual_usd"]
 
 def rows():
     for p in P:
@@ -169,7 +182,71 @@ def rows():
         nombre_paq, setup, mensual, _ = PAQUETES[key]
         d.update(plataforma_citas=plat, link_plataforma=link, costo_actual_plataforma=costo,
                  paquete=nombre_paq, setup_usd=setup, mensual_usd=mensual, paquete_key=key)
+        d["ola"] = ola(d)
+        d["prioridad"] = prioridad(d) if d["ola"] else ""
         yield d
+
+INDUSTRIA = {
+ "Barbería": "barberia", "Uñas": "unas", "Salón": "salon", "Food truck": "foodtruck",
+ "Restaurante / repostería": "restaurante", "Taller": "taller", "Dentista": "dentista",
+ "Quiropráctico": "quiropractico", "Médico": "medico", "Abogado": "abogado", "Contador": "contador",
+ "Techos / solar": "solar", "Alquiler vacacional": "alquiler",
+}
+# Industry exceptions where the business is clearly another kind.
+INDUSTRIA_NOMBRE = {"Top Nail Bar": "unas", "Crea'tif Salon and Spa": "salon"}
+
+
+def crear_clientes(ola_n: str = "1") -> list[str]:
+    """Create sites/clients/<slug>.json for every business in the wave that has none yet.
+
+    Only verified facts go in. "preview" stays false and "estado" says what's missing, so no
+    generic page is built until /brandkit and /mockup add their logo, photos and real content.
+    """
+    import json, re, sys
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from sites.build import ROOT, slugify
+
+    existing = {json.loads(f.read_text(encoding="utf-8")).get("name"): f.stem for f in (ROOT / "clients").glob("*.json")}
+    created = []
+    for d in rows():
+        if d["ola"] != ola_n or d["nombre"] in existing:
+            continue
+        name = re.sub(r"\s*[–(].*$", "", d["nombre"]).rstrip(",")
+        slug = slugify(name)
+        path = ROOT / "clients" / f"{slug}.json"
+        if path.exists():  # never overwrite a client file, even if its name differs from the report
+            continue
+        digits = re.sub(r"\D", "", d["whatsapp"].split("/")[0].split("(")[0])
+        client = {
+            "preview": False,
+            "estado": "Esperando logo y fotos de su Instagram (sites/clients/%s/raw/)" % slug,
+            "slug": slug,
+            "industry": INDUSTRIA_NOMBRE.get(d["nombre"], INDUSTRIA[d["categoria"]]),
+            "name": name,
+            "municipio": d["pueblo"].split(" (")[0],
+            "address": d["direccion"] if d["direccion"] != "Por confirmar" else "",
+            "phone": d["telefono"],
+            "email": d["email"],
+            "social": {k: v for k, v in (("instagram", d["instagram"]), ("facebook", d["facebook"])) if v},
+            "lead": {
+                "nombre_reporte": d["nombre"], "ola": ola_n, "prioridad": d["prioridad"], "channel": "WhatsApp" if digits else "Llamada / Instagram DM",
+                "email": d["email"], "why": d["senales_de_pago"], "resenas": d["resenas"],
+                "plataforma": d["plataforma_citas"], "costo_plataforma": d["costo_actual_plataforma"],
+                "paquete": d["paquete"], "precio": f"${d['setup_usd']:,} + ${d['mensual_usd']}/mes",
+                "sources": d["fuentes"].split(),
+            },
+        }
+        if digits:
+            client["whatsapp"] = ("1" + digits) if len(digits) == 10 else digits
+        path.write_text(json.dumps(client, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        created.append(slug)
+    return created
+
+
+if __name__ == "__main__" and "--clientes" in __import__("sys").argv:
+    for slug in crear_clientes():
+        print("creado sites/clients/%s.json" % slug)
+    raise SystemExit
 
 if __name__ == "__main__":
     out = Path(__file__).with_name("prospectos-metro-2026-10.csv")

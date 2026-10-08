@@ -1,0 +1,29 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/galeria-quiropractica/raw/)",
+  "slug": "galeria-quiropractica",
+  "industry": "quiropractico",
+  "name": "Galería Quiropráctica",
+  "municipio": "Guaynabo y Bayamón",
+  "address": "2102 Calle Turquesa, Guaynabo",
+  "phone": "787-708-7766",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/galeriaquiropractica/",
+    "facebook": "https://www.facebook.com/galeriaquiro"
+  },
+  "lead": {
+    "nombre_reporte": "Galería Quiropráctica",
+    "ola": "1",
+    "prioridad": 3,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "24 años; dos oficinas (Guaynabo 787-708-7766 y Bayamón 787-963-1737)",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Profesional + citas",
+    "precio": "$2,000 + $129/mes",
+    "sources": []
+  }
+}

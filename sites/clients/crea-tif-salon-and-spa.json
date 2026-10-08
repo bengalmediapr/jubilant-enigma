@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/crea-tif-salon-and-spa/raw/)",
+  "slug": "crea-tif-salon-and-spa",
+  "industry": "salon",
+  "name": "Crea'tif Salon and Spa",
+  "municipio": "Guaynabo",
+  "address": "Centro Comercial, Edificio B, Ave. Lopategui Local 3",
+  "phone": "787-668-9645",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/creatifsalon/"
+  },
+  "lead": {
+    "nombre_reporte": "Crea'tif Salon and Spa",
+    "ola": "1",
+    "prioridad": 2,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Cabello, uñas, spa y cejas: varios servicios y personal",
+    "resenas": "Clientas de años la recomiendan en Fresha",
+    "plataforma": "Fresha",
+    "costo_plataforma": "$30–$75 al mes (varias empleadas) + 20% por cliente nuevo",
+    "paquete": "Citas propias",
+    "precio": "$1,600 + $99/mes",
+    "sources": []
+  }
+}

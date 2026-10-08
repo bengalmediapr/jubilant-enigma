@@ -1,0 +1,28 @@
+{
+  "preview": false,
+  "estado": "Esperando logo y fotos de su Instagram (sites/clients/gft-park/raw/)",
+  "slug": "gft-park",
+  "industry": "foodtruck",
+  "name": "GFT Park",
+  "municipio": "Guaynabo",
+  "address": "Guaynabo",
+  "phone": "",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/guaynabofoodtruckpark/"
+  },
+  "lead": {
+    "nombre_reporte": "GFT Park – Guaynabo Food Truck Park",
+    "ola": "1",
+    "prioridad": 3,
+    "channel": "Llamada / Instagram DM",
+    "email": "",
+    "why": "Más de 14 food trucks en un solo parque",
+    "resenas": "No encontradas",
+    "plataforma": "No detectada",
+    "costo_plataforma": "",
+    "paquete": "Pedidos directos",
+    "precio": "$1,200 + $79/mes",
+    "sources": []
+  }
+}
