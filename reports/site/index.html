@@ -1,0 +1,1617 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Prospectos Metro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+body { margin: 0; }
+
+/* Layout: a working prospect ledger. Summary and method first, then filters, then one card per business. */
+:root {
+  --bg: #f3f2ee; --surface: #ffffff; --ink: #1b1d22; --muted: #646872; --line: #e1dfd8; --accent: #0f5c4d;
+  --hi: #0f5c4d; --hi-bg: #e1f1ec; --mid: #8a5a00; --mid-bg: #fbefd5; --lo: #9b2c2c; --lo-bg: #fbe3e1;
+  --s-belleza: #e87ba4; --s-comida: #eda100; --s-salud: #1baf7a; --s-prof: #4a3aa7; --s-hogar: #eb6834; --s-alquiler: #2a78d6;
+  --serif: "Fraunces", Georgia, serif; --body: "Figtree", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15161a; --surface: #1e2025; --ink: #eceae5; --muted: #a2a5ad; --line: #30333a; --accent: #5fc9ad;
+  --hi: #6fd6b9; --hi-bg: #173a32; --mid: #f0c26a; --mid-bg: #3a2f17; --lo: #f19a94; --lo-bg: #3d1f1d;
+  --s-belleza: #d55181; --s-comida: #c98500; --s-salud: #199e70; --s-prof: #9085e9; --s-hogar: #d95926; --s-alquiler: #3987e5; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #15161a; --surface: #1e2025; --ink: #eceae5; --muted: #a2a5ad; --line: #30333a; --accent: #5fc9ad;
+  --hi: #6fd6b9; --hi-bg: #173a32; --mid: #f0c26a; --mid-bg: #3a2f17; --lo: #f19a94; --lo-bg: #3d1f1d;
+  --s-belleza: #d55181; --s-comida: #c98500; --s-salud: #199e70; --s-prof: #9085e9; --s-hogar: #d95926; --s-alquiler: #3987e5; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 15.5px/1.55 var(--body); padding-inline: 16px; }
+.wrap { max-width: 1080px; margin-inline: auto; padding-block: 36px 64px; display: grid; gap: 28px; }
+.wrap > * { min-width: 0; }
+.kick { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+h1 { font: 700 clamp(2rem, 6vw, 3.2rem)/1.02 var(--serif); margin: 0 0 12px; letter-spacing: -.02em; }
+h2 { font: 700 1.35rem/1.2 var(--serif); margin: 0 0 10px; }
+.lede { margin: 0; color: var(--muted); max-width: 66ch; font-size: 1.05rem; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.stat b { display: block; font: 700 1.9rem/1 var(--serif); font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: .88rem; }
+.method { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+.method ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--muted); }
+.method b { color: var(--ink); }
+.filters { display: grid; gap: 10px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 10px; border-bottom: 1px solid var(--line); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { font: 500 .88rem var(--body); border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.chip span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.chip.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.chip.on span { color: inherit; opacity: .7; }
+.toggles { display: flex; gap: 16px; flex-wrap: wrap; font-size: .9rem; color: var(--muted); align-items: center; }
+.toggles label { display: flex; gap: 6px; align-items: center; cursor: pointer; }
+.shown { font-variant-numeric: tabular-nums; }
+.list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 12px; }
+.biz { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.biz header { display: grid; gap: 8px; }
+h3 { font: 700 1.05rem/1.25 var(--body); margin: 0; }
+.loc { margin: 2px 0 0; color: var(--muted); font-size: .86rem; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: .74rem; font-weight: 600; padding: 3px 8px; border-radius: 6px; }
+.pago-Alto, .conf-Alta { background: var(--hi-bg); color: var(--hi); }
+.pago-Medio, .conf-Media { background: var(--mid-bg); color: var(--mid); }
+.conf-Baja { background: var(--lo-bg); color: var(--lo); }
+.social { margin: 0; font-weight: 600; }
+.social a, .src a { color: var(--accent); }
+dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+dd { margin: 0; font-size: .9rem; overflow-wrap: anywhere; }
+.num dd { font-variant-numeric: tabular-nums; user-select: all; }
+.none { color: var(--muted); font-style: italic; }
+.sig, .web { margin: 0; font-size: .9rem; }
+.web { color: var(--muted); }
+.src { margin: 0; font-size: .78rem; color: var(--muted); overflow-wrap: anywhere; }
+.empty { color: var(--muted); }
+.tag.ola { background: var(--ink); color: var(--bg); }
+.wave code { font-size: .8em; }
+.ola { list-style: none; margin: 8px 0 0; padding: 0; display: grid; }
+.ola li { display: grid; grid-template-columns: 34px minmax(0, 2.2fr) minmax(0, 1.4fr) minmax(0, 1fr); gap: 4px 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.rk { font: 700 1.1rem/1 var(--serif); color: var(--muted); font-variant-numeric: tabular-nums; }
+.ol-main { display: grid; gap: 2px; min-width: 0; }
+.ol-name { font-weight: 700; color: var(--ink); text-decoration: none; }
+.ol-name:hover { text-decoration: underline; }
+.ol-meta { display: block; font-size: .82rem; color: var(--muted); }
+.ol-meta i { width: 9px; height: 9px; border-radius: 50%; background: var(--sec); display: inline-block; margin-right: 6px; vertical-align: 1px; }
+.ol-c, .ol-ig { font-size: .88rem; min-width: 0; overflow-wrap: anywhere; }
+.ol-ig a { color: var(--accent); font-weight: 600; }
+.wa { font-weight: 700; color: var(--hi); }
+.muted { color: var(--muted); }
+@media (max-width: 760px) { .ola li { grid-template-columns: 30px minmax(0, 1fr); } .ol-c, .ol-ig { grid-column: 2; } }
+.biz { border-top: 5px solid var(--sec); }
+.secb { margin: 0; display: flex; align-items: center; gap: 7px; font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.secb i, .chip i, .legend i { width: 10px; height: 10px; border-radius: 50%; background: var(--sec); flex: none; display: inline-block; }
+.chip { display: inline-flex; align-items: center; gap: 6px; }
+.chip.on i { box-shadow: 0 0 0 2px var(--bg); }
+.legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .88rem; font-weight: 600; }
+.legend li { display: inline-flex; align-items: center; gap: 6px; }
+.legend span { color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums; }
+.offer { background: var(--bg); border-radius: 10px; padding: 10px 12px; display: grid; gap: 4px; font-size: .9rem; }
+.offer p { margin: 0; }
+.offer a { color: var(--accent); }
+.cost { color: var(--muted); }
+.pkg { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.price { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pricing h3 { font: 700 1.05rem/1.3 var(--body); margin: 22px 0 8px; }
+.pricing h4 { font: 700 1rem/1.3 var(--body); margin: 0 0 6px; }
+.pricing p { color: var(--muted); }
+.pricing p b, .pricing li b { color: var(--ink); }
+.note { margin: 0 0 12px; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: .9rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+thead th { font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--bg); }
+tbody th { font-weight: 700; white-space: nowrap; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 600; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.two > div { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: var(--bg); min-width: 0; }
+.two p { margin: 0 0 8px; }
+@media (max-width: 700px) { .filters { position: static; } }
+.drop ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; color: var(--muted); }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <p class="kick">Bengal Media PR · Octubre 2026</p>
+    <h1>Prospectos Metro</h1>
+    <p class="lede">65 negocios de San Juan, Guaynabo y Bayamón, en 13 categorías, que tienen Instagram o Facebook y a los que no les encontré página web propia. Empiece por la Ola 1: los 32 que tienen WhatsApp o Instagram, en orden de prioridad. Cada negocio trae la plataforma de citas que usa hoy, lo que le cuesta y el paquete con el precio que le sugiero cobrarle. Abajo están los precios y cómo presentarlos.</p>
+  </header>
+
+  <section class="stats" aria-label="Resumen">
+    <div class="stat"><b>65</b><span>negocios</span></div>
+    <div class="stat"><b>48</b><span>con potencial de pago alto</span></div>
+    <div class="stat"><b>13</b><span>sin web confirmado con certeza</span></div>
+    <div class="stat"><b>6</b><span>con WhatsApp confirmado</span></div>
+    <div class="stat"><b>3</b><span>con email</span></div>
+    <div class="stat"><b>32</b><span>en la Ola 1 (WhatsApp o Instagram)</span></div>
+    <div class="stat"><b>16</b><span>ya pagan una plataforma de citas o pedidos</span></div>
+  </section>
+
+  <section class="method">
+    <h2>Cómo lo verifiqué y qué falta</h2>
+    <ul>
+      <li><b>Sin web:</b> busqué cada negocio por nombre. <b>Verificación alta</b> quiere decir que solo aparecen en Instagram, Facebook o directorios (Booksy, Fresha, Uber Eats). <b>Media</b> quiere decir que no apareció ninguna web, pero hay poca información. <b>Baja</b> quiere decir que hay que confirmar la dirección y los datos.</li>
+      <li><b>Seguidores:</b> no los pude ver. Desde aquí no hay acceso a Instagram, Facebook ni Google Maps; los ve al abrir cada perfil.</li>
+      <li><b>Reseñas:</b> solo las pongo donde las encontré publicadas (Uber Eats, Fresha). Casi ninguna reseña de Google se pudo ver.</li>
+      <li><b>WhatsApp y email:</b> solo los que el negocio publica. Casi todos usan el teléfono también para WhatsApp, pero eso no está confirmado.</li>
+      <li><b>Potencial de pago:</b> es mi juicio a partir de señales: tipo de negocio, años operando, varias sucursales, precios altos o zona de mucho dinero.</li>
+    </ul>
+  </section>
+
+
+
+  <section class="method wave" id="ola-1">
+    <h2>Ola 1: por dónde empezar (32 negocios)</h2>
+    <p class="note">Ninguno tiene página web propia; todos tienen WhatsApp o Instagram, y su dirección y teléfono están confirmados. Están en orden: arriba, los que pueden pagar, de los que estoy seguro de que no tienen web, con WhatsApp confirmado o que ya pagan una plataforma.</p>
+    <p class="note"><b>De cada Instagram guarde:</b> el logo o la foto de perfil (con el nombre <code>logo</code>), de 6 a 10 fotos buenas y 1 o 2 reels, en <code>sites/clients/&lt;nombre&gt;/raw/</code>, o mándemelos aquí. Con eso armo cada página con su marca usando <code>/brandkit</code>.</p>
+    <ol class="ola"><li style="--sec: var(--s-belleza)"><span class="rk">1</span><div class="ol-main"><a class="ol-name" href="#n-santurce-la-barber-a-sal-n">Santurce La Barbería Salón</a><span class="ol-meta"><i aria-hidden="true"></i>Barbería · San Juan · Citas propias $1,600 + $99/mes</span></div><div class="ol-c"><span class="wa">WhatsApp</span> <span class="sel">787-312-4474</span></div><div class="ol-ig"><a href="https://www.instagram.com/santurcelabarberiasalon/">@santurcelabarberiasalon</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">2</span><div class="ol-main"><a class="ol-name" href="#n-curl-boss-salon">Curl Boss Salon</a><span class="ol-meta"><i aria-hidden="true"></i>Salón · San Juan · Citas conectadas $900 + $69/mes</span></div><div class="ol-c"><span class="wa">WhatsApp</span> <span class="sel">787-640-8800</span></div><div class="ol-ig"><a href="https://www.instagram.com/curlbosspr/">@curlbosspr</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">3</span><div class="ol-main"><a class="ol-name" href="#n-la-chulada-foodtruck">La Chulada Foodtruck</a><span class="ol-meta"><i aria-hidden="true"></i>Food truck · Guaynabo · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="wa">WhatsApp</span> <span class="sel">787-664-5551</span></div><div class="ol-ig"><a href="https://www.instagram.com/la_chulada_foodtruck/">@la_chulada_foodtruck</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">4</span><div class="ol-main"><a class="ol-name" href="#n-estudio-la-barber-a-cecilio-men-s-stylist">Estudio La Barbería (Cecilio Men&#x27;s Stylist)</a><span class="ol-meta"><i aria-hidden="true"></i>Barbería · Guaynabo · Citas conectadas $900 + $69/mes</span></div><div class="ol-c"><span class="sel">787-382-3097</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/estudiolabarberia/">@estudiolabarberia</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">5</span><div class="ol-main"><a class="ol-name" href="#n-bloom-salon-spa">bloOm Salon &amp; Spa</a><span class="ol-meta"><i aria-hidden="true"></i>Salón · Guaynabo · Presencia $650 + $49/mes</span></div><div class="ol-c"><span class="sel">787-781-2525</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/bloomsalonspapr/">@bloomsalonspapr</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">6</span><div class="ol-main"><a class="ol-name" href="#n-top-nail-bar">Top Nail Bar</a><span class="ol-meta"><i aria-hidden="true"></i>Salón · Bayamón · Citas propias $1,600 + $99/mes</span></div><div class="ol-c"><span class="wa">WhatsApp</span> <span class="sel">787-678-3355</span></div><div class="ol-ig"><a href="https://www.instagram.com/topnailbar/">@topnailbar</a></div></li><li style="--sec: var(--s-salud)"><span class="rk">7</span><div class="ol-main"><a class="ol-name" href="#n-cl-nica-dental-bayam-n-dr-eduardo-crespo">Clínica Dental Bayamón – Dr. Eduardo Crespo</a><span class="ol-meta"><i aria-hidden="true"></i>Dentista · Bayamón · Profesional + citas $2,000 + $129/mes</span></div><div class="ol-c"><span class="sel">939-310-2555</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/crespodmd/">@crespodmd</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">8</span><div class="ol-main"><a class="ol-name" href="#n-crea-tif-salon-and-spa">Crea&#x27;tif Salon and Spa</a><span class="ol-meta"><i aria-hidden="true"></i>Uñas · Guaynabo · Citas propias $1,600 + $99/mes</span></div><div class="ol-c"><span class="sel">787-668-9645</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/creatifsalon/">@creatifsalon</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">9</span><div class="ol-main"><a class="ol-name" href="#n-jean-c-stilo">Jean C Stilo</a><span class="ol-meta"><i aria-hidden="true"></i>Salón · Bayamón · Citas propias $1,600 + $99/mes</span></div><div class="ol-c"><span class="sel">787-998-2614</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/jeancstilo/">@jeancstilo</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">10</span><div class="ol-main"><a class="ol-name" href="#n-sabores-gourmet-criollo">Sabores Gourmet Criollo</a><span class="ol-meta"><i aria-hidden="true"></i>Food truck · Bayamón · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="wa">WhatsApp</span> <span class="sel">939-900-1193 (truck)</span></div><div class="ol-ig"><a href="https://www.instagram.com/saboresgourmetcriollo21/">@saboresgourmetcriollo21</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">11</span><div class="ol-main"><a class="ol-name" href="#n-guaynabo-bakery-pizzeria">Guaynabo Bakery &amp; Pizzeria</a><span class="ol-meta"><i aria-hidden="true"></i>Restaurante / repostería · Guaynabo · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="sel">939-338-3226</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/guaynabobakery/">@guaynabobakery</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">12</span><div class="ol-main"><a class="ol-name" href="#n-bayam-n-food-truck-station-parque">Bayamón Food Truck Station (parque)</a><span class="ol-meta"><i aria-hidden="true"></i>Food truck · Bayamón · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="muted">Solo Instagram DM</span></div><div class="ol-ig"><a href="https://www.instagram.com/bayamonfoodtruckstation/">@bayamonfoodtruckstation</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">13</span><div class="ol-main"><a class="ol-name" href="#n-gft-park-guaynabo-food-truck-park">GFT Park – Guaynabo Food Truck Park</a><span class="ol-meta"><i aria-hidden="true"></i>Food truck · Guaynabo · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="muted">Solo Instagram DM</span></div><div class="ol-ig"><a href="https://www.instagram.com/guaynabofoodtruckpark/">@guaynabofoodtruckpark</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">14</span><div class="ol-main"><a class="ol-name" href="#n-ladelos-pastelillos">Ladelos Pastelillos</a><span class="ol-meta"><i aria-hidden="true"></i>Restaurante / repostería · Bayamón · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="sel">787-639-4054</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/ladelospastelillos/">@ladelospastelillos</a></div></li><li style="--sec: var(--s-salud)"><span class="rk">15</span><div class="ol-main"><a class="ol-name" href="#n-ia-dental-dra-ingrid-irizarry">IA Dental – Dra. Ingrid Irizarry</a><span class="ol-meta"><i aria-hidden="true"></i>Dentista · Guaynabo · Profesional + citas $2,000 + $129/mes</span></div><div class="ol-c"><span class="sel">787-720-2125</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/iadental45/">@iadental45</a></div></li><li style="--sec: var(--s-salud)"><span class="rk">16</span><div class="ol-main"><a class="ol-name" href="#n-dra-carla-rodr-guez-bonilla-dentista-pedi-trica">Dra. Carla Rodríguez Bonilla (dentista pediátrica)</a><span class="ol-meta"><i aria-hidden="true"></i>Dentista · Bayamón · Profesional + citas $2,000 + $129/mes</span></div><div class="ol-c"><span class="sel">787-900-3545</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/dra.carlarodriguez/">@dra.carlarodriguez</a></div></li><li style="--sec: var(--s-salud)"><span class="rk">17</span><div class="ol-main"><a class="ol-name" href="#n-local-dental">Local Dental</a><span class="ol-meta"><i aria-hidden="true"></i>Dentista · San Juan · Profesional + citas $2,000 + $129/mes</span></div><div class="ol-c"><span class="sel">787-281-8106</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/localdental/">@localdental</a></div></li><li style="--sec: var(--s-salud)"><span class="rk">18</span><div class="ol-main"><a class="ol-name" href="#n-dra-alexandra-rodr-guez-dentista-pedi-trica">Dra. Alexandra Rodríguez (dentista pediátrica)</a><span class="ol-meta"><i aria-hidden="true"></i>Dentista · San Juan · Profesional + citas $2,000 + $129/mes</span></div><div class="ol-c"><span class="sel">787-508-1412</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/dentistapediatricaalexandra/">@dentistapediatricaalexandra</a></div></li><li style="--sec: var(--s-salud)"><span class="rk">19</span><div class="ol-main"><a class="ol-name" href="#n-galer-a-quiropr-ctica">Galería Quiropráctica</a><span class="ol-meta"><i aria-hidden="true"></i>Quiropráctico · Guaynabo y Bayamón · Profesional + citas $2,000 + $129/mes</span></div><div class="ol-c"><span class="sel">787-708-7766</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/galeriaquiropractica/">@galeriaquiropractica</a></div></li><li style="--sec: var(--s-prof)"><span class="rk">20</span><div class="ol-main"><a class="ol-name" href="#n-lcdo-edgar-villanueva-rivera-abogado-notario">Lcdo. Edgar Villanueva Rivera, Abogado-Notario</a><span class="ol-meta"><i aria-hidden="true"></i>Abogado · Bayamón · Profesional $1,500 + $99/mes</span></div><div class="ol-c"><span class="sel">787-310-4416</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/lcdo.villanuevarivera/">@lcdo.villanuevarivera</a></div></li><li style="--sec: var(--s-prof)"><span class="rk">21</span><div class="ol-main"><a class="ol-name" href="#n-cpa-johmary-mel-ndez">CPA Johmary Meléndez</a><span class="ol-meta"><i aria-hidden="true"></i>Contador · Por confirmar · Profesional $1,500 + $99/mes</span></div><div class="ol-c"><span class="muted">Solo Instagram DM</span></div><div class="ol-ig"><a href="https://www.instagram.com/planillaspr_cpa/">@planillaspr_cpa</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">22</span><div class="ol-main"><a class="ol-name" href="#n-167-barber-shop">167 Barber Shop</a><span class="ol-meta"><i aria-hidden="true"></i>Barbería · Bayamón · Citas conectadas $900 + $69/mes</span></div><div class="ol-c"><span class="sel">787-515-2122</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/167barbershop/">@167barbershop</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">23</span><div class="ol-main"><a class="ol-name" href="#n-retoque-guaynabo">Retoque Guaynabo</a><span class="ol-meta"><i aria-hidden="true"></i>Uñas · Guaynabo · Citas conectadas $900 + $69/mes</span></div><div class="ol-c"><span class="sel">939-409-9090</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/retoque_guaynabo/">@retoque_guaynabo</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">24</span><div class="ol-main"><a class="ol-name" href="#n-jireh-nail-sal-n">Jireh Nail Salón</a><span class="ol-meta"><i aria-hidden="true"></i>Uñas · Guaynabo · Citas conectadas $900 + $69/mes</span></div><div class="ol-c"><span class="sel">939-325-6714</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/jirehnail/">@jirehnail</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">25</span><div class="ol-main"><a class="ol-name" href="#n-pintau-as-nails-salon">Pintauñas Nails &amp; Salon</a><span class="ol-meta"><i aria-hidden="true"></i>Uñas · Guaynabo · Presencia $650 + $49/mes</span></div><div class="ol-c"><span class="sel">787-466-8529</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/pintaunasnailsalon/">@pintaunasnailsalon</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">26</span><div class="ol-main"><a class="ol-name" href="#n-jj-barbershop-old-san-juan">JJ Barbershop Old San Juan</a><span class="ol-meta"><i aria-hidden="true"></i>Barbería · San Juan · Citas conectadas $900 + $69/mes</span></div><div class="ol-c"><span class="sel">787-318-4323</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/jjbarbershopoldsanjuan/">@jjbarbershopoldsanjuan</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">27</span><div class="ol-main"><a class="ol-name" href="#n-sport-barbershop">Sport BarberShop</a><span class="ol-meta"><i aria-hidden="true"></i>Barbería · San Juan · Citas conectadas $900 + $69/mes</span></div><div class="ol-c"><span class="sel">787-216-7618</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/sportbarbershop_/">@sportbarbershop_</a></div></li><li style="--sec: var(--s-belleza)"><span class="rk">28</span><div class="ol-main"><a class="ol-name" href="#n-top-beauty-sal-n">Top Beauty Salón</a><span class="ol-meta"><i aria-hidden="true"></i>Salón · San Juan · Presencia $650 + $49/mes</span></div><div class="ol-c"><span class="wa">WhatsApp</span> <span class="sel">787-781-9642 / 787-508-0298</span></div><div class="ol-ig"><a href="https://www.instagram.com/topbeautysalonpr/">@topbeautysalonpr</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">29</span><div class="ol-main"><a class="ol-name" href="#n-la-disputa">La Disputa</a><span class="ol-meta"><i aria-hidden="true"></i>Food truck · San Juan · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="sel">787-223-1433</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/la_disputa_food_truck/">@la_disputa_food_truck</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">30</span><div class="ol-main"><a class="ol-name" href="#n-mejor-aqu-pr">Mejor Aquí PR</a><span class="ol-meta"><i aria-hidden="true"></i>Restaurante / repostería · Bayamón · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="sel">787-619-6453</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/mejoraqui.pr/">@mejoraqui.pr</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">31</span><div class="ol-main"><a class="ol-name" href="#n-el-rinc-n-del-repostero">El Rincón del Repostero</a><span class="ol-meta"><i aria-hidden="true"></i>Restaurante / repostería · Bayamón · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="sel">787-400-7146</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/elrincondelrepostero_/">@elrincondelrepostero_</a></div></li><li style="--sec: var(--s-comida)"><span class="rk">32</span><div class="ol-main"><a class="ol-name" href="#n-michi-s-cakes">Michi&#x27;s Cakes</a><span class="ol-meta"><i aria-hidden="true"></i>Restaurante / repostería · San Juan · Pedidos directos $1,200 + $79/mes</span></div><div class="ol-c"><span class="sel">787-447-7772</span> <span class="muted">(probar WhatsApp)</span></div><div class="ol-ig"><a href="https://www.instagram.com/michiscakespr/">@michiscakespr</a></div></li></ol>
+  </section>
+
+  <section class="method pricing" id="precios">
+    <h2>Precios y paquetes</h2>
+    <p class="note">Su precio de instalación es un solo pago. El mensual cubre hosting, dominio, certificado SSL, cambios pequeños y soporte. Como referencia, en Puerto Rico las páginas se venden entre $450 y $2,295, y el mantenimiento de una agencia pequeña cuesta entre $50 y $200 al mes.</p>
+    <div class="tbl"><table>
+      <thead><tr><th scope="col">Paquete</th><th scope="col">Qué incluye</th><th scope="col">Instalación</th><th scope="col">Mensual</th><th scope="col">Prospectos</th></tr></thead>
+      <tbody><tr><th scope="row">Presencia</th><td>Página bilingüe con su marca, fotos, servicios, WhatsApp, mapa y SEO local.</td><td class="num">$650</td><td class="num">$49</td><td class="num">4</td></tr><tr><th scope="row">Citas conectadas</th><td>Presencia + un botón &#x27;Reservar&#x27; en cada servicio que abre ese servicio en su Booksy, Fresha o Vagaro. Esas citas entran como directas, sin la comisión de cliente nuevo del marketplace.</td><td class="num">$900</td><td class="num">$69</td><td class="num">7</td></tr><tr><th scope="row">Citas propias</th><td>Presencia + reservas dentro de la página: cada servicio con su precio, duración y barbero o técnica, confirmación por WhatsApp o email y recordatorios. Reemplaza Booksy o Fresha.</td><td class="num">$1,600</td><td class="num">$99</td><td class="num">4</td></tr><tr><th scope="row">Pedidos directos</th><td>Presencia + menú con pedidos para recoger por WhatsApp o pago en línea, sin comisión de Uber Eats en los clientes que ya le conocen.</td><td class="num">$1,200</td><td class="num">$79</td><td class="num">11</td></tr><tr><th scope="row">Profesional</th><td>Varias secciones (servicios, equipo, planes, preguntas), formulario de contacto, SEO local y Google Business Profile.</td><td class="num">$1,500</td><td class="num">$99</td><td class="num">20</td></tr><tr><th scope="row">Profesional + citas</th><td>Profesional + citas en línea por servicio dentro de la página.</td><td class="num">$2,000</td><td class="num">$129</td><td class="num">14</td></tr><tr><th scope="row">Reservas directas</th><td>Página de la propiedad con galería, calendario de disponibilidad sincronizado con Airbnb y solicitud de reserva directa (sin la comisión de la plataforma).</td><td class="num">$1,800</td><td class="num">$99</td><td class="num">5</td></tr></tbody>
+    </table></div>
+
+    <h3>Lo que ya pagan por sus citas (precios publicados en 2026)</h3>
+    <div class="tbl"><table>
+      <thead><tr><th scope="col">Plataforma</th><th scope="col">Mensualidad</th><th scope="col">Comisiones</th><th scope="col">Quiénes la usan</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Booksy</th><td>$29.99 + $20 por empleado</td><td>Boost: 30% de la primera visita de cada cliente nuevo que llega por la app ($10 a $100)</td><td>Santurce La Barbería, Estudio La Barbería, Jireh, Jean C Stilo</td></tr>
+        <tr><th scope="row">Fresha</th><td>$19.95 individual o $14.95 por empleado</td><td>20% (mínimo $6) del primer servicio de cada cliente nuevo del marketplace; tarjetas desde 2.29% + $0.20</td><td>167 Barber Shop, Retoque, JJ, Sport, Crea'tif, Top Nail Bar</td></tr>
+        <tr><th scope="row">Vagaro</th><td>$23.99 + $10 por usuario</td><td>Tarjetas 2.75%</td><td>Curl Boss</td></tr>
+        <tr><th scope="row">Jane App</th><td>Desde $54</td><td>Cargos extra por SMS y por cada profesional</td><td>Aviva Family Chiropractic</td></tr>
+        <tr><th scope="row">Uber Eats</th><td>No tiene mensualidad</td><td>7–10% en pedidos para recoger, 20–30% en delivery</td><td>La Chulada, Guaynabo Bakery</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Las dos maneras de integrar las citas</h3>
+    <div class="two">
+      <div><h4>1. Citas conectadas ($900 + $69/mes)</h4>
+        <p>Siguen con Booksy o Fresha. En la página, cada servicio tiene su botón "Reservar" que abre ese mismo servicio en su plataforma.</p>
+        <p><b>Lo que ganan:</b> el cliente que reserva desde su página entra como cliente directo, y Fresha y Booksy no cobran la comisión de cliente nuevo por esas citas. No cambian nada de cómo trabajan.</p>
+        <p><b>Ideal para:</b> negocios pequeños o que reciben muchos clientes nuevos por la app.</p></div>
+      <div><h4>2. Citas propias ($1,600 + $99/mes)</h4>
+        <p>Las reservas se hacen dentro de su página: cada servicio con su precio, su duración y su barbero, con confirmación por WhatsApp o email. Dejan de pagar Booksy o Fresha.</p>
+        <p><b>Lo que ganan:</b> no pagan mensualidad por empleado ni comisiones, su marca va primero y los datos de sus clientes son suyos. Por dentro puede usar Setmore (gratis hasta 4 empleados) o un sistema propio en Cloudflare (gratis hasta 100,000 visitas al día), así que casi todo el mensual es ganancia suya.</p>
+        <p><b>Lo que pierden:</b> los clientes nuevos que hoy les llegan buscando en la app de Booksy o Fresha. Ofrézcalo a los que ya tienen clientela fija, como Santurce La Barbería (4 barberos y más de 1,100 reseñas) o Top Nail Bar (2,590 votos).</p></div>
+    </div>
+
+    <h3>Cómo presentarlo</h3>
+    <ul>
+      <li><b>Compare con lo que ya pagan.</b> Por ejemplo, Santurce La Barbería paga cerca de $90–$120 al mes por 4 perfiles en Booksy. Con Citas propias paga $99 al mes y además tiene página web.</li>
+      <li><b>Food trucks y restaurantes:</b> Uber Eats se queda con 7–10% de cada pedido para recoger. Con Pedidos directos, sus clientes fijos piden por la página y el negocio se queda con esa comisión. Mantengan Uber Eats para el delivery.</li>
+      <li><b>Profesionales</b> (dentistas, médicos, abogados, CPA): no están comparando contra una app sino contra no existir en Google. El argumento es conseguir pacientes y clientes nuevos.</li>
+      <li><b>Su costo real:</b> el hosting en Cloudflare es gratis y el dominio cuesta unos $10–20 al año. Casi todo el mensual es ganancia; su trabajo es el tiempo de los cambios.</li>
+      <li><b>Antes de cobrar,</b> confirme cuántos empleados tienen en la plataforma: el costo actual que puse es un estimado.</li>
+    </ul>
+  </section>
+
+  <section class="filters" aria-label="Filtros">
+    <ul class="legend" aria-label="Sectores"><li style="--sec: var(--s-belleza)"><i aria-hidden="true"></i>Belleza <span>15</span></li><li style="--sec: var(--s-comida)"><i aria-hidden="true"></i>Comida <span>11</span></li><li style="--sec: var(--s-salud)"><i aria-hidden="true"></i>Salud <span>14</span></li><li style="--sec: var(--s-prof)"><i aria-hidden="true"></i>Profesionales <span>10</span></li><li style="--sec: var(--s-hogar)"><i aria-hidden="true"></i>Hogar y auto <span>10</span></li><li style="--sec: var(--s-alquiler)"><i aria-hidden="true"></i>Alquiler <span>5</span></li></ul>
+    <div class="chips" role="group" aria-label="Categoría"><button type="button" class="chip on" data-filter="all" id="c-all">Todas <span>65</span></button><button type="button" class="chip" style="--sec: var(--s-belleza)" data-filter="Barbería" id="c-0"><i aria-hidden="true"></i>Barbería <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-belleza)" data-filter="Uñas" id="c-1"><i aria-hidden="true"></i>Uñas <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-belleza)" data-filter="Salón" id="c-2"><i aria-hidden="true"></i>Salón <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-comida)" data-filter="Food truck" id="c-3"><i aria-hidden="true"></i>Food truck <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-comida)" data-filter="Restaurante / repostería" id="c-4"><i aria-hidden="true"></i>Restaurante / repostería <span>6</span></button><button type="button" class="chip" style="--sec: var(--s-salud)" data-filter="Dentista" id="c-5"><i aria-hidden="true"></i>Dentista <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-salud)" data-filter="Quiropráctico" id="c-6"><i aria-hidden="true"></i>Quiropráctico <span>4</span></button><button type="button" class="chip" style="--sec: var(--s-salud)" data-filter="Médico" id="c-7"><i aria-hidden="true"></i>Médico <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-prof)" data-filter="Abogado" id="c-8"><i aria-hidden="true"></i>Abogado <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-prof)" data-filter="Contador" id="c-9"><i aria-hidden="true"></i>Contador <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-hogar)" data-filter="Taller" id="c-10"><i aria-hidden="true"></i>Taller <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-hogar)" data-filter="Techos / solar" id="c-11"><i aria-hidden="true"></i>Techos / solar <span>5</span></button><button type="button" class="chip" style="--sec: var(--s-alquiler)" data-filter="Alquiler vacacional" id="c-12"><i aria-hidden="true"></i>Alquiler vacacional <span>5</span></button></div>
+    <div class="toggles">
+      <label><input type="checkbox" id="f-alto"> Solo potencial de pago alto</label>
+      <label><input type="checkbox" id="f-conf"> Ocultar verificación baja</label>
+      <label><input type="checkbox" id="f-ola"> Solo Ola 1</label>
+      <label><input type="checkbox" id="f-plat"> Solo los que usan plataforma de citas</label>
+      <span class="shown" id="shown"></span>
+    </div>
+  </section>
+
+  <main class="list" id="list">
+<article class="biz" id="n-167-barber-shop" style="--sec: var(--s-belleza)" data-cat="Barbería" data-pago="Medio" data-conf="Alta" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Barbería</p>
+    <div class="ttl"><h3>167 Barber Shop</h3><p class="loc">Bayamón · Ave. Ramón Luis Rivera, 00957</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/167barbershop/">@167barbershop</a> · <a href="https://www.facebook.com/OscarBarberShopPR">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-515-2122</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd>colonoscar22@gmail.com</dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>Listado en Fresha</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Abre los 7 días; hasta 10 PM de jueves a sábado</p>
+  <p class="web"><b>Página web:</b> Sin web propia: solo Instagram, Facebook y Fresha</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://www.fresha.com/lvp/167barbersshop-ramon-luis-rivera-avenue-bayamon-3o9GPN">Fresha</a> · <span class="cost">$19.95–$45 al mes + 20% por cliente nuevo del marketplace</span></p>
+    <p class="pkg"><b>Propuesta: Citas conectadas</b> <span class="price">$900 + $69/mes</span></p>
+  </div>
+  <p class="src">Fuentes: <a href="https://www.fresha.com/lvp/167barbersshop-ramon-luis-rivera-avenue-bayamon-3o9GPN">fresha.com</a></p>
+</article>
+<article class="biz" id="n-santurce-la-barber-a-sal-n" style="--sec: var(--s-belleza)" data-cat="Barbería" data-pago="Alto" data-conf="Alta" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Barbería</p>
+    <div class="ttl"><h3>Santurce La Barbería Salón</h3><p class="loc">San Juan · 312 Ave. De Diego, Santurce</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/santurcelabarberiasalon/">@santurcelabarberiasalon</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-312-4474</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd>787-312-4474</dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>5.0 en Booksy: 807 + 190 + 89 + 36 reseñas entre 4 perfiles</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Concepto premium tipo spa (afeitado con toalla, vino al cliente); salió en Metro PR</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Instagram y Booksy</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://booksy.com/en-us/1236100_santurce-la-barberia-salon_barber-shop_7_usa">Booksy (4 perfiles de barbero)</a> · <span class="cost">$90–$120+ al mes (4 perfiles) + 30% de la 1.a visita de clientes de Boost</span></p>
+    <p class="pkg"><b>Propuesta: Citas propias</b> <span class="price">$1,600 + $99/mes</span></p>
+  </div>
+  <p class="src">Fuentes: <a href="https://www.metro.pr/estilo-vida/2016/11/22/regreso-barberia-tradicional">metro.pr</a></p>
+</article>
+<article class="biz" id="n-estudio-la-barber-a-cecilio-men-s-stylist" style="--sec: var(--s-belleza)" data-cat="Barbería" data-pago="Alto" data-conf="Alta" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Barbería</p>
+    <div class="ttl"><h3>Estudio La Barbería (Cecilio Men&#x27;s Stylist)</h3><p class="loc">Guaynabo · Carr. 833 / Ave. 177 #1499, Local 3, Los Frailes</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/estudiolabarberia/">@estudiolabarberia</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-382-3097</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>Reservas por Booksy</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Corte desde $30 y corte con barba desde $40: clientela que paga</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Instagram y Booksy</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> Booksy · <span class="cost">$30–$70 al mes según cuántos barberos + comisiones de Boost</span></p>
+    <p class="pkg"><b>Propuesta: Citas conectadas</b> <span class="price">$900 + $69/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-jj-barbershop-old-san-juan" style="--sec: var(--s-belleza)" data-cat="Barbería" data-pago="Medio" data-conf="Media" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Barbería</p>
+    <div class="ttl"><h3>JJ Barbershop Old San Juan</h3><p class="loc">San Juan · 300 Calle San Francisco, Viejo San Juan</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/jjbarbershopoldsanjuan/">@jjbarbershopoldsanjuan</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-318-4323</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Zona turística; abre martes a sábado</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://www.fresha.com/lvp/jj-barber-shop-old-san-juan-calle-de-san-francisco-san-juan-Eko3Gb">Fresha y Setmore</a> · <span class="cost">$19.95+ al mes en Fresha (Setmore puede ser gratis)</span></p>
+    <p class="pkg"><b>Propuesta: Citas conectadas</b> <span class="price">$900 + $69/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-sport-barbershop" style="--sec: var(--s-belleza)" data-cat="Barbería" data-pago="Medio" data-conf="Media" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Barbería</p>
+    <div class="ttl"><h3>Sport BarberShop</h3><p class="loc">San Juan · 273 Calle Los Andes, 00926</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/sportbarbershop_/">@sportbarbershop_</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-216-7618</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Se presenta como &#x27;The Best Shop in Guaynabo&#x27;</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://www.fresha.com/lvp/sport-barbershop-calle-los-andes-san-juan-xXxYj6">Fresha</a> · <span class="cost">$19.95–$45 al mes + 20% por cliente nuevo del marketplace</span></p>
+    <p class="pkg"><b>Propuesta: Citas conectadas</b> <span class="price">$900 + $69/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-retoque-guaynabo" style="--sec: var(--s-belleza)" data-cat="Uñas" data-pago="Medio" data-conf="Alta" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Uñas</p>
+    <div class="ttl"><h3>Retoque Guaynabo</h3><p class="loc">Guaynabo · Los Jardines Shopping Center, Calle Marginal 130, Frailes</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/retoque_guaynabo/">@retoque_guaynabo</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>939-409-9090</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>4.9 en Fresha</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Precios publicados ($25–$35 por servicio) en centro comercial</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Instagram y Fresha</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> Fresha · <span class="cost">$19.95–$45 al mes + 20% por cliente nuevo del marketplace</span></p>
+    <p class="pkg"><b>Propuesta: Citas conectadas</b> <span class="price">$900 + $69/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-pintau-as-nails-salon" style="--sec: var(--s-belleza)" data-cat="Uñas" data-pago="Medio" data-conf="Alta" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Uñas</p>
+    <div class="ttl"><h3>Pintauñas Nails &amp; Salon</h3><p class="loc">Guaynabo · 56-62 Av. Esmeralda, 00969</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/pintaunasnailsalon/">@pintaunasnailsalon</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-466-8529</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>Listado en Fresha</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Ofrece fish pedicure (poco común); abre lunes a sábado</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Instagram y directorios</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> Aparece en Fresha (confirmar) · <span class="cost">Por confirmar</span></p>
+    <p class="pkg"><b>Propuesta: Presencia</b> <span class="price">$650 + $49/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-jireh-nail-sal-n" style="--sec: var(--s-belleza)" data-cat="Uñas" data-pago="Medio" data-conf="Alta" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Uñas</p>
+    <div class="ttl"><h3>Jireh Nail Salón</h3><p class="loc">Guaynabo · PR-838, Guaynabo Rental Park, 00969</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/jirehnail/">@jirehnail</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>939-325-6714</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>Reservas por Booksy</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Uñas y cejas con hilo</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Instagram, Booksy y Fresha</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> Booksy · <span class="cost">Desde $29.99 al mes + comisiones de Boost</span></p>
+    <p class="pkg"><b>Propuesta: Citas conectadas</b> <span class="price">$900 + $69/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-crea-tif-salon-and-spa" style="--sec: var(--s-belleza)" data-cat="Uñas" data-pago="Alto" data-conf="Media" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Uñas</p>
+    <div class="ttl"><h3>Crea&#x27;tif Salon and Spa</h3><p class="loc">Guaynabo · Centro Comercial, Edificio B, Ave. Lopategui Local 3</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/creatifsalon/">@creatifsalon</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-668-9645</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>Clientas de años la recomiendan en Fresha</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Cabello, uñas, spa y cejas: varios servicios y personal</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://www.fresha.com/lvp/creatif-salon-and-spa-avenue-lopategui-guaynabo-7x9b25">Fresha</a> · <span class="cost">$30–$75 al mes (varias empleadas) + 20% por cliente nuevo</span></p>
+    <p class="pkg"><b>Propuesta: Citas propias</b> <span class="price">$1,600 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-m-naco-nails" style="--sec: var(--s-belleza)" data-cat="Uñas" data-pago="Medio" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Uñas</p>
+    <div class="ttl"><h3>Mónaco Nails</h3><p class="loc">San Juan / Guaynabo (verificar) · Por confirmar</p></div>
+    <div class="tags"><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/monaconailspr/">@monaconailspr</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Por evaluar en su Instagram</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Presencia</b> <span class="price">$650 + $49/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-curl-boss-salon" style="--sec: var(--s-belleza)" data-cat="Salón" data-pago="Alto" data-conf="Alta" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Salón</p>
+    <div class="ttl"><h3>Curl Boss Salon</h3><p class="loc">San Juan · Ave. 65 de Infantería</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/curlbosspr/">@curlbosspr</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-640-8800</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd>787-640-8800</dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>Reseñas en Vagaro; salió en Remezcla</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Nicho de cabello rizado; dueños con podcast propio</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Instagram y WhatsApp</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://www.vagaro.com/curlboss">Vagaro (y aparece en Fresha)</a> · <span class="cost">$34–$60 al mes en Vagaro según usuarios</span></p>
+    <p class="pkg"><b>Propuesta: Citas conectadas</b> <span class="price">$900 + $69/mes</span></p>
+  </div>
+  <p class="src">Fuentes: <a href="https://remezcla.com/lists/beauty/7-local-beauty-wellness-businesses-bad-bunny-residency/">remezcla.com</a></p>
+</article>
+<article class="biz" id="n-top-beauty-sal-n" style="--sec: var(--s-belleza)" data-cat="Salón" data-pago="Medio" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Salón</p>
+    <div class="ttl"><h3>Top Beauty Salón</h3><p class="loc">San Juan · 1367 Ave. Roosevelt</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/topbeautysalonpr/">@topbeautysalonpr</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-781-9642</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd>787-781-9642 / 787-508-0298</dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Dos líneas de WhatsApp activas</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Presencia</b> <span class="price">$650 + $49/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-bloom-salon-spa" style="--sec: var(--s-belleza)" data-cat="Salón" data-pago="Alto" data-conf="Alta" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Salón</p>
+    <div class="ttl"><h3>bloOm Salon &amp; Spa</h3><p class="loc">Guaynabo · 100 Av. San Patricio, 00968</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/bloomsalonspapr/">@bloomsalonspapr</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-781-2525</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>Listado en Fresha</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Zona San Patricio (alto poder adquisitivo); salón + spa</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Instagram y Fresha</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> Aparece en Fresha (confirmar) · <span class="cost">Por confirmar</span></p>
+    <p class="pkg"><b>Propuesta: Presencia</b> <span class="price">$650 + $49/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-jean-c-stilo" style="--sec: var(--s-belleza)" data-cat="Salón" data-pago="Alto" data-conf="Media" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Salón</p>
+    <div class="ttl"><h3>Jean C Stilo</h3><p class="loc">Bayamón · 3V7 Ave. Lomas Verdes, Bayamón, 00956</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/jeancstilo/">@jeancstilo</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-998-2614</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>5.0 (32) en Booksy</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Dos ubicaciones (PR y Florida); color, uñas y maquillaje</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://booksy.com/en-us/1521265_jean-c-stilo-salon_hair-salon_34799_san-juan">Booksy (2 perfiles en PR y 1 en Florida)</a> · <span class="cost">$60–$90 al mes entre sus perfiles</span></p>
+    <p class="pkg"><b>Propuesta: Citas propias</b> <span class="price">$1,600 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-top-nail-bar" style="--sec: var(--s-belleza)" data-cat="Salón" data-pago="Alto" data-conf="Media" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Belleza · Salón</p>
+    <div class="ttl"><h3>Top Nail Bar</h3><p class="loc">Bayamón · Plaza Bayamón Mall</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/topnailbar/">@topnailbar</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-334-0101</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd>787-678-3355</dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>4.9 con 2,590 votos en Fresha</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Local dentro de un mall (renta alta); cabello, uñas y belleza</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://www.fresha.com/a/top-nail-bar-bayamon-plaza-bayamon-qed67sbu">Fresha (88 servicios)</a> · <span class="cost">$75–$150 al mes (equipo grande) + 20% por cliente nuevo del marketplace</span></p>
+    <p class="pkg"><b>Propuesta: Citas propias</b> <span class="price">$1,600 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-la-chulada-foodtruck" style="--sec: var(--s-comida)" data-cat="Food truck" data-pago="Alto" data-conf="Alta" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Food truck</p>
+    <div class="ttl"><h3>La Chulada Foodtruck</h3><p class="loc">Guaynabo · Carr. Alejandrino Km 1.3, Sector Melia</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/la_chulada_foodtruck/">@la_chulada_foodtruck</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-664-5551</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd>787-664-5551</dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>4.9 con más de 1,000 calificaciones en Uber Eats</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Mucho volumen de ventas</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Instagram, Uber Eats y Platea PR</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://www.ubereats.com/us-es/store/la-chulada-foodtruck/OtW4PpDAXfCDMDdeslloBw">Uber Eats</a> · <span class="cost">7–10% de cada pedido para recoger y 20–30% de cada delivery</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  <p class="src">Fuentes: <a href="https://www.plateapr.com/en/directory/metro/guaynabo/restaurantes/la-chulada-foodtruck-guaynabo">plateapr.com</a></p>
+</article>
+<article class="biz" id="n-la-disputa" style="--sec: var(--s-comida)" data-cat="Food truck" data-pago="Medio" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Food truck</p>
+    <div class="ttl"><h3>La Disputa</h3><p class="loc">San Juan · San Juan</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/la_disputa_food_truck/">@la_disputa_food_truck</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-223-1433</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Sándwiches, empanadas y smash burgers; abre lunes a sábado</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-sabores-gourmet-criollo" style="--sec: var(--s-comida)" data-cat="Food truck" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Food truck</p>
+    <div class="ttl"><h3>Sabores Gourmet Criollo</h3><p class="loc">Bayamón · Restaurante en Bayamón; truck en Levittown</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/saboresgourmetcriollo21/">@saboresgourmetcriollo21</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-998-6982</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd>939-900-1193 (truck)</dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Dos puntos de venta: restaurante y food truck</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-bayam-n-food-truck-station-parque" style="--sec: var(--s-comida)" data-cat="Food truck" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Food truck</p>
+    <div class="ttl"><h3>Bayamón Food Truck Station (parque)</h3><p class="loc">Bayamón · Ave. Lomas Verdes</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/bayamonfoodtruckstation/">@bayamonfoodtruckstation</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Parque de food trucks: el operador cobra a varios trucks</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-gft-park-guaynabo-food-truck-park" style="--sec: var(--s-comida)" data-cat="Food truck" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Food truck</p>
+    <div class="ttl"><h3>GFT Park – Guaynabo Food Truck Park</h3><p class="loc">Guaynabo · Guaynabo</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/guaynabofoodtruckpark/">@guaynabofoodtruckpark</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Más de 14 food trucks en un solo parque</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-ladelos-pastelillos" style="--sec: var(--s-comida)" data-cat="Restaurante / repostería" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Restaurante / repostería</p>
+    <div class="ttl"><h3>Ladelos Pastelillos</h3><p class="loc">Bayamón · Bayamón y Cataño</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/ladelospastelillos/">@ladelospastelillos</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-639-4054</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Dos locales; más de 40 sabores</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-guaynabo-bakery-pizzeria" style="--sec: var(--s-comida)" data-cat="Restaurante / repostería" data-pago="Alto" data-conf="Media" data-plat="1" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Restaurante / repostería</p>
+    <div class="ttl"><h3>Guaynabo Bakery &amp; Pizzeria</h3><p class="loc">Guaynabo · Av. Paz Granela 1476</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/guaynabobakery/">@guaynabobakery</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>939-338-3226</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>En Uber Eats</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Abre los 7 días desde las 5 AM</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> Uber Eats · <span class="cost">7–10% de cada pedido para recoger y 20–30% de cada delivery</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-mejor-aqu-pr" style="--sec: var(--s-comida)" data-cat="Restaurante / repostería" data-pago="Medio" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Restaurante / repostería</p>
+    <div class="ttl"><h3>Mejor Aquí PR</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/mejoraqui.pr/">@mejoraqui.pr</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-619-6453</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Comida criolla, mariscos y mojitos</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-golden-hour" style="--sec: var(--s-comida)" data-cat="Restaurante / repostería" data-pago="Medio" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Restaurante / repostería</p>
+    <div class="ttl"><h3>Golden Hour</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/restaurante_golden_hour/">@restaurante_golden_hour</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Comida china y japonesa</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-el-rinc-n-del-repostero" style="--sec: var(--s-comida)" data-cat="Restaurante / repostería" data-pago="Medio" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Restaurante / repostería</p>
+    <div class="ttl"><h3>El Rincón del Repostero</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/elrincondelrepostero_/">@elrincondelrepostero_</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-400-7146</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Repostería con local; abre lunes a sábado</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-michi-s-cakes" style="--sec: var(--s-comida)" data-cat="Restaurante / repostería" data-pago="Medio" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Comida · Restaurante / repostería</p>
+    <div class="ttl"><h3>Michi&#x27;s Cakes</h3><p class="loc">San Juan · San Juan</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/michiscakespr/">@michiscakespr</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-447-7772</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Bizcochos, cupcakes y galletas por encargo</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Pedidos directos</b> <span class="price">$1,200 + $79/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-cl-nica-dental-bayam-n-dr-eduardo-crespo" style="--sec: var(--s-salud)" data-cat="Dentista" data-pago="Alto" data-conf="Alta" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Dentista</p>
+    <div class="ttl"><h3>Clínica Dental Bayamón – Dr. Eduardo Crespo</h3><p class="loc">Bayamón · Medical Ophthalmic Plaza, 1875 Carr. 2, Ste. 203</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/crespodmd/">@crespodmd</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>939-310-2555</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Dos dentistas; implantes e Invisalign; acepta CareCredit</p>
+  <p class="web"><b>Página web:</b> Sin web propia: solo directorios médicos e Instagram</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  <p class="src">Fuentes: <a href="https://local.newpatientsinc.com/dental/dr-eduardo-crespo-bayamon-pr">local.newpatientsinc.com</a></p>
+</article>
+<article class="biz" id="n-ia-dental-dra-ingrid-irizarry" style="--sec: var(--s-salud)" data-cat="Dentista" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Dentista</p>
+    <div class="ttl"><h3>IA Dental – Dra. Ingrid Irizarry</h3><p class="loc">Guaynabo · Guaynabo</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/iadental45/">@iadental45</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-720-2125</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Odontología general; dos teléfonos de oficina</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-dra-carla-rodr-guez-bonilla-dentista-pedi-trica" style="--sec: var(--s-salud)" data-cat="Dentista" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Dentista</p>
+    <div class="ttl"><h3>Dra. Carla Rodríguez Bonilla (dentista pediátrica)</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/dra.carlarodriguez/">@dra.carlarodriguez</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-900-3545</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Especialista en pediatría</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-local-dental" style="--sec: var(--s-salud)" data-cat="Dentista" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Dentista</p>
+    <div class="ttl"><h3>Local Dental</h3><p class="loc">San Juan · San Juan</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/localdental/">@localdental</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-281-8106</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> General, pediatría y periodoncia; dos teléfonos</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-dra-alexandra-rodr-guez-dentista-pedi-trica" style="--sec: var(--s-salud)" data-cat="Dentista" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Dentista</p>
+    <div class="ttl"><h3>Dra. Alexandra Rodríguez (dentista pediátrica)</h3><p class="loc">San Juan · San Juan</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/dentistapediatricaalexandra/">@dentistapediatricaalexandra</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-508-1412</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Especialista en pediatría</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-aviva-family-chiropractic-dr-ariel-tomey" style="--sec: var(--s-salud)" data-cat="Quiropráctico" data-pago="Alto" data-conf="Alta" data-plat="1" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Quiropráctico</p>
+    <div class="ttl"><h3>Aviva Family Chiropractic – Dr. Ariel Tomey</h3><p class="loc">San Juan · 15 Av. Luis Muñoz Rivera, #2010</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/AvivaFamilyChiropractic">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-417-7794</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Acepta planes; masajes y estiramientos; solo tiene página de citas en JaneApp</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Facebook y JaneApp</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <a href="https://avivachiropractic.janeapp.com">Jane App</a> · <span class="cost">Desde $54 al mes</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  <p class="src">Fuentes: <a href="https://avivachiropractic.janeapp.com">avivachiropractic.janeapp.com</a></p>
+</article>
+<article class="biz" id="n-grupo-quiropr-ctico-de-guaynabo" style="--sec: var(--s-salud)" data-cat="Quiropráctico" data-pago="Alto" data-conf="Alta" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Quiropráctico</p>
+    <div class="ttl"><h3>Grupo Quiropráctico de Guaynabo</h3><p class="loc">Guaynabo · B-3 Calle Marginal, Urb. Villa Lissette</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/grupoquiropracticodeguaynabo">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-999-6570</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Tres quiroprácticos; pediatría, prenatal y deportes</p>
+  <p class="web"><b>Página web:</b> Sin web propia: Facebook y directorios</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  <p class="src">Fuentes: <a href="https://practicefinder.newpatientsinc.com/chiro/dr-lee-cardona-dc-guaynabo-pr/">practicefinder.newpatientsinc.com</a></p>
+</article>
+<article class="biz" id="n-galer-a-quiropr-ctica" style="--sec: var(--s-salud)" data-cat="Quiropráctico" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Quiropráctico</p>
+    <div class="ttl"><h3>Galería Quiropráctica</h3><p class="loc">Guaynabo y Bayamón · 2102 Calle Turquesa, Guaynabo</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/galeriaquiropractica/">@galeriaquiropractica</a> · <a href="https://www.facebook.com/galeriaquiro">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-708-7766</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> 24 años; dos oficinas (Guaynabo 787-708-7766 y Bayamón 787-963-1737)</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-v-chiropractic-center" style="--sec: var(--s-salud)" data-cat="Quiropráctico" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Quiropráctico</p>
+    <div class="ttl"><h3>V Chiropractic Center</h3><p class="loc">Guaynabo · 100 Ave. San Patricio, Suite 203</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/p/V-Chiropractic-Center-100094324312506/">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-990-5070</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Oficina en San Patricio</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-centro-de-medicina-interna-dr-juan-bayron" style="--sec: var(--s-salud)" data-cat="Médico" data-pago="Alto" data-conf="Alta" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Médico</p>
+    <div class="ttl"><h3>Centro de Medicina Interna – Dr. Juan Bayron</h3><p class="loc">San Juan · San Juan</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Alta">Verificación alta</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/cmibay">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-783-0399</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd>centrodemedicinainterna@gmail.com</dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Usa Gmail, señal de que no tiene dominio ni web</p>
+  <p class="web"><b>Página web:</b> Sin web propia: usa email de Gmail y Facebook</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-cl-nica-de-medicina-interna-dra-marielle-s-nchez" style="--sec: var(--s-salud)" data-cat="Médico" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Médico</p>
+    <div class="ttl"><h3>Clínica de Medicina Interna – Dra. Marielle Sánchez</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/dramariellesanchez">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Práctica privada de medicina interna</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-salus" style="--sec: var(--s-salud)" data-cat="Médico" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Médico</p>
+    <div class="ttl"><h3>Salus</h3><p class="loc">Guaynabo · Ave. Casa Linda #1, Suite 101</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/saluspr">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-789-1996</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Oficina médica en Guaynabo</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-m-dica-integral" style="--sec: var(--s-salud)" data-cat="Médico" data-pago="Alto" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Médico</p>
+    <div class="ttl"><h3>Médica Integral</h3><p class="loc">San Juan (Río Piedras) · San Juan</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/Medicaintegralsjr">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Medicina integral</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-cl-nica-pedi-trica-020" style="--sec: var(--s-salud)" data-cat="Médico" data-pago="Alto" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Salud · Médico</p>
+    <div class="ttl"><h3>Clínica Pediátrica 020</h3><p class="loc">Por confirmar · Por confirmar</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/pediatrica020/">@pediatrica020</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Pediatría, neonatología, dental y adolescentes en un solo lugar</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional + citas</b> <span class="price">$2,000 + $129/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-lcdo-edgar-villanueva-rivera-abogado-notario" style="--sec: var(--s-prof)" data-cat="Abogado" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Abogado</p>
+    <div class="ttl"><h3>Lcdo. Edgar Villanueva Rivera, Abogado-Notario</h3><p class="loc">Bayamón · Calle 15 T-34, Urb. Flamboyán Gardens</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/lcdo.villanuevarivera/">@lcdo.villanuevarivera</a> · <a href="https://www.facebook.com/VillanuevaRiveralawpr">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-310-4416</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Civil, criminal, herencias y notaría</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-aboga-bufete-jur-dico" style="--sec: var(--s-prof)" data-cat="Abogado" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Abogado</p>
+    <div class="ttl"><h3>Aboga Bufete Jurídico</h3><p class="loc">Por confirmar · Por confirmar</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/p/Aboga-Bufete-Jur%C3%ADdico-100063584443496/">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-945-5193</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Familia, daños, laboral, herencias y contratos</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-lcda-chrisired-morales-negr-n" style="--sec: var(--s-prof)" data-cat="Abogado" data-pago="Alto" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Abogado</p>
+    <div class="ttl"><h3>Lcda. Chrisired Morales Negrón</h3><p class="loc">Por confirmar · Por confirmar</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/suabogadanotario/">@suabogadanotario</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Abogada-notario activa en Instagram</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-nieves-morales-abogados-notarios" style="--sec: var(--s-prof)" data-cat="Abogado" data-pago="Alto" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Abogado</p>
+    <div class="ttl"><h3>Nieves &amp; Morales Abogados-Notarios</h3><p class="loc">Por confirmar · Por confirmar</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/nievesmoraleslawoffices/">@nievesmoraleslawoffices</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Bufete con dos socios</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-tu-notario-pr" style="--sec: var(--s-prof)" data-cat="Abogado" data-pago="Alto" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Abogado</p>
+    <div class="ttl"><h3>Tu Notario PR</h3><p class="loc">San Juan · San Juan</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/tunotariopr">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Servicios notariales</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-premier-cpa-business-consulting-group" style="--sec: var(--s-prof)" data-cat="Contador" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Contador</p>
+    <div class="ttl"><h3>Premier CPA &amp; Business Consulting Group</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/premiercpapr">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-428-0202</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Contabilidad, nómina, planillas y consultoría</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-cpa-jlfa" style="--sec: var(--s-prof)" data-cat="Contador" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Contador</p>
+    <div class="ttl"><h3>CPA JLFA</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/CPAJLFA">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-995-3836</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Auditoría, contabilidad, nómina y contribuciones</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-cpa-juan-garc-a-padr" style="--sec: var(--s-prof)" data-cat="Contador" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Contador</p>
+    <div class="ttl"><h3>CPA Juan García Padró</h3><p class="loc">Guaynabo · Guaynabo</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/cpagarciapadropr">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Contabilidad y nómina</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-vega-taxes-services" style="--sec: var(--s-prof)" data-cat="Contador" data-pago="Medio" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Contador</p>
+    <div class="ttl"><h3>Vega Taxes Services</h3><p class="loc">Guaynabo · Guaynabo</p></div>
+    <div class="tags"><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/taxesservices">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-518-3058</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Preparación de planillas</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-cpa-johmary-mel-ndez" style="--sec: var(--s-prof)" data-cat="Contador" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="1">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Profesionales · Contador</p>
+    <div class="ttl"><h3>CPA Johmary Meléndez</h3><p class="loc">Por confirmar · Por confirmar</p></div>
+    <div class="tags"><span class="tag ola">Ola 1</span><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.instagram.com/planillaspr_cpa/">@planillaspr_cpa</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Tiene podcast propio (&#x27;Vino el Viernes&#x27;): invierte en mercadeo</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  <p class="src">Fuentes: <a href="https://www.audible.co.uk/podcast/Vino-el-Viernes/B0CCN54TCX">audible.co.uk</a></p>
+</article>
+<article class="biz" id="n-eurotechniques-taller-de-mec-nica" style="--sec: var(--s-hogar)" data-cat="Taller" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Taller</p>
+    <div class="ttl"><h3>Eurotechniques – Taller de Mecánica</h3><p class="loc">Bayamón · #66 Esteban Padilla</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/eurotechniquespr">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-269-3111</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Más de 35 años; especialistas en carros europeos</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-auto-precision" style="--sec: var(--s-hogar)" data-cat="Taller" data-pago="Medio" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Taller</p>
+    <div class="ttl"><h3>Auto Precision</h3><p class="loc">Bayamón · Ave. Lomas Verdes F-8</p></div>
+    <div class="tags"><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/AutoPrecision">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-786-6810</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd>Perfil de Google Business</dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Taller establecido en Lomas Verdes</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-mk-auto-service-pr" style="--sec: var(--s-hogar)" data-cat="Taller" data-pago="Medio" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Taller</p>
+    <div class="ttl"><h3>MK Auto Service PR</h3><p class="loc">Bayamón · 377 Calle Comerío</p></div>
+    <div class="tags"><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/p/MK-Auto-Service-PR-100085318856976/">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-702-9229</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Escanea Chrysler, Dodge, Jeep y Ram hasta 2024</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-import-service" style="--sec: var(--s-hogar)" data-cat="Taller" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Taller</p>
+    <div class="ttl"><h3>Import Service</h3><p class="loc">Guaynabo · Guaynabo</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/importservicepr">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Más de 17 años con BMW, Mercedes y Mini (clientes de carros de lujo)</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-cj-autotech" style="--sec: var(--s-hogar)" data-cat="Taller" data-pago="Medio" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Taller</p>
+    <div class="ttl"><h3>CJ AutoTech</h3><p class="loc">San Juan · Ave. Gobernador Piñero</p></div>
+    <div class="tags"><span class="tag pago-Medio">Pago medio</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/ServiJ">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-297-5554</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Mecánica y electromecánica</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-insignia-roofing-sellado-de-techos" style="--sec: var(--s-hogar)" data-cat="Techos / solar" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Techos / solar</p>
+    <div class="ttl"><h3>Insignia Roofing – Sellado de Techos</h3><p class="loc">Guaynabo · Guaynabo</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/p/Insignia-Roofing-Sellado-de-Techos-100076794886278/">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-366-2446</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Certificados por DACO y Danosa; garantía de 10 años</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-mf-home-solutions-inc" style="--sec: var(--s-hogar)" data-cat="Techos / solar" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Techos / solar</p>
+    <div class="ttl"><h3>MF Home Solutions Inc.</h3><p class="loc">San Juan · San Juan</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/mfhomesolutions">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Sellado con sistema Danosa; garantía de 10 años</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-sellado-de-techos-con-danosa" style="--sec: var(--s-hogar)" data-cat="Techos / solar" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Techos / solar</p>
+    <div class="ttl"><h3>Sellado de Techos con Danosa</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/selladodanosa">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-526-5709</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Filtraciones garantizadas</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-marin-membrana" style="--sec: var(--s-hogar)" data-cat="Techos / solar" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Techos / solar</p>
+    <div class="ttl"><h3>Marin Membrana</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/marinmembrana">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-316-7898</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Venta e instalación de membrana</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-sellado-de-techos-uretano" style="--sec: var(--s-hogar)" data-cat="Techos / solar" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Hogar y auto · Techos / solar</p>
+    <div class="ttl"><h3>Sellado de Techos Uretano</h3><p class="loc">Bayamón · Bayamón</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/TechosPR">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-226-3650</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Sellado y venta de selladores industriales</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Profesional</b> <span class="price">$1,500 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-isla-del-encanto-vacation-rentals" style="--sec: var(--s-alquiler)" data-cat="Alquiler vacacional" data-pago="Alto" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Alquiler · Alquiler vacacional</p>
+    <div class="ttl"><h3>Isla del Encanto Vacation Rentals</h3><p class="loc">San Juan (Condado) y Río Grande · Condado</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/haciendaelyunque">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>939-342-6640</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Casas de lujo en Condado y Río Grande</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Reservas directas</b> <span class="price">$1,800 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-isla-verde-vacation-rentals" style="--sec: var(--s-alquiler)" data-cat="Alquiler vacacional" data-pago="Alto" data-conf="Media" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Alquiler · Alquiler vacacional</p>
+    <div class="ttl"><h3>Isla Verde Vacation Rentals</h3><p class="loc">Carolina (Isla Verde) · Isla Verde</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Media">Verificación media</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/IslaVerdeVacationRentals">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>(703) 327-6225</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd>hmsdc@aol.com</dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Dueño fuera de PR; email de AOL (sin dominio propio)</p>
+  <p class="web"><b>Página web:</b> Sin web propia: usa AOL y Facebook</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Reservas directas</b> <span class="price">$1,800 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-pr-vacation-apartment" style="--sec: var(--s-alquiler)" data-cat="Alquiler vacacional" data-pago="Alto" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Alquiler · Alquiler vacacional</p>
+    <div class="ttl"><h3>PR Vacation Apartment</h3><p class="loc">San Juan (Condado) · Condado</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/prvacationapartment">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Penthouses de 3 cuartos en Condado</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Reservas directas</b> <span class="price">$1,800 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-san-juan-short-term-rental" style="--sec: var(--s-alquiler)" data-cat="Alquiler vacacional" data-pago="Alto" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Alquiler · Alquiler vacacional</p>
+    <div class="ttl"><h3>San Juan Short Term Rental</h3><p class="loc">San Juan · Condado y Ocean Park</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/SanJuanShortTermRental">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Varias propiedades en Condado y Ocean Park</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Reservas directas</b> <span class="price">$1,800 + $99/mes</span></p>
+  </div>
+  
+</article>
+<article class="biz" id="n-san-juan-vacation-rentals" style="--sec: var(--s-alquiler)" data-cat="Alquiler vacacional" data-pago="Alto" data-conf="Baja" data-plat="0" data-ola="">
+  <header>
+    <p class="secb"><i aria-hidden="true"></i>Alquiler · Alquiler vacacional</p>
+    <div class="ttl"><h3>San Juan Vacation Rentals</h3><p class="loc">San Juan · San Juan</p></div>
+    <div class="tags"><span class="tag pago-Alto">Pago alto</span><span class="tag conf-Baja">Verificación baja</span></div>
+  </header>
+  <p class="social"><a href="https://www.facebook.com/SanJuanVacation">Facebook</a></p>
+  <dl>
+    <div class="f num"><dt>Teléfono</dt><dd>787-410-6003</dd></div>
+    <div class="f num"><dt>WhatsApp</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Email</dt><dd><span class="none">No encontrado</span></dd></div>
+    <div class="f "><dt>Reseñas</dt><dd><span class="none">No encontrado</span></dd></div>
+  </dl>
+  <p class="sig"><b>Por qué puede pagar:</b> Varias propiedades</p>
+  <p class="web"><b>Página web:</b> No apareció web al buscar por nombre</p>
+  <div class="offer">
+    <p><b>Citas hoy:</b> <span class="none">No detectada (WhatsApp o llamada)</span></p>
+    <p class="pkg"><b>Propuesta: Reservas directas</b> <span class="price">$1,800 + $99/mes</span></p>
+  </div>
+  
+</article>
+  </main>
+  <p class="empty" id="empty" hidden>No hay negocios con esos filtros.</p>
+
+  <section class="method drop">
+    <h2>Descartados</h2>
+    <ul><li><b>Natural Health Chiropractic</b> (Santurce): Ya tiene web: naturalhealthpr.com</li><li><b>Health Chiropractic and More</b> (Bayamón y otros): Ya tiene web: tucolumnahabla.com</li><li><b>El Verde Dental</b> (Caguas): Tiene web en Wix y está fuera del área</li><li><b>Solar Now Puerto Rico</b> (San Juan): Empresa grande con financiamiento propio; casi seguro tiene web</li><li><b>DMP Legal &amp; Notary Services</b> (San Juan): Usa email con dominio propio (dmplawpr.com)</li><li><b>Huachinango</b> (Guaynabo): Restaurante con salones de eventos; parece tener web</li><li><b>JL Barber Studio / Barbero Ema</b> (Bayamón): Buenas reseñas en Booksy (5.0), pero no les encontré Instagram ni Facebook</li></ul>
+  </section>
+</div>
+
+<script>
+(function () {
+  var cat = "all";
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".biz"));
+  var alto = document.getElementById("f-alto"), conf = document.getElementById("f-conf"), plat = document.getElementById("f-plat"), ola = document.getElementById("f-ola");
+  function apply() {
+    var n = 0;
+    cards.forEach(function (c) {
+      var ok = (cat === "all" || c.dataset.cat === cat) && (!alto.checked || c.dataset.pago === "Alto") && (!conf.checked || c.dataset.conf !== "Baja") && (!plat.checked || c.dataset.plat === "1") && (!ola.checked || c.dataset.ola === "1");
+      c.hidden = !ok; if (ok) n++;
+    });
+    document.getElementById("shown").textContent = n + " de " + cards.length + " visibles";
+    document.getElementById("empty").hidden = n > 0;
+  }
+  document.querySelectorAll(".chip").forEach(function (b) {
+    b.addEventListener("click", function () {
+      cat = b.dataset.filter;
+      document.querySelectorAll(".chip").forEach(function (x) { x.classList.toggle("on", x === b); });
+      apply();
+    });
+  });
+  alto.addEventListener("change", apply); conf.addEventListener("change", apply); plat.addEventListener("change", apply); ola.addEventListener("change", apply);
+  apply();
+})();
+</script>
+
+</body>
+</html>
