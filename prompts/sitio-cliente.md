@@ -56,18 +56,42 @@ inventes reseñas, precios, horarios, años de experiencia ni certificaciones.
 
 - **Astro** con islas de **React**, **Tailwind CSS** y **TypeScript**. Es un sitio estático: carga rápido en
   celulares y sale gratis en Cloudflare Pages.
-- Efectos: **Motion** (Framer Motion) y componentes de **Componentry** (https://componentry.fun; el usuario lo
-  llama componentry.dev). Instálalos con el CLI de shadcn desde su registry. Si un efecto no está ahí, busca
-  en 21st.dev, Magic UI, Aceternity UI o React Bits.
+- Efectos: **Motion** (Framer Motion) y componentes de **Componentry** (https://componentry.dev/docs, MIT,
+  React + Tailwind + Framer Motion). Se copian al proyecto con el CLI de shadcn:
+  1. `npx shadcn@latest init`, y en `components.json` añade:
+     `"registries": { "@componentry": "https://componentry.dev/r/{name}.json" }`
+  2. `npx shadcn@latest add @componentry/<componente>`, por ejemplo `@componentry/silk-aurora`.
+  3. Opcional: `npx shadcn@latest mcp init --client claude`, para buscar e instalar componentes por MCP.
+  Si un componente usa APIs de Next.js (como `next/image`), cámbialas por su equivalente en Astro o por un
+  `<img>`. Si falta algún efecto, busca en 21st.dev, Magic UI, Aceternity UI o React Bits.
 - 3D: **Three.js** con **@react-three/fiber** y **@react-three/drei**, o una escena de **Spline** exportada.
   Cárgalo siempre con `client:visible` o `client:idle`, nunca en el primer render.
 - Imágenes con `astro:assets` (AVIF/WebP, tamaños responsivos). Videos en MP4 H.264 sin audio, con `poster`.
 
+### Componentes de Componentry recomendados
+
+Escoge 3 o 4 como máximo: un efecto fuerte en el hero y detalles sutiles en lo demás.
+
+| Para | Componentes |
+|---|---|
+| Fondo del hero | `silk-aurora`, `aurora-flow`, `animated-gradient`, `grain-gradient`, `prism-gradient`, `dither-prism-hero`, `hero-geometric`, `webgl-liquid`, `liquid-chrome`, `spectral-ribbon`, `closing-plasma`, o el bloque `gradient-hero-01` |
+| Títulos con movimiento | `kinetic-text-reveal`, `letter-cascade`, `flipping-word-swap`, `text-morph`, `annotated-text` |
+| Logo | `dithered-logo` |
+| Precios u horario | `split-flap-display` (estilo tablero de aeropuerto, ideal para barberías y food trucks), y los bloques `pricing-01` y `pricing-02` |
+| Galería y carrusel de Instagram | `liquid-glass-carousel`, `wheel-carousel`, `spiral-3d-slider` (3D), `orbit-card-stack`, `layered-stack`, `infinite-image-field`, `scroll-tilted-grid`, `sticky-scroll-cards`, `image-ripple-effect` |
+| Franja de servicios | `scroll-based-velocity` (marquee que acelera con el scroll) |
+| Secciones con scroll | `scroll-choreography`, `scroll-split-card` |
+
+Los efectos que siguen al cursor (`image-trail`, `pixel-image-trail`, `magnet-lines`, `text-repel`,
+`eye-tracking`, `cursor-driven-particle-typography`) no funcionan con el dedo. Úsalos solo en desktop
+(`@media (hover: hover)`) y deja una versión estática en el celular. No uses los que no tienen que ver con un
+negocio local (`github-calendar`, `mac-keyboard`, `music-player`, `flight-status-card`, `newsletter-bookshelf`).
+
 ## 3. Secciones
 
 1. **Hero**, que es lo que más impresiona. Escoge una de estas opciones según su marca:
-   - fondo animado de Componentry (Silk Aurora, Particle Galaxy, Animated Gradient u otro) con los colores de su
-     marca, el logo o el nombre en grande y su mejor foto;
+   - un fondo animado de Componentry (por ejemplo `silk-aurora`, `webgl-liquid` o `grain-gradient`) con los
+     colores de su marca, el logo o el nombre en grande y su mejor foto;
    - un objeto 3D que tenga que ver con el negocio (tijeras, esmalte, burger, diente) girando suave y
      reaccionando al dedo o al giroscopio;
    - un reel de ellos de fondo, en loop y sin sonido, con un velo de color de su marca.
@@ -76,7 +100,8 @@ inventes reseñas, precios, horarios, años de experiencia ni certificaciones.
    WhatsApp con el servicio ya escrito, o el link directo de ese servicio en Booksy, Fresha o Vagaro.
 3. **Su trabajo**: una galería con efecto (tarjetas 3D con tilt, parallax suave o un marquee), hecha con sus
    fotos.
-4. **Carrusel de Instagram**: las publicaciones guardadas, en un carrusel moderno.
+4. **Carrusel de Instagram**: las publicaciones guardadas, en un carrusel moderno (por ejemplo
+   `liquid-glass-carousel`, `wheel-carousel` o `spiral-3d-slider` de Componentry).
    - deslizable con el dedo, con scroll-snap y tarjetas con profundidad (escala o rotación según la posición);
    - cada tarjeta abre la publicación original en Instagram;
    - un botón "Síguenos @usuario" que lleve a su perfil;
